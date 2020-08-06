@@ -1,0 +1,33 @@
+package iss.team1.ad.ssis_android.comm.utils;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
+import org.json.JSONObject;
+
+import java.lang.reflect.Type;
+import java.util.List;
+
+/**
+ * @author WUYUDING
+ */
+public class JSONUtil {
+
+    private static Gson gson=new Gson();
+
+    public static String ObjectToJson(Object object){
+        return gson.toJson(object);
+    }
+
+    public static Object JsonToObject(String json,Class pojoClass){
+        return gson.fromJson(json,pojoClass);
+    }
+
+    public static Object JsonToObject(String json, Type type){
+        return gson.fromJson(json,type);
+    }
+
+    public static List JsonToList(String json, Type type){
+        return gson.fromJson(json, type);
+    }
+}
