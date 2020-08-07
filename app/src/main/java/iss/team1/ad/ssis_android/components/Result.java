@@ -8,20 +8,57 @@ import java.io.Serializable;
  */
 public class Result implements Serializable {
 
-    private Object Value;
+    private int code  = 200;
 
-    public Result(Object value) {
-        this.Value = value;
-    }
+    private Object data ;
+
+    private String msg ;
+
+    private String sub_msg ;
 
     public Result() {
     }
 
-    public Object getValue(){
-        return Value;
+    public Result(Object data) {
+        this.data = data;
     }
 
-    public void setValue(Object value){
-        this.Value=value;
+    public Result(int code, Object data, String msg, String sub_msg) {
+        this.code = code;
+        this.data = data;
+        this.msg = msg;
+        this.sub_msg = sub_msg;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public Object getData() {
+        return data;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public String getSub_msg() {
+        return sub_msg;
+    }
+
+    public void setSub_msg(String sub_msg) {
+        this.sub_msg = sub_msg;
     }
 }

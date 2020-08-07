@@ -31,5 +31,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/testToken"
         android:text="text token"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/clearToken"
+        android:text="clear token"/>
 
 </LinearLayout>

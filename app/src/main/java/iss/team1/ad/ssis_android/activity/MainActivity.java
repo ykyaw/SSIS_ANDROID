@@ -20,6 +20,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import iss.team1.ad.ssis_android.comm.utils.EntityUtil;
 import iss.team1.ad.ssis_android.components.Result;
 import iss.team1.ad.ssis_android.R;
 import iss.team1.ad.ssis_android.bean.User;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText password;
     private Button login;
     private Button testToken;
+    private Button clearToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,19 @@ public class MainActivity extends AppCompatActivity {
         password=(EditText)findViewById(R.id.password);
         login=(Button)findViewById(R.id.login);
         testToken=(Button)findViewById(R.id.testToken);
+        clearToken=(Button)findViewById(R.id.clearToken);
+
+        clearToken.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences pref=getSharedPreferences("user_credentials",MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+
+                editor.clear();
+                editor.apply();
+                Toast.makeText(MainActivity.this,"clear token successfully",Toast.LENGTH_LONG).show();
+            }
+        });
 
         testToken.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,15 +72,16 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(JSONObject response) {
                                 Result result = (Result) JSONUtil.JsonToObject(response.toString(), Result.class);
-                                if(result.getValue()!=null){
-                                    Toast.makeText(MainActivity.this,result.getValue().toString(),Toast.LENGTH_LONG).show();
+                                if(result.getCode()==200){
+                                    Toast.makeText(MainActivity.this,result.getData().toString(),Toast.LENGTH_LONG).show();
                                 }else{
-                                    Toast.makeText(MainActivity.this,"return value is null",Toast.LENGTH_LONG).show();
+                                    Toast.makeText(MainActivity.this,result.getMsg(),Toast.LENGTH_LONG).show();
                                 }
                             }
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(MainActivity.this,"invalid token",Toast.LENGTH_LONG).show();
                                 System.out.println("error");
                                 error.printStackTrace();
                                 System.out.println(error.getMessage());
@@ -85,29 +101,29 @@ public class MainActivity extends AppCompatActivity {
                 User user=new User();
                 user.setEmail(emailText);
                 user.setPassword(hashPwd);
-                Map<String,String> params=new HashMap<>();
-                params.put("Value",JSONUtil.ObjectToJson(user));
 
                 HttpUtil.getInstance()
-                        .sendJSONRequest(Request.Method.POST,CommonConstant.HttpUrl.LOGIN,new JSONObject(params),new Response.Listener<JSONObject>(){
+                        .sendJSONRequest(Request.Method.POST,CommonConstant.HttpUrl.LOGIN, EntityUtil.object2JSONObject(user),
+                                new Response.Listener<JSONObject>(){
                             @Override
                             public void onResponse(JSONObject response) {
                                 Result result = (Result) JSONUtil.JsonToObject(response.toString(), Result.class);
-                                if(result.getValue()==null){
-                                    Toast.makeText(MainActivity.this,"email or password incorrect.",Toast.LENGTH_LONG).show();
-                                }else{
+                                if(result.getCode()==200){
                                     SharedPreferences pref=getSharedPreferences("user_credentials",MODE_PRIVATE);
                                     SharedPreferences.Editor editor = pref.edit();
 
-                                    editor.putString("token",result.getValue().toString());
+                                    editor.putString("token",result.getData().toString());
                                     editor.apply();
 
                                     startHomeActivity();
+                                }else{
+                                    Toast.makeText(MainActivity.this,result.getMsg(),Toast.LENGTH_LONG).show();
                                 }
                             }
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(MainActivity.this,"email or password incorrect",Toast.LENGTH_LONG).show();
                                 System.out.println("error");
                                 error.printStackTrace();
                                 System.out.println(error.getMessage());
