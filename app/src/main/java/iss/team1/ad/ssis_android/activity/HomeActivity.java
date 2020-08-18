@@ -26,6 +26,7 @@ import iss.team1.ad.ssis_android.R;
 import iss.team1.ad.ssis_android.bean.User;
 import iss.team1.ad.ssis_android.components.ActivityCollector;
 import iss.team1.ad.ssis_android.fragment.MenuFragment;
+import iss.team1.ad.ssis_android.fragment.RetrievalFragment;
 import iss.team1.ad.ssis_android.fragment.TabFragment;
 import iss.team1.ad.ssis_android.modal.Employee;
 
@@ -73,7 +74,7 @@ public class HomeActivity extends AppCompatActivity {
 
         final CardView cardView = (CardView) findViewById(R.id.card_view);
 
-        tabFragments.add(new TabFragment());
+        tabFragments.add(new RetrievalFragment());
         tabFragments.add(new TabFragment());
         tabFragments.add(new TabFragment());
         tabFragments.add(new TabFragment());

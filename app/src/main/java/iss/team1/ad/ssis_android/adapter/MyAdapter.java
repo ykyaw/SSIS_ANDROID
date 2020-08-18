@@ -195,9 +195,6 @@ public abstract class MyAdapter<T> extends BaseAdapter {
             getView(id).setTag(obj);
             return this;
         }
-
-
-
     }
 
 }
