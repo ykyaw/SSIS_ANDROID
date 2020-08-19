@@ -25,6 +25,7 @@ import iss.team1.ad.ssis_android.R;
 import iss.team1.ad.ssis_android.activity.HomeActivity;
 import iss.team1.ad.ssis_android.adapter.MenuItemAdapter;
 import iss.team1.ad.ssis_android.bean.User;
+import iss.team1.ad.ssis_android.comm.CommonConstant;
 import iss.team1.ad.ssis_android.comm.utils.ApplicationUtil;
 import iss.team1.ad.ssis_android.components.MenuItem;
 import iss.team1.ad.ssis_android.modal.Employee;
@@ -43,7 +44,6 @@ public class MenuFragment extends Fragment {
 
     public void setCurrentUser(Employee user){
         this.currentUser=user;
-        //显示用户信息
         if(currentUser!=null) {
             userName.setText(currentUser.getName());
         }
@@ -92,10 +92,30 @@ public class MenuFragment extends Fragment {
     public void initListView() {
         String[] menu_store_clerk=getResources().getStringArray(R.array.menu_store_clerk);
         String[] menu_store_supervisor=getResources().getStringArray(R.array.menu_store_supervisor);
-        String[] data_zh = getResources().getStringArray(R.array.menu_zh);
-        String[] data_en = getResources().getStringArray(R.array.menu_en);
-        for (int i = 0; i < menu_store_clerk.length; i++) {
-            MenuItem menuItem = new MenuItem(menu_store_clerk[i]);
+        String[] menu_dept_head=getResources().getStringArray(R.array.menu_dept_head);
+        String[] menu_dept_repo=getResources().getStringArray(R.array.menu_dept_repo);
+        String[] current_menu;
+        current_menu=menu_store_clerk;
+        switch (currentUser.getRole()){
+            case CommonConstant.ROLE.STORE_CLERK:
+                current_menu=menu_store_clerk;
+                break;
+            case CommonConstant.ROLE.STORE_MANAGER:
+            case CommonConstant.ROLE.STORE_SUPERVISOR:
+                current_menu=menu_store_supervisor;
+                break;
+            case CommonConstant.ROLE.DEPARTMENT_EMPLOYEE:
+                current_menu=menu_dept_repo;
+                break;
+            case CommonConstant.ROLE.DEPARTMENT_HEAD:
+                current_menu=menu_dept_head;
+                break;
+            default:
+                current_menu=menu_store_clerk;
+                break;
+        }
+        for (int i = 0; i < current_menu.length; i++) {
+            MenuItem menuItem = new MenuItem(current_menu[i]);
             menuItemList.add(menuItem);
         }
         adapter = new MenuItemAdapter(getActivity(), R.layout.menu_list_item, menuItemList);

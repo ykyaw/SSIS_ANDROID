@@ -5,21 +5,17 @@
     <string-array name="menu_store_clerk">
         <item>Retrieval List</item>
         <item>Disbursement List</item>
+        <item>Quit</item>
     </string-array>
     <string-array name="menu_store_supervisor">
         <item>Adjustment Voucher</item>
         <item>Purchase Request</item>
+        <item>Quit</item>
     </string-array>
-    <string-array name="menu_zh">
-        <item>地图</item>
-        <item>家庭</item>
-        <item>二维码</item>
-        <item>退出登录</item>
+    <string-array name="menu_dept_head">
+        <item>Quit</item>
     </string-array>
-    <string-array name="menu_en">
-        <item>MAP</item>
-        <item>FAMILY</item>
-        <item>QRCODE</item>
-        <item>QUIT</item>
+    <string-array name="menu_dept_repo">
+        <item>Quit</item>
     </string-array>
 </resources>

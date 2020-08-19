@@ -5,164 +5,219 @@ import java.util.List;
 
 public class Employee implements Serializable {
     
-    public int Id ;
-    public String Name ;
-    public String Email ;
-    public String Password ;
-    public int PhoneNo ;
-    public int ManagerId ;
-    public long DelegateFromDate ;
-    public long DelegateToDate ;
+    public int id;
+    public String name;
+    public String email;
+    public String password;
+    public int phoneNo;
+    public String departmentId;
+    public int managerId;
+    public long delegateFromDate;
+    public long delegateToDate;
 
-    public String Role ;
+    public String role;
 
-    public  Department Department ;
+    public  Department department;
 
 
     /*One manager multiple employee relationship*/
-    public  Employee Manager ;
-    public List<Employee> Employees ;
+    public  Employee manager;
+    public  List<Employee> employees;
+
+
+
+    /* The InverseProperty attribute is used when two entities have more than one relationship, in this case is Requsition and Employee */
+
+    public  List<Requisition> requestedrequsition;
+
+    public  List<Requisition> approvedrequsition;
+
+    public  List<Requisition> processedrequsition;
+
+    public  List<Requisition> receivedrequsitions;
+
+    public  List<Requisition> acknowledgedrequsition;
+
+    public  List<Transaction> transactions;
+
+    public Employee(int id, String name, String email, String password, int phoneNo, String departmentId, int managerId, long delegateFromDate, long delegateToDate, String role, Department department, Employee manager, List<Employee> employees, List<Requisition> requestedrequsition, List<Requisition> approvedrequsition, List<Requisition> processedrequsition, List<Requisition> receivedrequsitions, List<Requisition> acknowledgedrequsition, List<Transaction> transactions) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.phoneNo = phoneNo;
+        this.departmentId = departmentId;
+        this.managerId = managerId;
+        this.delegateFromDate = delegateFromDate;
+        this.delegateToDate = delegateToDate;
+        this.role = role;
+        this.department = department;
+        this.manager = manager;
+        this.employees = employees;
+        this.requestedrequsition = requestedrequsition;
+        this.approvedrequsition = approvedrequsition;
+        this.processedrequsition = processedrequsition;
+        this.receivedrequsitions = receivedrequsitions;
+        this.acknowledgedrequsition = acknowledgedrequsition;
+        this.transactions = transactions;
+    }
+
+    public Employee(int id) {
+        this.id = id;
+    }
 
     public Employee() {
     }
 
-    public Employee(int id) {
-        Id = id;
-    }
-
-    public Employee(int id, String name, String email, String password, int phoneNo, int managerId, long delegateFromDate, long delegateToDate, String role, iss.team1.ad.ssis_android.modal.Department department, Employee manager, List<Employee> employees) {
-        Id = id;
-        Name = name;
-        Email = email;
-        Password = password;
-        PhoneNo = phoneNo;
-        ManagerId = managerId;
-        DelegateFromDate = delegateFromDate;
-        DelegateToDate = delegateToDate;
-        Role = role;
-        Department = department;
-        Manager = manager;
-        Employees = employees;
-    }
-
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
     public void setPassword(String password) {
-        Password = password;
+        this.password = password;
     }
 
     public int getPhoneNo() {
-        return PhoneNo;
+        return phoneNo;
     }
 
     public void setPhoneNo(int phoneNo) {
-        PhoneNo = phoneNo;
+        this.phoneNo = phoneNo;
+    }
+
+    public String getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(String departmentId) {
+        this.departmentId = departmentId;
     }
 
     public int getManagerId() {
-        return ManagerId;
+        return managerId;
     }
 
     public void setManagerId(int managerId) {
-        ManagerId = managerId;
+        this.managerId = managerId;
     }
 
     public long getDelegateFromDate() {
-        return DelegateFromDate;
+        return delegateFromDate;
     }
 
     public void setDelegateFromDate(long delegateFromDate) {
-        DelegateFromDate = delegateFromDate;
+        this.delegateFromDate = delegateFromDate;
     }
 
     public long getDelegateToDate() {
-        return DelegateToDate;
+        return delegateToDate;
     }
 
     public void setDelegateToDate(long delegateToDate) {
-        DelegateToDate = delegateToDate;
+        this.delegateToDate = delegateToDate;
     }
 
     public String getRole() {
-        return Role;
+        return role;
     }
 
     public void setRole(String role) {
-        Role = role;
+        this.role = role;
     }
 
-    public iss.team1.ad.ssis_android.modal.Department getDepartment() {
-        return Department;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setDepartment(iss.team1.ad.ssis_android.modal.Department department) {
-        Department = department;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public Employee getManager() {
-        return Manager;
+        return manager;
     }
 
     public void setManager(Employee manager) {
-        Manager = manager;
+        this.manager = manager;
     }
 
     public List<Employee> getEmployees() {
-        return Employees;
+        return employees;
     }
 
     public void setEmployees(List<Employee> employees) {
-        Employees = employees;
+        this.employees = employees;
     }
 
-    /* The InverseProperty attribute is used when two entities have more than one relationship, in this case is Requsition and Employee */
-//
-//    public  ICollection<Requisition> Requestedrequsition ;
-//
-//    public  ICollection<Requisition> Approvedrequsition ;
-//
-//    public  ICollection<Requisition> Processedrequsition ;
-//
-//    public  ICollection<Requisition> Receivedrequsitions ;
-//
-//    public  ICollection<Requisition> Acknowledgedrequsition ;
-//
-//    public  ICollection<Transaction> Transactions ;
-//
-//    public Employee() { }
-//    public Employee(String Name, String Email, String Password,String DepartmentId,String Role )
-//    {
-//        this.Name = Name;
-//        this.Email = Email;
-//        this.Password = Password;
-//        this.DepartmentId = DepartmentId;
-//        this.Role = Role;
-//
-//    }
+    public List<Requisition> getRequestedrequsition() {
+        return requestedrequsition;
+    }
+
+    public void setRequestedrequsition(List<Requisition> requestedrequsition) {
+        this.requestedrequsition = requestedrequsition;
+    }
+
+    public List<Requisition> getApprovedrequsition() {
+        return approvedrequsition;
+    }
+
+    public void setApprovedrequsition(List<Requisition> approvedrequsition) {
+        this.approvedrequsition = approvedrequsition;
+    }
+
+    public List<Requisition> getProcessedrequsition() {
+        return processedrequsition;
+    }
+
+    public void setProcessedrequsition(List<Requisition> processedrequsition) {
+        this.processedrequsition = processedrequsition;
+    }
+
+    public List<Requisition> getReceivedrequsitions() {
+        return receivedrequsitions;
+    }
+
+    public void setReceivedrequsitions(List<Requisition> receivedrequsitions) {
+        this.receivedrequsitions = receivedrequsitions;
+    }
+
+    public List<Requisition> getAcknowledgedrequsition() {
+        return acknowledgedrequsition;
+    }
+
+    public void setAcknowledgedrequsition(List<Requisition> acknowledgedrequsition) {
+        this.acknowledgedrequsition = acknowledgedrequsition;
+    }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
 }

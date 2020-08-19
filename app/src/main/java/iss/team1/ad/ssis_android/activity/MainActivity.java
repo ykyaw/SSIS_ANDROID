@@ -28,6 +28,7 @@ import iss.team1.ad.ssis_android.comm.CommonConstant;
 import iss.team1.ad.ssis_android.comm.utils.EncrypUtil;
 import iss.team1.ad.ssis_android.comm.utils.HttpUtil;
 import iss.team1.ad.ssis_android.comm.utils.JSONUtil;
+import iss.team1.ad.ssis_android.modal.Employee;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -109,13 +110,17 @@ public class MainActivity extends AppCompatActivity {
                             public void onResponse(JSONObject response) {
                                 Result result = (Result) JSONUtil.JsonToObject(response.toString(), Result.class);
                                 if(result.getCode()==200){
+
+                                    String token = ((Map<String, Object>) result.getData()).get("token").toString();
                                     SharedPreferences pref=getSharedPreferences("user_credentials",MODE_PRIVATE);
                                     SharedPreferences.Editor editor = pref.edit();
 
-                                    editor.putString("token",result.getData().toString());
+                                    editor.putString("token",token);
                                     editor.apply();
-
-                                    startHomeActivity();
+                                    Map<String,Object> t= (Map<String, Object>) ((Map<String,Object>)result.getData()).get("employee");
+                                    Employee currentUser= (Employee) EntityUtil.map2Object(t,Employee.class);
+                                    System.out.println("t");
+//                                    startHomeActivity(currentUser);
                                 }else{
                                     Toast.makeText(MainActivity.this,result.getMsg(),Toast.LENGTH_LONG).show();
                                 }
@@ -134,8 +139,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void startHomeActivity(){
+    private void startHomeActivity(Employee employee){
         Intent intent=new Intent(this,HomeActivity.class);
+        intent.putExtra("currentUser",employee);
         startActivity(intent);
     }
 

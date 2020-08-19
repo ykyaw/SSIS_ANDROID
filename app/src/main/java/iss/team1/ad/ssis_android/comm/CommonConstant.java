@@ -7,4 +7,13 @@ public class CommonConstant {
         public static final String LOGIN=root+"Login/Verify";
         public static final String TEST=root+"Login/Index";
     }
+
+    public static class ROLE
+    {
+        public static final String STORE_CLERK = "sc";
+        public static final String STORE_SUPERVISOR = "ss";
+        public static final String STORE_MANAGER = "sm";
+        public static final String DEPARTMENT_HEAD = "dh";
+        public static final String DEPARTMENT_EMPLOYEE = "de";
+    }
 }

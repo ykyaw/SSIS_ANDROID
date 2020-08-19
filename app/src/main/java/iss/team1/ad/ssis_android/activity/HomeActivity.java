@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -47,8 +48,14 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        Intent intent=getIntent();
+//        currentUser=(Employee)intent.getSerializableExtra("currentUser");
+        currentUser=new Employee();
+        currentUser.setName("Esther");
+        currentUser.setRole("sc");
         FragmentManager fragmentManager = getSupportFragmentManager();
         final MenuFragment menuFragment=(MenuFragment)fragmentManager.findFragmentById(R.id.nav_view);
+        menuFragment.setCurrentUser(currentUser);
 
         init();
     }
