@@ -3,6 +3,7 @@ package iss.team1.ad.ssis_android.fragment;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -23,12 +24,15 @@ import java.util.List;
 
 import iss.team1.ad.ssis_android.R;
 import iss.team1.ad.ssis_android.activity.HomeActivity;
+import iss.team1.ad.ssis_android.activity.MainActivity;
 import iss.team1.ad.ssis_android.adapter.MenuItemAdapter;
 import iss.team1.ad.ssis_android.bean.User;
 import iss.team1.ad.ssis_android.comm.CommonConstant;
 import iss.team1.ad.ssis_android.comm.utils.ApplicationUtil;
 import iss.team1.ad.ssis_android.components.MenuItem;
 import iss.team1.ad.ssis_android.modal.Employee;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class MenuFragment extends Fragment {
 
@@ -46,6 +50,7 @@ public class MenuFragment extends Fragment {
         this.currentUser=user;
         if(currentUser!=null) {
             userName.setText(currentUser.getName());
+            initListView();
         }
     }
 
@@ -90,29 +95,28 @@ public class MenuFragment extends Fragment {
 
 
     public void initListView() {
+        menuItemList.clear();
         String[] menu_store_clerk=getResources().getStringArray(R.array.menu_store_clerk);
         String[] menu_store_supervisor=getResources().getStringArray(R.array.menu_store_supervisor);
         String[] menu_dept_head=getResources().getStringArray(R.array.menu_dept_head);
         String[] menu_dept_repo=getResources().getStringArray(R.array.menu_dept_repo);
-        String[] current_menu;
-        current_menu=menu_store_clerk;
-        switch (currentUser.getRole()){
-            case CommonConstant.ROLE.STORE_CLERK:
-                current_menu=menu_store_clerk;
-                break;
-            case CommonConstant.ROLE.STORE_MANAGER:
-            case CommonConstant.ROLE.STORE_SUPERVISOR:
-                current_menu=menu_store_supervisor;
-                break;
-            case CommonConstant.ROLE.DEPARTMENT_EMPLOYEE:
-                current_menu=menu_dept_repo;
-                break;
-            case CommonConstant.ROLE.DEPARTMENT_HEAD:
-                current_menu=menu_dept_head;
-                break;
-            default:
-                current_menu=menu_store_clerk;
-                break;
+        String[] current_menu=menu_store_clerk;
+        if(currentUser!=null){
+            switch (currentUser.getRole()){
+                case CommonConstant.ROLE.STORE_MANAGER:
+                case CommonConstant.ROLE.STORE_SUPERVISOR:
+                    current_menu=menu_store_supervisor;
+                    break;
+                case CommonConstant.ROLE.DEPARTMENT_EMPLOYEE:
+                    current_menu=menu_dept_repo;
+                    break;
+                case CommonConstant.ROLE.DEPARTMENT_HEAD:
+                    current_menu=menu_dept_head;
+                    break;
+                default:
+                    current_menu=menu_store_clerk;
+                    break;
+            }
         }
         for (int i = 0; i < current_menu.length; i++) {
             MenuItem menuItem = new MenuItem(current_menu[i]);
@@ -128,6 +132,40 @@ public class MenuFragment extends Fragment {
             @SuppressLint("WrongConstant")
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String[] menu_store_clerk=getResources().getStringArray(R.array.menu_store_clerk);
+                String[] menu_store_supervisor=getResources().getStringArray(R.array.menu_store_supervisor);
+                String[] menu_dept_head=getResources().getStringArray(R.array.menu_dept_head);
+                String[] menu_dept_repo=getResources().getStringArray(R.array.menu_dept_repo);
+                String[] current_menu=menu_store_clerk;
+                if(currentUser!=null){
+                    switch (currentUser.getRole()){
+                        case CommonConstant.ROLE.STORE_MANAGER:
+                        case CommonConstant.ROLE.STORE_SUPERVISOR:
+                            current_menu=menu_store_supervisor;
+                            break;
+                        case CommonConstant.ROLE.DEPARTMENT_EMPLOYEE:
+                            current_menu=menu_dept_repo;
+                            break;
+                        case CommonConstant.ROLE.DEPARTMENT_HEAD:
+                            current_menu=menu_dept_head;
+                            break;
+                        default:
+                            current_menu=menu_store_clerk;
+                            break;
+                    }
+                }
+                if(position==current_menu.length-1){
+                    //click logout
+                    SharedPreferences pref=ApplicationUtil.getContext().getSharedPreferences("user_credentials",MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+
+                    editor.clear();
+                    editor.apply();
+
+                    Intent intent=new Intent(ApplicationUtil.getContext(), MainActivity.class);
+                    startActivity(intent);
+                    return;
+                }
                 adapter.changeSelected(position);
                 HomeActivity activity = (HomeActivity) getActivity();
                 DrawerLayout mDrawerLayout = (DrawerLayout) activity.findViewById(R.id.drawer_layout);

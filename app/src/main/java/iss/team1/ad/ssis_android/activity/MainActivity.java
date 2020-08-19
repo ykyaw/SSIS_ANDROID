@@ -20,6 +20,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import iss.team1.ad.ssis_android.comm.utils.ApplicationUtil;
 import iss.team1.ad.ssis_android.comm.utils.EntityUtil;
 import iss.team1.ad.ssis_android.components.Result;
 import iss.team1.ad.ssis_android.R;
@@ -43,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        SharedPreferences pref = ApplicationUtil.getContext().getSharedPreferences("user_credentials", MODE_PRIVATE);
+        if(pref.contains("token")){
+            return;
+        }
         init();
     }
 
@@ -119,8 +124,7 @@ public class MainActivity extends AppCompatActivity {
                                     editor.apply();
                                     Map<String,Object> t= (Map<String, Object>) ((Map<String,Object>)result.getData()).get("employee");
                                     Employee currentUser= (Employee) EntityUtil.map2Object(t,Employee.class);
-                                    System.out.println("t");
-//                                    startHomeActivity(currentUser);
+                                    startHomeActivity(currentUser);
                                 }else{
                                     Toast.makeText(MainActivity.this,result.getMsg(),Toast.LENGTH_LONG).show();
                                 }

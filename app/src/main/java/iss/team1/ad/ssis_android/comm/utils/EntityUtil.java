@@ -1,5 +1,8 @@
 package iss.team1.ad.ssis_android.comm.utils;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+
 import org.json.JSONObject;
 
 import java.lang.reflect.Field;
@@ -39,22 +42,11 @@ public class EntityUtil {
         if (map == null) {
             return null;
         }
-        Object obj = null;
-        try {
-            obj = clazz.newInstance();
+        Object obj =null;
+        Gson gson = new Gson();
+        JsonElement jsonElement = gson.toJsonTree(map);
+        obj = gson.fromJson(jsonElement, clazz);
 
-            Field[] fields = obj.getClass().getDeclaredFields();
-            for (Field field : fields) {
-                int mod = field.getModifiers();
-                if (Modifier.isStatic(mod) || Modifier.isFinal(mod)) {
-                    continue;
-                }
-                field.setAccessible(true);
-                field.set(obj, map.get(field.getName()));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         return obj;
     }
 }
