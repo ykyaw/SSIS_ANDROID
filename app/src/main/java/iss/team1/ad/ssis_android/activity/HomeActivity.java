@@ -24,9 +24,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import iss.team1.ad.ssis_android.R;
-import iss.team1.ad.ssis_android.bean.User;
 import iss.team1.ad.ssis_android.comm.CommonConstant;
 import iss.team1.ad.ssis_android.components.ActivityCollector;
+import iss.team1.ad.ssis_android.fragment.DisbursementFragment;
 import iss.team1.ad.ssis_android.fragment.MenuFragment;
 import iss.team1.ad.ssis_android.fragment.RetrievalFragment;
 import iss.team1.ad.ssis_android.fragment.TabFragment;
@@ -50,10 +50,10 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         Intent intent=getIntent();
-        currentUser=(Employee)intent.getSerializableExtra("currentUser");
-//        currentUser=new Employee();
-//        currentUser.setName("Esther");
-//        currentUser.setRole("sc");
+//        currentUser=(Employee)intent.getSerializableExtra("currentUser");
+        currentUser=new Employee();
+        currentUser.setName("Esther");
+        currentUser.setRole("sc");
         FragmentManager fragmentManager = getSupportFragmentManager();
         final MenuFragment menuFragment=(MenuFragment)fragmentManager.findFragmentById(R.id.nav_view);
         menuFragment.setCurrentUser(currentUser);
@@ -96,7 +96,7 @@ public class HomeActivity extends AppCompatActivity {
                 break;
             case CommonConstant.ROLE.STORE_CLERK:
                 tabFragments.add(new RetrievalFragment());
-                tabFragments.add(new TabFragment());
+                tabFragments.add(new DisbursementFragment());
                 tabFragments.add(new TabFragment());
                 tabFragments.add(new TabFragment());
                 tabFragments.add(new TabFragment());

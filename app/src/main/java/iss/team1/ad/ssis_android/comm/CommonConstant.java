@@ -8,7 +8,9 @@ public class CommonConstant {
         public static final String TEST=root+"Login/Index";
         public static String GENERATE_RETRIEVAL_FORM(long date){
             return root+"storeclerk/ret/"+date;
-        }
+        };
+        public static final String GET_ALL_DEPARTMENT = root+"storeclerk/retrievealldept";
+        public static final String GET_DISBURSEMENT =root+"storeclerk/disbursement" ;
     }
 
     public static class ROLE
