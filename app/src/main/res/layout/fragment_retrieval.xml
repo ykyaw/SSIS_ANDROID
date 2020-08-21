@@ -16,22 +16,20 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         android:layout_weight="9">
-
-        <TextView
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome, James"/>
+            android:id="@+id/retrieval_date_select_button"
+            android:text="Choose Date of Collection"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="30dp"
-            android:text="Retrieval List"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Collecttion Date:"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/retrieval_date_select"/>
 
         <LinearLayout
             android:layout_width="match_parent"

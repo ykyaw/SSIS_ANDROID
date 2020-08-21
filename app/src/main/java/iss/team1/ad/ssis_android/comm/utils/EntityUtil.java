@@ -2,6 +2,7 @@ package iss.team1.ad.ssis_android.comm.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 import org.json.JSONObject;
 
@@ -9,6 +10,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author WUYUIDNG
@@ -16,8 +18,10 @@ import java.util.Map;
 public class EntityUtil {
 
     public static JSONObject object2JSONObject(Object obj){
-        return new JSONObject(object2Map(obj));
+        JSONObject result=new JSONObject(object2Map(obj));
+        return result;
     }
+
 
     public static Map<String, Object> object2Map(Object obj) {
         Map<String, Object> map = new HashMap<>();

@@ -3,110 +3,105 @@ package iss.team1.ad.ssis_android.modal;
 import java.io.Serializable;
 
 public class RequisitionDetail implements Serializable {
-    public int Id;
-    public int QtyNeeded;
-    public int QtyDisbursed;
-    public int QtyReceived;
-    public String DisburseRemark;
-    public String RepRemark;
-    public String ClerkRemark;
+    public int id;
+    public int qtyNeeded;
+    public int qtyDisbursed;
+    public int qtyReceived;
+    public String disburseRemark;
+    public String repRemark;
+    public String clerkRemark;
     // FKs
-    public Requisition Requisition;
-    public Product Product;
+    public Requisition requisition;
+    public Product product;
 
     public RequisitionDetail() {
     }
 
     public RequisitionDetail(int id) {
-        Id = id;
+        this.id = id;
     }
 
-    public RequisitionDetail(int qtyNeeded, iss.team1.ad.ssis_android.modal.Product product) {
-        QtyNeeded = qtyNeeded;
-        Product = product;
-    }
-
-    public RequisitionDetail(int id, int qtyNeeded, int qtyDisbursed, int qtyReceived, String disburseRemark, String repRemark, String clerkRemark, iss.team1.ad.ssis_android.modal.Requisition requisition, iss.team1.ad.ssis_android.modal.Product product) {
-        Id = id;
-        QtyNeeded = qtyNeeded;
-        QtyDisbursed = qtyDisbursed;
-        QtyReceived = qtyReceived;
-        DisburseRemark = disburseRemark;
-        RepRemark = repRemark;
-        ClerkRemark = clerkRemark;
-        Requisition = requisition;
-        Product = product;
+    public RequisitionDetail(int id, int qtyNeeded, int qtyDisbursed, int qtyReceived, String disburseRemark, String repRemark, String clerkRemark, Requisition requisition, Product product) {
+        this.id = id;
+        this.qtyNeeded = qtyNeeded;
+        this.qtyDisbursed = qtyDisbursed;
+        this.qtyReceived = qtyReceived;
+        this.disburseRemark = disburseRemark;
+        this.repRemark = repRemark;
+        this.clerkRemark = clerkRemark;
+        this.requisition = requisition;
+        this.product = product;
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        this.id = id;
     }
 
     public int getQtyNeeded() {
-        return QtyNeeded;
+        return qtyNeeded;
     }
 
     public void setQtyNeeded(int qtyNeeded) {
-        QtyNeeded = qtyNeeded;
+        this.qtyNeeded = qtyNeeded;
     }
 
     public int getQtyDisbursed() {
-        return QtyDisbursed;
+        return qtyDisbursed;
     }
 
     public void setQtyDisbursed(int qtyDisbursed) {
-        QtyDisbursed = qtyDisbursed;
+        this.qtyDisbursed = qtyDisbursed;
     }
 
     public int getQtyReceived() {
-        return QtyReceived;
+        return qtyReceived;
     }
 
     public void setQtyReceived(int qtyReceived) {
-        QtyReceived = qtyReceived;
+        this.qtyReceived = qtyReceived;
     }
 
     public String getDisburseRemark() {
-        return DisburseRemark;
+        return disburseRemark;
     }
 
     public void setDisburseRemark(String disburseRemark) {
-        DisburseRemark = disburseRemark;
+        this.disburseRemark = disburseRemark;
     }
 
     public String getRepRemark() {
-        return RepRemark;
+        return repRemark;
     }
 
     public void setRepRemark(String repRemark) {
-        RepRemark = repRemark;
+        this.repRemark = repRemark;
     }
 
     public String getClerkRemark() {
-        return ClerkRemark;
+        return clerkRemark;
     }
 
     public void setClerkRemark(String clerkRemark) {
-        ClerkRemark = clerkRemark;
+        this.clerkRemark = clerkRemark;
     }
 
-    public iss.team1.ad.ssis_android.modal.Requisition getRequisition() {
-        return Requisition;
+    public Requisition getRequisition() {
+        return requisition;
     }
 
-    public void setRequisition(iss.team1.ad.ssis_android.modal.Requisition requisition) {
-        Requisition = requisition;
+    public void setRequisition(Requisition requisition) {
+        this.requisition = requisition;
     }
 
-    public iss.team1.ad.ssis_android.modal.Product getProduct() {
-        return Product;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProduct(iss.team1.ad.ssis_android.modal.Product product) {
-        Product = product;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }

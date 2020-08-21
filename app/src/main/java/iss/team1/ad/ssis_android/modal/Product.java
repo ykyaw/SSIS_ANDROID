@@ -3,78 +3,73 @@ package iss.team1.ad.ssis_android.modal;
 import java.io.Serializable;
 
 public class Product implements Serializable {
-    public String Id;
-    public String Description;
-    public int ReorderLvl;
-    public int ReorderQty;
-    public String Uom;
-    public Category Category;
+    public String id;
+    public String description;
+    public int reorderLvl;
+    public int reorderQty;
+    public String uom;
+    public Category category;
 
     public Product() { }
 
     public Product(String id) {
-        Id = id;
+        this.id = id;
     }
 
-    public Product(String id, String description, int reorderLvl, int reorderQty, String uom, iss.team1.ad.ssis_android.modal.Category category) {
-        Id = id;
-        Description = description;
-        ReorderLvl = reorderLvl;
-        ReorderQty = reorderQty;
-        Uom = uom;
-        Category = category;
-    }
-
-    public Product(String id, String description) {
-        Id = id;
-        Description = description;
+    public Product(String id, String description, int reorderLvl, int reorderQty, String uom, Category category) {
+        this.id = id;
+        this.description = description;
+        this.reorderLvl = reorderLvl;
+        this.reorderQty = reorderQty;
+        this.uom = uom;
+        this.category = category;
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
     public int getReorderLvl() {
-        return ReorderLvl;
+        return reorderLvl;
     }
 
     public void setReorderLvl(int reorderLvl) {
-        ReorderLvl = reorderLvl;
+        this.reorderLvl = reorderLvl;
     }
 
     public int getReorderQty() {
-        return ReorderQty;
+        return reorderQty;
     }
 
     public void setReorderQty(int reorderQty) {
-        ReorderQty = reorderQty;
+        this.reorderQty = reorderQty;
     }
 
     public String getUom() {
-        return Uom;
+        return uom;
     }
 
     public void setUom(String uom) {
-        Uom = uom;
+        this.uom = uom;
     }
 
-    public iss.team1.ad.ssis_android.modal.Category getCategory() {
-        return Category;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategory(iss.team1.ad.ssis_android.modal.Category category) {
-        Category = category;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
