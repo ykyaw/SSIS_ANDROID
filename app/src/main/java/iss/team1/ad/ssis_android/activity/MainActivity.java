@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences pref = ApplicationUtil.getContext().getSharedPreferences("user_credentials", MODE_PRIVATE);
         if(pref.contains("token")){
-//            return;
         }
         init();
     }
