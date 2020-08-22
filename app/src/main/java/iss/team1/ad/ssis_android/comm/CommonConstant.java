@@ -11,6 +11,9 @@ public class CommonConstant {
         };
         public static final String GET_ALL_DEPARTMENT = root+"storeclerk/retrievealldept";
         public static final String GET_DISBURSEMENT =root+"storeclerk/disbursement" ;
+        public static String GET_DEPT_DISBURSEMENT_DETAIL(long date){
+            return root+"deptemp/dis/"+date;
+        }
     }
 
     public static class ROLE
