@@ -28,6 +28,7 @@ import com.lxj.xpopup.interfaces.OnInputConfirmListener;
 import com.lxj.xpopup.interfaces.OnSelectListener;
 
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +65,8 @@ public class DisbursementFragment extends Fragment{
     int mMonth ;
     int mDay;
     String selectDay=null;
+
+    private int tableRowRenderTime=0;
 
     public DisbursementFragment() {
         // Required empty public constructor
@@ -138,13 +141,6 @@ public class DisbursementFragment extends Fragment{
         disbursement_list=(ListView)view.findViewById(R.id.disbursement_list);
 
         getAllDept();
-
-        disbursement_search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
 
         disbursement_date.setOnClickListener(new View.OnClickListener() {
 
@@ -229,10 +225,11 @@ public class DisbursementFragment extends Fragment{
                                     public void onResponse(JSONObject response) {
                                         Result result = (Result) JSONUtil.JsonToObject(response.toString(), Result.class);
                                         if(result.getCode()==200){
-                                            List<RequisitionDetail> requisitionDetails=new ArrayList<>();
+                                            final List<RequisitionDetail> requisitionDetails=new ArrayList<>();
                                             for(int i=0;i<((ArrayList)result.getData()).size();i++){
                                                 requisitionDetails.add((RequisitionDetail) EntityUtil.map2Object((Map<String, Object>) ((ArrayList)result.getData()).get(i),RequisitionDetail.class));
                                             }
+                                            final int renderSize=requisitionDetails.size();
                                             disbursementAdapter = new MyAdapter<RequisitionDetail>((ArrayList) requisitionDetails,R.layout.item_disbursement) {
                                                 @Override
                                                 public void bindView(ViewHolder holder, RequisitionDetail obj) {
@@ -241,12 +238,7 @@ public class DisbursementFragment extends Fragment{
                                                     holder.setText(R.id.qty,obj.getQtyNeeded()+"");
                                                     holder.setText(R.id.qty_received,obj.getQtyReceived()+"");
                                                     holder.setText(R.id.qty_disbursed,obj.getQtyDisbursed()+"");
-                                                    holder.setOnClickListener(R.id.qty_disbursed, new View.OnClickListener() {
-                                                        @Override
-                                                        public void onClick(View view) {
-                                                            showQtyDisbursementDialog(view);
-                                                        }
-                                                    });
+
                                                 }
                                             };
                                             disbursement_list.setAdapter(disbursementAdapter);
@@ -268,20 +260,4 @@ public class DisbursementFragment extends Fragment{
         });
     }
 
-    private void showQtyDisbursementDialog(final View view){
-        new XPopup.Builder(getContext()).asInputConfirm("input disbursement qty", "",
-                new OnInputConfirmListener() {
-                    @Override
-                    public void onConfirm(String text) {
-                        if(!StringUtil.isNumeric(text)){
-                            Toast.makeText(context,"please enter numberic number",Toast.LENGTH_LONG).show();
-                            showQtyDisbursementDialog(view);
-                        }else{
-                            Toast.makeText(context,text,Toast.LENGTH_LONG).show();
-                            ((TextView)view.findViewById(R.id.qty_disbursed)).setText(text);
-                        }
-                    }
-                })
-                .show();
-    }
 }
