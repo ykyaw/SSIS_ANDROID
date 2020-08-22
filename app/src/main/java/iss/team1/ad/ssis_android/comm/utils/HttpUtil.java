@@ -7,16 +7,24 @@ import android.widget.ImageView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkResponse;
+import com.android.volley.ParseError;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -119,6 +127,28 @@ public class HttpUtil {
         mRequestQueue.add(jsonObjectRequest);
     }
 
+    public final void sendJSONRequest(int method, String url, JSONArray params,
+                                      Response.Listener<JSONObject> success, Response.ErrorListener error) {
+        MyJsonObjectRequest request = new MyJsonObjectRequest(method, url, params, success, error){
+            @Override
+            public String getBodyContentType() {
+                return "application/json";
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/json");
+                String token = getToken();
+                if(!token.isEmpty()){
+                    params.put("Authorization","Bearer "+token);
+                }
+                return params;
+            }
+        };
+        mRequestQueue.add(request);
+    }
+
 
     public final void sendImageRequest(String url, int maxWidth, int maxHeight, Bitmap.Config decodeConfig,
                                        Response.Listener<Bitmap> success, Response.ErrorListener error) {
@@ -164,4 +194,28 @@ public class HttpUtil {
         }
         return "";
     }
+
+    public class MyJsonObjectRequest extends JsonRequest<JSONObject>{
+        public MyJsonObjectRequest(int method, String url, JSONArray jsonRequest,
+                                Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
+            super(method, url, (jsonRequest == null) ? null : jsonRequest.toString(), listener,
+                    errorListener);
+
+        }
+
+        @Override
+        protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
+            try {
+                String jsonString = new String(response.data,
+                        HttpHeaderParser.parseCharset(response.headers, PROTOCOL_CHARSET));
+                return Response.success(new JSONObject(jsonString),
+                        HttpHeaderParser.parseCacheHeaders(response));
+            } catch (UnsupportedEncodingException e) {
+                return Response.error(new ParseError(e));
+            } catch (JSONException je) {
+                return Response.error(new ParseError(je));
+            }
+        }
+    }
+
 }

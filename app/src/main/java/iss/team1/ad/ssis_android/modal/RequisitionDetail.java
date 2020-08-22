@@ -4,12 +4,16 @@ import java.io.Serializable;
 
 public class RequisitionDetail implements Serializable {
     public int id;
+    public int requisitionId;
+    public String productId;
     public int qtyNeeded;
     public int qtyDisbursed;
     public int qtyReceived;
     public String disburseRemark;
     public String repRemark;
     public String clerkRemark;
+    public int retrievalId;
+
     // FKs
     public Requisition requisition;
     public Product product;
@@ -21,14 +25,17 @@ public class RequisitionDetail implements Serializable {
         this.id = id;
     }
 
-    public RequisitionDetail(int id, int qtyNeeded, int qtyDisbursed, int qtyReceived, String disburseRemark, String repRemark, String clerkRemark, Requisition requisition, Product product) {
+    public RequisitionDetail(int id, int requisitionId, String productId, int qtyNeeded, int qtyDisbursed, int qtyReceived, String disburseRemark, String repRemark, String clerkRemark, int retrievalId, Requisition requisition, Product product) {
         this.id = id;
+        this.requisitionId = requisitionId;
+        this.productId = productId;
         this.qtyNeeded = qtyNeeded;
         this.qtyDisbursed = qtyDisbursed;
         this.qtyReceived = qtyReceived;
         this.disburseRemark = disburseRemark;
         this.repRemark = repRemark;
         this.clerkRemark = clerkRemark;
+        this.retrievalId = retrievalId;
         this.requisition = requisition;
         this.product = product;
     }
@@ -39,6 +46,22 @@ public class RequisitionDetail implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getRequisitionId() {
+        return requisitionId;
+    }
+
+    public void setRequisitionId(int requisitionId) {
+        this.requisitionId = requisitionId;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public int getQtyNeeded() {
@@ -87,6 +110,14 @@ public class RequisitionDetail implements Serializable {
 
     public void setClerkRemark(String clerkRemark) {
         this.clerkRemark = clerkRemark;
+    }
+
+    public int getRetrievalId() {
+        return retrievalId;
+    }
+
+    public void setRetrievalId(int retrievalId) {
+        this.retrievalId = retrievalId;
     }
 
     public Requisition getRequisition() {
