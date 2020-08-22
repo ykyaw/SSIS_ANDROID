@@ -23,12 +23,8 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.lxj.xpopup.XPopup;
-import com.lxj.xpopup.interfaces.OnInputConfirmListener;
-import com.lxj.xpopup.interfaces.OnSelectListener;
 
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +38,6 @@ import iss.team1.ad.ssis_android.comm.utils.ApplicationUtil;
 import iss.team1.ad.ssis_android.comm.utils.EntityUtil;
 import iss.team1.ad.ssis_android.comm.utils.HttpUtil;
 import iss.team1.ad.ssis_android.comm.utils.JSONUtil;
-import iss.team1.ad.ssis_android.comm.utils.StringUtil;
 import iss.team1.ad.ssis_android.comm.utils.TimeUtil;
 import iss.team1.ad.ssis_android.components.Result;
 import iss.team1.ad.ssis_android.modal.Department;
@@ -230,7 +225,7 @@ public class DisbursementFragment extends Fragment{
                                                 requisitionDetails.add((RequisitionDetail) EntityUtil.map2Object((Map<String, Object>) ((ArrayList)result.getData()).get(i),RequisitionDetail.class));
                                             }
                                             final int renderSize=requisitionDetails.size();
-                                            disbursementAdapter = new MyAdapter<RequisitionDetail>((ArrayList) requisitionDetails,R.layout.item_disbursement) {
+                                            disbursementAdapter = new MyAdapter<RequisitionDetail>((ArrayList) requisitionDetails,R.layout.item_disbursement_detail) {
                                                 @Override
                                                 public void bindView(ViewHolder holder, RequisitionDetail obj) {
                                                     holder.setText(R.id.item_code,obj.getProduct().getId());

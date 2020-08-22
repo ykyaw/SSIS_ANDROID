@@ -8,4 +8,11 @@ public class StringUtil {
         Pattern pattern = Pattern.compile("[0-9]*");
         return pattern.matcher(text).matches();
     }
+
+    public static boolean isEmpty(String txt){
+        if (txt==null||txt.equals("")){
+            return false;
+        }
+        return true;
+    }
 }

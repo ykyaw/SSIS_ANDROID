@@ -26,6 +26,7 @@ import java.util.List;
 import iss.team1.ad.ssis_android.R;
 import iss.team1.ad.ssis_android.comm.CommonConstant;
 import iss.team1.ad.ssis_android.components.ActivityCollector;
+import iss.team1.ad.ssis_android.fragment.AckReceiveFragment;
 import iss.team1.ad.ssis_android.fragment.DisbursementFragment;
 import iss.team1.ad.ssis_android.fragment.MenuFragment;
 import iss.team1.ad.ssis_android.fragment.RetrievalFragment;
@@ -50,10 +51,10 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         Intent intent=getIntent();
-//        currentUser=(Employee)intent.getSerializableExtra("currentUser");
-        currentUser=new Employee();
-        currentUser.setName("Esther");
-        currentUser.setRole("sc");
+        currentUser=(Employee)intent.getSerializableExtra("currentUser");
+//        currentUser=new Employee();
+//        currentUser.setName("Wee Kian Fatt(de)");
+//        currentUser.setRole("de");
         FragmentManager fragmentManager = getSupportFragmentManager();
         final MenuFragment menuFragment=(MenuFragment)fragmentManager.findFragmentById(R.id.nav_view);
         menuFragment.setCurrentUser(currentUser);
@@ -83,7 +84,7 @@ public class HomeActivity extends AppCompatActivity {
         final CardView cardView = (CardView) findViewById(R.id.card_view);
         switch (currentUser.getRole()){
             case CommonConstant.ROLE.DEPARTMENT_EMPLOYEE:
-                tabFragments.add(new TabFragment());
+                tabFragments.add(new AckReceiveFragment());
                 tabFragments.add(new TabFragment());
                 tabFragments.add(new TabFragment());
                 tabFragments.add(new TabFragment());
