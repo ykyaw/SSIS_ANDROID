@@ -94,6 +94,7 @@
             <TextView
                 android:id="@+id/dept_remarks"
                 android:layout_width="wrap_content"
+                android:drawableRight="@drawable/edit"
                 android:layout_height="wrap_content"/>
 
         </LinearLayout>
