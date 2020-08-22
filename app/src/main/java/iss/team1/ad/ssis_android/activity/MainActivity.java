@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,14 +16,12 @@ import com.android.volley.VolleyError;
 
 import org.json.JSONObject;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import iss.team1.ad.ssis_android.comm.utils.ApplicationUtil;
 import iss.team1.ad.ssis_android.comm.utils.EntityUtil;
 import iss.team1.ad.ssis_android.components.Result;
 import iss.team1.ad.ssis_android.R;
-import iss.team1.ad.ssis_android.bean.User;
 import iss.team1.ad.ssis_android.comm.CommonConstant;
 import iss.team1.ad.ssis_android.comm.utils.EncrypUtil;
 import iss.team1.ad.ssis_android.comm.utils.HttpUtil;
@@ -103,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 String passwordText = password.getText().toString();
                 String hashPwd= EncrypUtil.getSHA256String(passwordText);
 
-                User user=new User();
+                Employee user=new Employee();
                 user.setEmail(emailText);
                 user.setPassword(hashPwd);
 

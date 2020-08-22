@@ -18,7 +18,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +25,6 @@ import iss.team1.ad.ssis_android.R;
 import iss.team1.ad.ssis_android.activity.HomeActivity;
 import iss.team1.ad.ssis_android.activity.MainActivity;
 import iss.team1.ad.ssis_android.adapter.MenuItemAdapter;
-import iss.team1.ad.ssis_android.bean.User;
 import iss.team1.ad.ssis_android.comm.CommonConstant;
 import iss.team1.ad.ssis_android.comm.utils.ApplicationUtil;
 import iss.team1.ad.ssis_android.components.MenuItem;
