@@ -180,6 +180,7 @@ public abstract class MyAdapter<T> extends BaseAdapter {
          * set click listener
          */
         public ViewHolder setOnClickListener(int id, View.OnClickListener listener) {
+            View view = getView(id);
             getView(id).setOnClickListener(listener);
             return this;
         }
