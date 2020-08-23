@@ -1,0 +1,148 @@
+package iss.team1.ad.ssis_android.fragment;
+
+import android.content.Context;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import iss.team1.ad.ssis_android.R;
+import iss.team1.ad.ssis_android.adapter.MyAdapter;
+import iss.team1.ad.ssis_android.comm.CommonConstant;
+import iss.team1.ad.ssis_android.comm.utils.ApplicationUtil;
+import iss.team1.ad.ssis_android.comm.utils.EntityUtil;
+import iss.team1.ad.ssis_android.comm.utils.HttpUtil;
+import iss.team1.ad.ssis_android.comm.utils.JSONUtil;
+import iss.team1.ad.ssis_android.components.Result;
+import iss.team1.ad.ssis_android.modal.AdjustmentVoucher;
+
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link RetrieveAllVouchersFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class RetrieveAllVouchersFragment extends Fragment {
+
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private ListView allvoucher_list;
+    private Button search_adjustmentvoucher_button;
+    private TextView search_adjustmentvoucher;
+
+
+    private MyAdapter<AdjustmentVoucher> myAdapter1 = null;
+    private Context context;
+    private List<AdjustmentVoucher> avlist =null;
+
+
+    public RetrieveAllVouchersFragment() {
+        // Required empty public constructor
+    }
+
+    // TODO: Rename and change types and number of parameters
+    public static RetrieveAllVouchersFragment newInstance(String param1, String param2) {
+        RetrieveAllVouchersFragment fragment = new RetrieveAllVouchersFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+
+        }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view=inflater.inflate(R.layout.fragment_retrieve_allav, container, false);
+        init(view);
+        context= ApplicationUtil.getContext();
+        return view;
+
+    }
+
+    private void init(View view) {
+        allvoucher_list = (ListView) view.findViewById(R.id.allvoucher_list);
+        search_adjustmentvoucher_button = (Button) view.findViewById(R.id.retrieval_date_select_button);
+        search_adjustmentvoucher = (TextView) view.findViewById(R.id.retrieval_date_select);
+        search_adjustmentvoucher_button.setOnClickListener(new View.OnClickListener() {
+
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onClick(View arg0) {
+            }
+        });
+        getAllVouchers();
+
+    }
+
+    private void getAllVouchers() {
+        avlist=new ArrayList<>();
+        HttpUtil.getInstance()
+                .sendJSONRequest(Request.Method.GET, CommonConstant.HttpUrl.Get_All_ADJUSTMENT_VOUCHERS,
+                        new JSONObject(),new Response.Listener<JSONObject>(){
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                //convert form json to object
+                                Result result = (Result) JSONUtil.JsonToObject(response.toString(), Result.class);
+                                if(result.getCode()==200){
+                                    //map result data to local model class
+                                    for(int i=0;i<((ArrayList)result.getData()).size();i++){
+                                        avlist.add((AdjustmentVoucher) EntityUtil.map2Object((Map<String, Object>) ((ArrayList)result.getData()).get(i),AdjustmentVoucher.class));
+                                    }
+                                    displayAdjustmentVoucherList(avlist);
+                                }else{
+                                    Toast.makeText(context,result.getMsg(),Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(context,"error in retrieving adjustment vouchers",Toast.LENGTH_LONG).show();
+                                System.out.println("error");
+                                error.printStackTrace();
+                                System.out.println(error.getMessage());
+
+                            }
+                        });
+
+    }
+
+    private void displayAdjustmentVoucherList(List<AdjustmentVoucher> avlist) {
+
+        myAdapter1 = new MyAdapter<AdjustmentVoucher>((ArrayList)avlist,R.layout.item_adjustmentvoucher) {
+            @Override
+            public void bindView(ViewHolder holder, AdjustmentVoucher av) {
+                holder.setText(R.id.av_id,av.getId());
+                holder.setText(R.id.initiated_by,av.getInitiatedClerk().getName());
+                holder.setText(R.id.date_issued,av.getInitiatedDate()+"");
+                holder.setText(R.id.status,av.getStatus()+"");
+            }
+        };
+
+        allvoucher_list.setAdapter(myAdapter1);
+    }
+
+}

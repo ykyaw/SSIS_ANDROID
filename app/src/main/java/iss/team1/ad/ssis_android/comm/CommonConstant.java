@@ -17,6 +17,8 @@ public class CommonConstant {
         public static final String ACK_DISBURSEMENT = root+"deptemp/ack";
         public static final String GET_DEPT_EMP = root+"depthead/gae";
         public static final String ASSIGN_DELEGATE_EMP =root+"depthead/del" ;
+
+        public static final String Get_All_ADJUSTMENT_VOUCHERS=root+"/storesup/allvoucher";
     }
 
     public static class ROLE

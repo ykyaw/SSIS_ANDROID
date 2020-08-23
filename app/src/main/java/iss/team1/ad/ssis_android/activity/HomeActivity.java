@@ -1,14 +1,5 @@
 package iss.team1.ad.ssis_android.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -19,6 +10,15 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +31,7 @@ import iss.team1.ad.ssis_android.fragment.DelegateFragment;
 import iss.team1.ad.ssis_android.fragment.DisbursementFragment;
 import iss.team1.ad.ssis_android.fragment.MenuFragment;
 import iss.team1.ad.ssis_android.fragment.RetrievalFragment;
+import iss.team1.ad.ssis_android.fragment.RetrieveAllVouchersFragment;
 import iss.team1.ad.ssis_android.fragment.TabFragment;
 import iss.team1.ad.ssis_android.modal.Employee;
 
@@ -105,7 +106,7 @@ public class HomeActivity extends AppCompatActivity {
                 break;
             case CommonConstant.ROLE.STORE_MANAGER:
             case CommonConstant.ROLE.STORE_SUPERVISOR:
-                tabFragments.add(new TabFragment());
+                tabFragments.add(new RetrieveAllVouchersFragment());
                 tabFragments.add(new TabFragment());
                 tabFragments.add(new TabFragment());
                 tabFragments.add(new TabFragment());
