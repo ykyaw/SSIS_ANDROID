@@ -27,6 +27,7 @@ import iss.team1.ad.ssis_android.R;
 import iss.team1.ad.ssis_android.comm.CommonConstant;
 import iss.team1.ad.ssis_android.components.ActivityCollector;
 import iss.team1.ad.ssis_android.fragment.AckReceiveFragment;
+import iss.team1.ad.ssis_android.fragment.DelegateFragment;
 import iss.team1.ad.ssis_android.fragment.DisbursementFragment;
 import iss.team1.ad.ssis_android.fragment.MenuFragment;
 import iss.team1.ad.ssis_android.fragment.RetrievalFragment;
@@ -90,7 +91,7 @@ public class HomeActivity extends AppCompatActivity {
                 tabFragments.add(new TabFragment());
                 break;
             case CommonConstant.ROLE.DEPARTMENT_HEAD:
-                tabFragments.add(new TabFragment());
+                tabFragments.add(new DelegateFragment());
                 tabFragments.add(new TabFragment());
                 tabFragments.add(new TabFragment());
                 tabFragments.add(new TabFragment());

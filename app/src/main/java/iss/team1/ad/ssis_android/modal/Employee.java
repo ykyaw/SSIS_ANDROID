@@ -12,8 +12,8 @@ public class Employee implements Serializable {
     public int phoneNo;
     public String departmentId;
     public int managerId;
-    public long delegateFromDate;
-    public long delegateToDate;
+    public Long delegateFromDate;
+    public Long delegateToDate;
 
     public String role;
 
@@ -40,7 +40,7 @@ public class Employee implements Serializable {
 
     public  List<Transaction> transactions;
 
-    public Employee(int id, String name, String email, String password, int phoneNo, String departmentId, int managerId, long delegateFromDate, long delegateToDate, String role, Department department, Employee manager, List<Employee> employees, List<Requisition> requestedrequsition, List<Requisition> approvedrequsition, List<Requisition> processedrequsition, List<Requisition> receivedrequsitions, List<Requisition> acknowledgedrequsition, List<Transaction> transactions) {
+    public Employee(int id, String name, String email, String password, int phoneNo, String departmentId, int managerId, Long delegateFromDate, Long delegateToDate, String role, Department department, Employee manager, List<Employee> employees, List<Requisition> requestedrequsition, List<Requisition> approvedrequsition, List<Requisition> processedrequsition, List<Requisition> receivedrequsitions, List<Requisition> acknowledgedrequsition, List<Transaction> transactions) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -125,19 +125,19 @@ public class Employee implements Serializable {
         this.managerId = managerId;
     }
 
-    public long getDelegateFromDate() {
+    public Long getDelegateFromDate() {
         return delegateFromDate;
     }
 
-    public void setDelegateFromDate(long delegateFromDate) {
+    public void setDelegateFromDate(Long delegateFromDate) {
         this.delegateFromDate = delegateFromDate;
     }
 
-    public long getDelegateToDate() {
+    public Long getDelegateToDate() {
         return delegateToDate;
     }
 
-    public void setDelegateToDate(long delegateToDate) {
+    public void setDelegateToDate(Long delegateToDate) {
         this.delegateToDate = delegateToDate;
     }
 

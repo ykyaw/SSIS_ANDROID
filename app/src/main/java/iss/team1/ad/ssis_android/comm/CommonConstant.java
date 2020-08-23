@@ -15,6 +15,8 @@ public class CommonConstant {
             return root+"deptemp/dis/"+date;
         };
         public static final String ACK_DISBURSEMENT = root+"deptemp/ack";
+        public static final String GET_DEPT_EMP = root+"depthead/gae";
+        public static final String ASSIGN_DELEGATE_EMP =root+"depthead/del" ;
     }
 
     public static class ROLE

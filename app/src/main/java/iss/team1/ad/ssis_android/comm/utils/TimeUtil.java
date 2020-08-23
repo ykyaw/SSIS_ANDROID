@@ -25,6 +25,14 @@ public class TimeUtil {
         return tsStr;
     }
 
+    public static String convertTimestampToyyyyMMdd(long timestamp){
+        Timestamp ts = new Timestamp(timestamp);
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        String tsStr = sdf.format(ts);
+        return tsStr;
+    }
+
     public static long convertyyyyMMddToTimestamp(String time){
         SimpleDateFormat sp=new SimpleDateFormat("yyyy-MM-dd");
         sp.setTimeZone(TimeZone.getTimeZone("UTC"));

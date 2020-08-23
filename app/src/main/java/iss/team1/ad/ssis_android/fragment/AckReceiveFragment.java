@@ -138,6 +138,10 @@ public class AckReceiveFragment extends Fragment {
                                             for(int i=0;i<((ArrayList)result.getData()).size();i++){
                                                 requisitionDetails.add((RequisitionDetail) EntityUtil.map2Object((Map<String, Object>) ((ArrayList)result.getData()).get(i),RequisitionDetail.class));
                                             }
+                                            if(requisitionDetails.size()==0){
+                                                Toast.makeText(context,"No data in that day",Toast.LENGTH_LONG).show();
+                                                return;
+                                            }
                                             if (requisitionDetails.get(0).getRequisition().getAckByClerk()!=null){
                                                 ack_by.setText(requisitionDetails.get(0).getRequisition().getAckByClerk().getName()
                                                         +" "+TimeUtil.convertTimestampToyyyyMMddHHmm(requisitionDetails.get(0).getRequisition().getAckDate()));
@@ -151,6 +155,7 @@ public class AckReceiveFragment extends Fragment {
                                             if(!isAck){
                                                 ack_btn.setVisibility(View.VISIBLE);
                                             }
+
                                             final int size = requisitionDetails.size();
                                             disbursementsAdapter = new MyAdapter<RequisitionDetail>((ArrayList) requisitionDetails,R.layout.item_disbursement) {
                                                 @Override
