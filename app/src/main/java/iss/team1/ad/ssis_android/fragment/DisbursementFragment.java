@@ -23,6 +23,8 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.lxj.xpopup.XPopup;
+import com.lxj.xpopup.interfaces.OnSelectListener;
 
 import org.json.JSONObject;
 
@@ -47,7 +49,7 @@ import iss.team1.ad.ssis_android.modal.RequisitionDetail;
 public class DisbursementFragment extends Fragment{
 
     private TextView disbursement_date;
-    private Spinner disbursement_dept;
+    private TextView disbursement_dept;
     private Button disbursement_search;
     private ListView disbursement_list;
 
@@ -62,6 +64,7 @@ public class DisbursementFragment extends Fragment{
     String selectDay=null;
 
     private int tableRowRenderTime=0;
+    private List<Department> departments=new ArrayList<>();
 
     public DisbursementFragment() {
         // Required empty public constructor
@@ -101,18 +104,10 @@ public class DisbursementFragment extends Fragment{
                             public void onResponse(JSONObject response) {
                                 Result result = (Result) JSONUtil.JsonToObject(response.toString(), Result.class);
                                 if(result.getCode()==200){
-                                    List<Department> departments = new ArrayList<>();
+                                    departments = new ArrayList<>();
                                     for(int i=0;i<((ArrayList)result.getData()).size();i++){
                                         departments.add((Department) EntityUtil.map2Object((Map<String, Object>) ((ArrayList)result.getData()).get(i),Department.class));
                                     }
-                                    spinnerItemMyAdapter = new MyAdapter<Department>((ArrayList) departments,R.layout.item_spin_dept) {
-                                        @Override
-                                        public void bindView(ViewHolder holder, Department obj) {
-                                            holder.setText(R.id.dept_name, obj.getName());
-                                            holder.setText(R.id.dept_id,obj.getId());
-                                        }
-                                    };
-                                    disbursement_dept.setAdapter(spinnerItemMyAdapter);
                                 }else{
                                     Toast.makeText(context,result.getMsg(),Toast.LENGTH_LONG).show();
                                 }
@@ -130,12 +125,34 @@ public class DisbursementFragment extends Fragment{
     }
 
     private void init(View view){
-        disbursement_dept=(Spinner)view.findViewById(R.id.disbursement_dept);
+        disbursement_dept=(TextView) view.findViewById(R.id.disbursement_dept);
         disbursement_date=(TextView)view.findViewById(R.id.disbursement_date);
         disbursement_search=(Button)view.findViewById(R.id.disbursement_search);
         disbursement_list=(ListView)view.findViewById(R.id.disbursement_list);
 
         getAllDept();
+
+        disbursement_dept.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onClick(View view) {
+                new XPopup.Builder(getContext())
+                        .hasShadowBg(false)
+                        .isDestroyOnDismiss(false)
+                        .atView(disbursement_dept)  // 依附于所点击的View，内部会自动判断在上方或者下方显示
+                        .asAttachList(departments.stream().map(item->item.getName()).toArray(String[]::new),
+                                new int[]{},
+                                new OnSelectListener() {
+                                    @Override
+                                    public void onSelect(int position, String text) {
+                                        disbursement_dept.setText(text);
+                                        dept_select=departments.get(position).getId();
+//                                        Toast.makeText(context,"click " + departments.get(position).getName(),Toast.LENGTH_LONG).show();
+                                    }
+                                })
+                        .show();
+            }
+        });
 
         disbursement_date.setOnClickListener(new View.OnClickListener() {
 
@@ -190,18 +207,7 @@ public class DisbursementFragment extends Fragment{
             }
         });
 
-        disbursement_dept.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                TextView textView=(TextView)view.findViewById(R.id.dept_id);
-                dept_select=textView.getText().toString();
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
 
         disbursement_search.setOnClickListener(new View.OnClickListener() {
             @Override

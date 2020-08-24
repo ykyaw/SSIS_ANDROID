@@ -25,12 +25,9 @@
             android:textSize="18sp"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Department"/>
-        <Spinner
             android:id="@+id/disbursement_dept"
             android:layout_width="match_parent"
+            android:text="department"
             android:layout_height="wrap_content" />
 
         <Button
@@ -38,51 +35,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/disbursement_search"
             android:text="Search"/>
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="horizontal">-->
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textSize="15sp"-->
-<!--                android:text="Collection Point:"/>-->
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:id="@+id/disbursement_collection_point"/>-->
-<!--        </LinearLayout>-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="horizontal">-->
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textSize="15sp"-->
-<!--                android:text="Status:"/>-->
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:id="@+id/disbursement_status"/>-->
-<!--        </LinearLayout>-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="horizontal">-->
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textSize="15sp"-->
-<!--                android:text="Dept Rep:"/>-->
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:id="@+id/disbursement_dept_rep"/>-->
-<!--        </LinearLayout>-->
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -3,7 +3,7 @@ package iss.team1.ad.ssis_android.comm;
 public class CommonConstant {
 
     public static class HttpUrl{
-        private static final String root="http://192.168.8.75:51769/";
+        private static final String root="http://192.168.1.228:51769/";
         public static final String LOGIN=root+"Login/Verify";
         public static final String TEST=root+"Login/Index";
         public static String GENERATE_RETRIEVAL_FORM(long date){
