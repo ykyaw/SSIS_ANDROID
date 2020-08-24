@@ -3,7 +3,7 @@ package iss.team1.ad.ssis_android.comm;
 public class CommonConstant {
 
     public static class HttpUrl{
-        private static final String root="http://192.168.1.228:51769/";
+        private static final String root="http://192.168.8.75:51769/";
         public static final String LOGIN=root+"Login/Verify";
         public static final String TEST=root+"Login/Index";
         public static String GENERATE_RETRIEVAL_FORM(long date){
@@ -23,6 +23,7 @@ public class CommonConstant {
             return root+"depthead/rfld/"+id;
         };
         public static final String DEPT_HEAD_UPDATE_REQUISITION_DETAIL = root+"depthead/arr";
+        public static final String Get_All_ADJUSTMENT_VOUCHERS=root+"/storesup/allvoucher";
     }
 
     public static class ROLE

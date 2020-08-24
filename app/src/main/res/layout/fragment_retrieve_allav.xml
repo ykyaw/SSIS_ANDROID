@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pink"
+    android:orientation="vertical"
+    tools:context=".fragment.RetrieveAllVouchersFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="9">
+        <TextView
+            android:id="@+id/search_adjustmentvoucher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Keyword of adjustment voucher"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/search_adjustmentvoucher_button"
+            android:text="Search"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/av_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Voucher#"
+                android:gravity="center_horizontal"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/initiated_by"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Initiated By"
+                android:gravity="center_horizontal"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/date_issued"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="Date Issued"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="Status"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+        <ListView
+            android:id="@+id/allvoucher_list"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="0dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>
