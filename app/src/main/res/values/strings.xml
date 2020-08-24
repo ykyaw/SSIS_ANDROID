@@ -13,6 +13,7 @@
         <item>Quit</item>
     </string-array>
     <string-array name="menu_dept_head">
+        <item>Requisition</item>
         <item>Delegate</item>
         <item>Quit</item>
     </string-array>

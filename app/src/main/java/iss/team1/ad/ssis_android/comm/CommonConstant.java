@@ -17,6 +17,12 @@ public class CommonConstant {
         public static final String ACK_DISBURSEMENT = root+"deptemp/ack";
         public static final String GET_DEPT_EMP = root+"depthead/gae";
         public static final String ASSIGN_DELEGATE_EMP =root+"depthead/del" ;
+        public static final String GET_DEPT_HEAD_REQUISITIONS = root+"depthead/rfl";
+
+        public static String GET_DEPT_HEAD_REQUISITIONS_DEATIL(String id) {
+            return root+"depthead/rfld/"+id;
+        };
+        public static final String DEPT_HEAD_UPDATE_REQUISITION_DETAIL = root+"depthead/arr";
     }
 
     public static class ROLE
