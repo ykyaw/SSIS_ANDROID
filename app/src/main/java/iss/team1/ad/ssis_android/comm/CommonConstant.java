@@ -24,6 +24,15 @@ public class CommonConstant {
         };
         public static final String DEPT_HEAD_UPDATE_REQUISITION_DETAIL = root+"depthead/arr";
         public static final String Get_All_ADJUSTMENT_VOUCHERS=root+"/storesup/allvoucher";
+        public static final String PURCHASE_REQUEST = root+"storeclerk/pr";
+
+        public static String PURCHASE_REQUEST_DETAIL(String id) {
+            return root+"storeclerk/prdetails/"+id;
+        }
+        public static String GET_PRODUCT_SUPPLIER(String id){
+            return root+"storeclerk/supplier/"+id;
+        }
+        public static final String UPDATE_PURCHASE_REQUEST = root+"storesup/updatepr";
     }
 
     public static class ROLE
@@ -44,5 +53,12 @@ public class CommonConstant {
         public static final String CONFIRMED = "Confirmed"; //after approved, and after clerk entered a disbursement time
         public static final String RECEIVED = "Received"; // after department rep received at collection point, and pressed the button to indicate he received. This will trigger the button for clerk to click acknowledged
         public static final String COMPLETED = "Completed"; //after clerk click acknowledged, requsition status is completed
+    }
+
+    public static class PurchaseRequestStatus {
+        public static final String CREATED = "Created"; //upon creation before approval
+        public static final String PENDING_APPROVAL = "Pending Approval"; //after submit for approval
+        public static final String REJECTED = "Rejected";
+        public static final String APPROVED = "Approved";
     }
 }

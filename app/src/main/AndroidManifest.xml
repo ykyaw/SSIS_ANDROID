@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.DeptheadRequisitionDetailActivity"></activity>
+        <activity android:name=".activity.PurchaseRequestDeatilActivity"></activity>
+        <activity android:name=".activity.DeptheadRequisitionDetailActivity" />
         <activity
             android:name=".activity.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />

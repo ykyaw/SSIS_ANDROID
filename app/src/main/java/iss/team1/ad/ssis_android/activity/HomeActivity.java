@@ -31,6 +31,7 @@ import iss.team1.ad.ssis_android.fragment.DelegateFragment;
 import iss.team1.ad.ssis_android.fragment.DeptHeadRequisitionFragment;
 import iss.team1.ad.ssis_android.fragment.DisbursementFragment;
 import iss.team1.ad.ssis_android.fragment.MenuFragment;
+import iss.team1.ad.ssis_android.fragment.PurchaseRquestFragment;
 import iss.team1.ad.ssis_android.fragment.RetrievalFragment;
 import iss.team1.ad.ssis_android.fragment.RetrieveAllVouchersFragment;
 import iss.team1.ad.ssis_android.fragment.TabFragment;
@@ -108,7 +109,7 @@ public class HomeActivity extends AppCompatActivity {
             case CommonConstant.ROLE.STORE_MANAGER:
             case CommonConstant.ROLE.STORE_SUPERVISOR:
                 tabFragments.add(new RetrieveAllVouchersFragment());
-                tabFragments.add(new TabFragment());
+                tabFragments.add(new PurchaseRquestFragment());
                 tabFragments.add(new TabFragment());
                 tabFragments.add(new TabFragment());
                 break;
