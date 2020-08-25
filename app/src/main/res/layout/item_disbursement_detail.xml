@@ -8,27 +8,42 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:id="@+id/item_code"/>
+        android:id="@+id/item_code"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:gravity="center"/>
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:id="@+id/item_description"/>
+        android:id="@+id/item_description"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:gravity="center"/>
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:id="@+id/qty"/>
+        android:id="@+id/qty"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:gravity="center"/>
 
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:id="@+id/qty_disbursed"/>
+        android:id="@+id/qty_disbursed"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:gravity="center"/>
 
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:id="@+id/qty_received"/>
+        android:id="@+id/qty_received"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:gravity="center"/>
 </LinearLayout>

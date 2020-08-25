@@ -21,7 +21,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/calendar"
-            android:hint="collection date"
+            android:hint="Collection Date"
+            android:textColorHint="@color/black"
+            android:textSize="16dp"
             android:id="@+id/retrieval_date_select"/>
 
         <LinearLayout

@@ -7,7 +7,10 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:id="@+id/item_delegate_select_name"/>
+        android:id="@+id/item_delegate_select_name"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:gravity="center"/>
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
@@ -16,12 +19,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="start date: "/>
+            android:text="start date: "
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:gravity="center"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableRight="@drawable/edit"
-            android:id="@+id/item_delegate_select_start_time"/>
+            android:id="@+id/item_delegate_select_start_time"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:gravity="center"/>
     </LinearLayout>
 
     <LinearLayout
@@ -32,19 +41,30 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="end date: "/>
+            android:text="end date: "
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:gravity="center"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableRight="@drawable/edit"
-            android:id="@+id/item_delegate_select_end_time"/>
+            android:id="@+id/item_delegate_select_end_time"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:gravity="center"/>
     </LinearLayout>
 
     <Button
+        android:id="@+id/item_delegate_select_assign_btn"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="assign"
-        android:id="@+id/item_delegate_select_assign_btn"/>
+        android:background="@drawable/rounded_approvebutton"
+        android:text="Assign"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textAllCaps="false"/>
 
 </LinearLayout>
