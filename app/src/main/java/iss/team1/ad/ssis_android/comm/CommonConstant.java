@@ -1,9 +1,11 @@
 package iss.team1.ad.ssis_android.comm;
 
+import iss.team1.ad.ssis_android.modal.AdjustmentVoucher;
+
 public class CommonConstant {
 
     public static class HttpUrl{
-        private static final String root="http://192.168.1.228:51769/";
+        private static final String root="http://192.168.8.75:51769/";
         public static final String LOGIN=root+"Login/Verify";
         public static final String TEST=root+"Login/Index";
         public static String GENERATE_RETRIEVAL_FORM(long date){
@@ -23,7 +25,7 @@ public class CommonConstant {
             return root+"depthead/rfld/"+id;
         };
         public static final String DEPT_HEAD_UPDATE_REQUISITION_DETAIL = root+"depthead/arr";
-        public static final String Get_All_ADJUSTMENT_VOUCHERS=root+"/storesup/allvoucher";
+        public static final String Get_All_ADJUSTMENT_VOUCHERS=root+"storesup/allvoucher";
         public static final String PURCHASE_REQUEST = root+"storeclerk/pr";
 
         public static String PURCHASE_REQUEST_DETAIL(String id) {
@@ -33,6 +35,8 @@ public class CommonConstant {
             return root+"storeclerk/supplier/"+id;
         }
         public static final String UPDATE_PURCHASE_REQUEST = root+"storesup/updatepr";
+        public static final String Get_AV_DETAIL_BY_AVID(String avid){return root+"storesup/voucher/"+avid;}
+        public static final String APPRO_REJ_ADJUSTMENT_VOUCHER(AdjustmentVoucher adjustmentvoucher){return root+"storesup/voucher/"+1;}
     }
 
     public static class ROLE
@@ -60,5 +64,14 @@ public class CommonConstant {
         public static final String PENDING_APPROVAL = "Pending Approval"; //after submit for approval
         public static final String REJECTED = "Rejected";
         public static final String APPROVED = "Approved";
+    }
+    public static class AdjsutmentVoucherStatus
+    {
+        public static final String CREATED = "Created"; //upon creation before approval
+        public static final String PENDING_APPROVAL = "Pending Approval"; //upon creation, but not approved by anyone
+        public static final String PENDMANAPPROV="Pending Manager Approval"; //if anything more than $250, and has been approved by supervisor but not yet approved by manager
+        public static final String APPROVED = "Approved"; // if anything <250 and approved by supervisor, OR if anything more >250 and both supervisor and manager approved
+        public static final String REJECTED = "Rejected";
+
     }
 }
