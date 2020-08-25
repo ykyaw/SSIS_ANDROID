@@ -3,20 +3,19 @@ package iss.team1.ad.ssis_android.modal;
 import java.io.Serializable;
 
 public class RequisitionDetail implements Serializable {
-    public int id;
-    public int requisitionId;
-    public String productId;
-    public int qtyNeeded;
-    public int qtyDisbursed;
-    public int qtyReceived;
-    public String disburseRemark;
-    public String repRemark;
-    public String clerkRemark;
-    public int retrievalId;
-
-    // FKs
-    public Requisition requisition;
-    public Product product;
+    private int id;
+    private int requisitionId;
+    private String productId;
+    private int qtyNeeded;
+    private int qtyDisbursed;
+    private int qtyReceived;
+    private String disburseRemark;
+    private String repRemark;
+    private String clerkRemark;
+    private int retrievalId;
+    private  Requisition requisition;
+    private  Product product;
+    private  Retrieval retrieval;
 
     public RequisitionDetail() {
     }
@@ -25,7 +24,7 @@ public class RequisitionDetail implements Serializable {
         this.id = id;
     }
 
-    public RequisitionDetail(int id, int requisitionId, String productId, int qtyNeeded, int qtyDisbursed, int qtyReceived, String disburseRemark, String repRemark, String clerkRemark, int retrievalId, Requisition requisition, Product product) {
+    public RequisitionDetail(int id, int requisitionId, String productId, int qtyNeeded, int qtyDisbursed, int qtyReceived, String disburseRemark, String repRemark, String clerkRemark, int retrievalId, Requisition requisition, Product product, Retrieval retrieval) {
         this.id = id;
         this.requisitionId = requisitionId;
         this.productId = productId;
@@ -38,6 +37,7 @@ public class RequisitionDetail implements Serializable {
         this.retrievalId = retrievalId;
         this.requisition = requisition;
         this.product = product;
+        this.retrieval = retrieval;
     }
 
     public int getId() {
@@ -134,5 +134,13 @@ public class RequisitionDetail implements Serializable {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public Retrieval getRetrieval() {
+        return retrieval;
+    }
+
+    public void setRetrieval(Retrieval retrieval) {
+        this.retrieval = retrieval;
     }
 }

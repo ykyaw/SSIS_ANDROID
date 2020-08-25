@@ -4,32 +4,32 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Requisition implements Serializable {
-    public int id;
-    public String departmentId;
-    public int reqByEmpId;
-    public long submittedDate;
-    public int approvedById;
-    public long approvalDate;
-    public String remarks;
-    public int processedByClerkId;
-    public long createdDate;
-    public String status;
-    public int collectionPointId;
-    public long collectionDate;
-    public int receivedByRepId;
-    public long receivedDate;
-    public int ackByClerkId;
-    public long ackDate;
+    private int id;
+    private String departmentId;
+    private int reqByEmpId;
+    private long submittedDate;
+    private int approvedById;
+    private long approvalDate;
+    private String remarks;
+    private int processedByClerkId;
+    private long createdDate;
+    private String status;
+    private int collectionPointId;
+    private long collectionDate;
+    private int receivedByRepId;
+    private long receivedDate;
+    private int ackByClerkId;
+    private long ackDate;
 
     // FKs
-    public Department department;
-    public Employee reqByEmp;
-    public Employee approvedBy;
-    public Employee processedByClerk;
-    public Employee receivedByRep;
-    public Employee ackByClerk;
-    public CollectionPoint collectionPoint;
-    public List<RequisitionDetail> requisitionDetails;
+    private Department department;
+    private Employee reqByEmp;
+    private Employee approvedBy;
+    private Employee processedByClerk;
+    private Employee receivedByRep;
+    private Employee ackByClerk;
+    private CollectionPoint collectionPoint;
+    private List<RequisitionDetail> requisitionDetails;
 
     public Requisition() {
     }

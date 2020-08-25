@@ -5,16 +5,16 @@ import java.util.List;
 
 
 public class Department implements Serializable {
-    public String id ;
-    public String name ;
-    public int phoneNo ;
-    public int faxNo ;
-    public int repId ;
+    private String id ;
+    private String name ;
+    private int phoneNo ;
+    private int faxNo ;
+    private int repId ;
 
-    public int headId ;
-    public int collectionPointId ;
-    public CollectionPoint collectionPoint ;
-    public List<Employee> allEmp ;
+    private int headId ;
+    private int collectionPointId ;
+    private CollectionPoint collectionPoint ;
+    private List<Employee> allEmp ;
 
     public Department() {
     }

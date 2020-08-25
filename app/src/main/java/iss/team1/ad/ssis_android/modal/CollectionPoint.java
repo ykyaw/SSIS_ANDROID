@@ -3,10 +3,10 @@ package iss.team1.ad.ssis_android.modal;
 import java.io.Serializable;
 
 public class CollectionPoint implements Serializable {
-    
-    public int id;
-    public String location;
-    public String collectionTime; // 9:30AM, 11:00AM
+
+    private int id;
+    private String location;
+    private String collectionTime; // 9:30AM, 11:00AM
 
     public CollectionPoint() { }
 

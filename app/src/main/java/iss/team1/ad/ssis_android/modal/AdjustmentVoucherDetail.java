@@ -3,17 +3,21 @@ package iss.team1.ad.ssis_android.modal;
 import java.io.Serializable;
 
 public class AdjustmentVoucherDetail implements Serializable {
-    public int Id;
-    public String AdjustmentVoucherId;
-    public String ProductId;
-    public int QtyAdjusted;
-    public double TotalPrice;
-    public double Unitprice;
-    public String Reason;
-    public  AdjustmentVoucher AdjustmentVoucher;
-    public  Product Product;
+    private int Id;
+    private String AdjustmentVoucherId;
+    private String ProductId;
+    private int QtyAdjusted;
+    private double TotalPrice;
+    private double Unitprice;
+    private String Reason;
+    private  AdjustmentVoucher AdjustmentVoucher;
+    private  Product Product;
 
     public AdjustmentVoucherDetail() {
+    }
+
+    public AdjustmentVoucherDetail(int id) {
+        Id = id;
     }
 
     public AdjustmentVoucherDetail(int id, String adjustmentVoucherId, String productId, int qtyAdjusted, double totalPrice, double unitprice, String reason, iss.team1.ad.ssis_android.modal.AdjustmentVoucher adjustmentVoucher, iss.team1.ad.ssis_android.modal.Product product) {

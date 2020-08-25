@@ -3,12 +3,12 @@ package iss.team1.ad.ssis_android.modal;
 import java.io.Serializable;
 
 public class Product implements Serializable {
-    public String id;
-    public String description;
-    public int reorderLvl;
-    public int reorderQty;
-    public String uom;
-    public Category category;
+    private String id;
+    private String description;
+    private int reorderLvl;
+    private int reorderQty;
+    private String uom;
+    private Category category;
 
     public Product() { }
 

@@ -3,25 +3,25 @@ package iss.team1.ad.ssis_android.modal;
 import java.io.Serializable;
 
 public class PurchaseRequestDetail implements Serializable {
-    public int id;
-    public long purchaseRequestId; //timestamp
-    public int createdByClerkId;
-    public String productId;
-    public String supplierId;
-    public int currentStock;
-    public int reorderQty;
-    public String venderQuote; //Can't submit if null
-    public double totalPrice;
-    public long submitDate;
-    public long approvedDate;
-    public int approvedBySupId;
-    public String status;
-    public String remarks;
+    private int id;
+    private long purchaseRequestId; //timestamp
+    private int createdByClerkId;
+    private String productId;
+    private String supplierId;
+    private int currentStock;
+    private int reorderQty;
+    private String venderQuote; //Can't submit if null
+    private double totalPrice;
+    private long submitDate;
+    private long approvedDate;
+    private int approvedBySupId;
+    private String status;
+    private String remarks;
 
-    public Product product;
-    public  Employee createdByClerk;
-    public  Supplier supplier;
-    public  Employee approvedBySup;
+    private Product product;
+    private  Employee createdByClerk;
+    private  Supplier supplier;
+    private  Employee approvedBySup;
 
     public PurchaseRequestDetail() {
     }

@@ -4,41 +4,41 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Employee implements Serializable {
-    
-    public int id;
-    public String name;
-    public String email;
-    public String password;
-    public int phoneNo;
-    public String departmentId;
-    public int managerId;
-    public Long delegateFromDate;
-    public Long delegateToDate;
 
-    public String role;
+    private int id;
+    private String name;
+    private String email;
+    private String password;
+    private int phoneNo;
+    private String departmentId;
+    private int managerId;
+    private Long delegateFromDate;
+    private Long delegateToDate;
 
-    public  Department department;
+    private String role;
+
+    private  Department department;
 
 
     /*One manager multiple employee relationship*/
-    public  Employee manager;
-    public  List<Employee> employees;
+    private  Employee manager;
+    private  List<Employee> employees;
 
 
 
     /* The InverseProperty attribute is used when two entities have more than one relationship, in this case is Requsition and Employee */
 
-    public  List<Requisition> requestedrequsition;
+    private  List<Requisition> requestedrequsition;
 
-    public  List<Requisition> approvedrequsition;
+    private  List<Requisition> approvedrequsition;
 
-    public  List<Requisition> processedrequsition;
+    private  List<Requisition> processedrequsition;
 
-    public  List<Requisition> receivedrequsitions;
+    private  List<Requisition> receivedrequsitions;
 
-    public  List<Requisition> acknowledgedrequsition;
+    private  List<Requisition> acknowledgedrequsition;
 
-    public  List<Transaction> transactions;
+    private  List<Transaction> transactions;
 
     public Employee(int id, String name, String email, String password, int phoneNo, String departmentId, int managerId, Long delegateFromDate, Long delegateToDate, String role, Department department, Employee manager, List<Employee> employees, List<Requisition> requestedrequsition, List<Requisition> approvedrequsition, List<Requisition> processedrequsition, List<Requisition> receivedrequsitions, List<Requisition> acknowledgedrequsition, List<Transaction> transactions) {
         this.id = id;

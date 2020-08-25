@@ -4,45 +4,29 @@ import java.io.Serializable;
 import java.util.List;
 
 public class AdjustmentVoucher implements Serializable {
-    public String Id;
-    public int InitiatedClerkId;
-    public long InitiatedDate;
-    public int ApprovedSupId;
-    public long ApprovedSupDate;
-    public int ApprovedMgrId;
-    public long ApprovedMgrDate;
-    public String Status;
-    public String Reason ;
+    private String Id;
+    private int InitiatedClerkId;
+    private long InitiatedDate;
+    private int ApprovedSupId;
+    private long ApprovedSupDate;
+    private int ApprovedMgrId;
+    private long ApprovedMgrDate;
+    private String Status;
+    private String Reason ;
 
-    public  Employee InitiatedClerk ;
-    public  Employee ApprovedSup;
-    public  Employee ApprovedMgr;
-    public List<AdjustmentVoucherDetail> AdjustmentVoucherDetails;
-
+    private  Employee InitiatedClerk ;
+    private  Employee ApprovedSup;
+    private  Employee ApprovedMgr;
+    private List<AdjustmentVoucherDetail> AdjustmentVoucherDetails;
 
     public AdjustmentVoucher() {
     }
 
-
-    public AdjustmentVoucher(String id, int initiatedClerkId, long initiatedDate, String status) {
+    public AdjustmentVoucher(String id) {
         Id = id;
-        InitiatedClerkId = initiatedClerkId;
-        InitiatedDate = initiatedDate;
-        Status = status;
     }
 
-
-    public AdjustmentVoucher(String id, int initiatedClerkId, long initiatedDate, int approvedSupId, long approvedSupDate, String status, String reason) {
-        Id = id;
-        InitiatedClerkId = initiatedClerkId;
-        InitiatedDate = initiatedDate;
-        ApprovedSupId = approvedSupId;
-        ApprovedSupDate = approvedSupDate;
-        Status = status;
-        Reason = reason;
-    }
-
-    public AdjustmentVoucher(String id, int initiatedClerkId, long initiatedDate, int approvedSupId, long approvedSupDate, int approvedMgrId, long approvedMgrDate, String status, String reason, Employee initiatedClerk, Employee approvedSup, Employee approvedMgr) {
+    public AdjustmentVoucher(String id, int initiatedClerkId, long initiatedDate, int approvedSupId, long approvedSupDate, int approvedMgrId, long approvedMgrDate, String status, String reason, Employee initiatedClerk, Employee approvedSup, Employee approvedMgr, List<AdjustmentVoucherDetail> adjustmentVoucherDetails) {
         Id = id;
         InitiatedClerkId = initiatedClerkId;
         InitiatedDate = initiatedDate;
@@ -55,6 +39,7 @@ public class AdjustmentVoucher implements Serializable {
         InitiatedClerk = initiatedClerk;
         ApprovedSup = approvedSup;
         ApprovedMgr = approvedMgr;
+        AdjustmentVoucherDetails = adjustmentVoucherDetails;
     }
 
     public String getId() {

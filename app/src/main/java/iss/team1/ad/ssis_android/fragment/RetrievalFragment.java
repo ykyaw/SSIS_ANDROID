@@ -14,8 +14,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,7 +26,11 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.google.gson.Gson;
+import com.lxj.xpopup.XPopup;
+import com.lxj.xpopup.interfaces.OnInputConfirmListener;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
@@ -44,6 +51,7 @@ import iss.team1.ad.ssis_android.comm.utils.ApplicationUtil;
 import iss.team1.ad.ssis_android.comm.utils.EntityUtil;
 import iss.team1.ad.ssis_android.comm.utils.HttpUtil;
 import iss.team1.ad.ssis_android.comm.utils.JSONUtil;
+import iss.team1.ad.ssis_android.comm.utils.StringUtil;
 import iss.team1.ad.ssis_android.comm.utils.TimeUtil;
 import iss.team1.ad.ssis_android.components.Result;
 import iss.team1.ad.ssis_android.modal.Product;
@@ -54,6 +62,16 @@ public class RetrievalFragment extends Fragment {
 
     private ListView retrieval_list;
     private TextView retrieval_date_select;
+    private CheckBox retrieval_is_need_voucher;
+    private Button retrieval_update_btn;
+    private Button retrieval_finalise_btn;
+    private TextView retrieval_retrieved_by;
+    private TextView retrieval_status;
+    private TextView retrieval_id;
+    private TextView retrieval_date_of_retrieval;
+    private LinearLayout retrieval_btn_panel;
+    private LinearLayout retrieval_info_row;
+    private EditText retrieval_comments;
 
     int mYear;
     int mMonth ;
@@ -61,6 +79,8 @@ public class RetrievalFragment extends Fragment {
     String startday;
 
     private Context context;
+
+    private Retrieval retrieval=null;
 
 
     private MyAdapter<RequisitionDetail> myAdapter1 = null;
@@ -96,7 +116,40 @@ public class RetrievalFragment extends Fragment {
     private void init(View view){
         retrieval_list=(ListView)view.findViewById(R.id.retrieval_list);
         retrieval_date_select=(TextView)view.findViewById(R.id.retrieval_date_select);
+        retrieval_is_need_voucher=view.findViewById(R.id.retrieval_is_need_voucher);
+        retrieval_update_btn=view.findViewById(R.id.retrieval_update_btn);
+        retrieval_finalise_btn=view.findViewById(R.id.retrieval_finalise_btn);
+        retrieval_retrieved_by=view.findViewById(R.id.retrieval_retrieved_by);
+        retrieval_status=view.findViewById(R.id.retrieval_status);
+        retrieval_id=view.findViewById(R.id.retrieval_id);
+        retrieval_date_of_retrieval=view.findViewById(R.id.retrieval_date_of_retrieval);
+        retrieval_btn_panel=view.findViewById(R.id.retrieval_btn_panel);
+        retrieval_info_row=view.findViewById(R.id.retrieval_info_row);
+        retrieval_comments=view.findViewById(R.id.retrieval_comments);
 
+        retrieval_update_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateRetrieval(CommonConstant.RetrievalStatus.CREATED);
+            }
+        });
+        retrieval_finalise_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateRetrieval(CommonConstant.RetrievalStatus.RETRIEVED);
+            }
+        });
+        retrieval_is_need_voucher.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                retrieval.setNeedAdjustment(b);
+                if(b){
+                    retrieval_comments.setVisibility(View.VISIBLE);
+                }else{
+                    retrieval_comments.setVisibility(View.GONE);
+                }
+            }
+        });
 
         retrieval_date_select.setOnClickListener(new View.OnClickListener() {
 
@@ -156,6 +209,56 @@ public class RetrievalFragment extends Fragment {
         });
     }
 
+    private void updateRetrieval(String status) {
+        retrieval.setRemark(retrieval_comments.getText().toString());
+        retrieval.setStatus(status);
+        Map<String, Object> stringObjectMap = EntityUtil.object2Map(retrieval);
+        JSONObject jsonObject=null;
+        try {
+            jsonObject = new JSONObject(new Gson().toJson(retrieval));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+//        jsonObject.
+//        JSONArray jsonArray=null;
+//        try {
+//            jsonArray = new JSONArray(new G);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+        HttpUtil.getInstance()
+                .sendJSONRequest(Request.Method.PUT, CommonConstant.HttpUrl.UPDATE_RETRIEVAL,
+                        jsonObject,new Response.Listener<JSONObject>(){
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Result result = (Result) JSONUtil.JsonToObject(response.toString(), Result.class);
+                                if(result.getCode()==200){
+                                    if ((boolean)result.getData()){
+                                        try {
+                                            generateRetrievalForm(TimeUtil.convertyyyyMMddToTimestamp(startday));
+                                            Toast.makeText(context,"update successfully",Toast.LENGTH_LONG).show();
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }else{
+                                        Toast.makeText(context,"some thing error when update retrieval",Toast.LENGTH_LONG).show();
+                                    }
+                                }else{
+                                    Toast.makeText(context,result.getMsg(),Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(context,"invalid token",Toast.LENGTH_LONG).show();
+                                System.out.println("error");
+                                error.printStackTrace();
+                                System.out.println(error.getMessage());
+
+                            }
+                        });
+    }
+
     private void generateRetrievalForm(long date) throws JSONException {
         HttpUtil.getInstance()
                 .sendJSONRequest(Request.Method.GET, CommonConstant.HttpUrl.GENERATE_RETRIEVAL_FORM(date),
@@ -164,8 +267,8 @@ public class RetrievalFragment extends Fragment {
                     public void onResponse(JSONObject response) {
                         Result result = (Result) JSONUtil.JsonToObject(response.toString(), Result.class);
                         if(result.getCode()==200){
-                            Retrieval retrieval = (Retrieval) EntityUtil.map2Object((Map<String, Object>) result.getData(), Retrieval.class);
-                            displayRetrievalTable(retrieval);
+                            retrieval = (Retrieval) EntityUtil.map2Object((Map<String, Object>) result.getData(), Retrieval.class);
+                            displayRetrievalTable();
                         }else{
                             Toast.makeText(context,result.getMsg(),Toast.LENGTH_LONG).show();
                         }
@@ -182,7 +285,18 @@ public class RetrievalFragment extends Fragment {
                 });
     }
 
-    private void displayRetrievalTable(Retrieval retrieval){
+    private void displayRetrievalTable(){
+
+        retrieval_id.setText(retrieval.getId()+"");
+        retrieval_status.setText(retrieval.getStatus());
+        retrieval_retrieved_by.setText(retrieval.getClerk().getName());
+        retrieval_info_row.setVisibility(View.VISIBLE);
+        if(retrieval.getStatus().equals(CommonConstant.RetrievalStatus.CREATED)){
+            retrieval_btn_panel.setVisibility(View.VISIBLE);
+        }
+        if(retrieval.getRetrievedDate()!=0){
+            retrieval_date_of_retrieval.setText(TimeUtil.convertTimestampToyyyyMMdd(retrieval.getRetrievedDate()));
+        }
 
         myAdapter1 = new MyAdapter<RequisitionDetail>((ArrayList)retrieval.getRequisitionDetails(),R.layout.item_retrieval) {
             @Override
@@ -190,6 +304,41 @@ public class RetrievalFragment extends Fragment {
                 holder.setText(R.id.item_code,detail.getProduct().getId());
                 holder.setText(R.id.item_description,detail.getProduct().getDescription());
                 holder.setText(R.id.qty_needed,detail.getQtyNeeded()+"");
+                holder.setText(R.id.qty_retrieved,detail.getQtyDisbursed()+"");
+                holder.setText(R.id.item_retrieval_remarks,detail.getDisburseRemark());
+
+                holder.setOnClickListener(R.id.item_retrieval_remarks, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new XPopup.Builder(getContext()).asInputConfirm("Remarks", "please input remarks",
+                                new OnInputConfirmListener() {
+                                    @Override
+                                    public void onConfirm(String text) {
+                                        ((TextView)view).setText(text);
+                                        retrieval.getRequisitionDetails().get(holder.getItemPosition()).setDisburseRemark(text);
+                                    }
+                                })
+                                .show();
+                    }
+                });
+                holder.setOnClickListener(R.id.qty_retrieved, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new XPopup.Builder(getContext()).asInputConfirm("Qty Retrieved", "",
+                                new OnInputConfirmListener() {
+                                    @Override
+                                    public void onConfirm(String text) {
+                                        if(StringUtil.isNumeric(text)){
+                                            ((TextView)view).setText(text);
+                                            retrieval.getRequisitionDetails().get(holder.getItemPosition()).setQtyDisbursed(Integer.valueOf(text));
+                                        }else{
+                                            Toast.makeText(context,"please input a numberic",Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+                                })
+                                .show();
+                    }
+                });
             }
         };
 

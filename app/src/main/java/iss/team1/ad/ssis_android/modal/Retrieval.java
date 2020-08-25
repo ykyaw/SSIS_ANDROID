@@ -4,15 +4,15 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Retrieval implements Serializable {
-    public int id;
-    public long disbursedDate;
-    public long retrievedDate;
-    public String status;
-    public String remark;
-    public boolean needAdjustment;
-    public List<RequisitionDetail> requisitionDetails;
+    private int id;
+    private long disbursedDate;
+    private long retrievedDate;
+    private String status;
+    private String remark;
+    private boolean needAdjustment;
+    private List<RequisitionDetail> requisitionDetails;
 
-    public Employee clerk;
+    private Employee clerk;
 
     public Retrieval() {
     }

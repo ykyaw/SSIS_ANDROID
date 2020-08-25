@@ -27,38 +27,101 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/item_code"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Item Code"
-                android:gravity="center_horizontal"
-                android:textSize="20sp" />
-            <TextView
-                android:id="@+id/item_description"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="Description"
-                android:gravity="center_horizontal"
-                android:textSize="20sp" />
-            <TextView
-                android:id="@+id/qty_needed"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:text="Total Qty"
-                android:textSize="20sp" />
+            android:id="@+id/retrieval_info_row"
+            android:visibility="invisible"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Retrieval Id: "/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/retrieval_id"/>
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Status: "/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/retrieval_status"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Retrieved By: "/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/retrieval_retrieved_by"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date of Retrieval: "/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/retrieval_date_of_retrieval"/>
+            </LinearLayout>
         </LinearLayout>
+
         <ListView
             android:id="@+id/retrieval_list"
             android:layout_width="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="5"
             android:layout_height="0dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/retrieval_btn_panel"
+            android:visibility="invisible"
+            android:orientation="vertical"
+            android:layout_weight="2">
+            <CheckBox
+                android:id="@+id/retrieval_is_need_voucher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Adjustment Voucher needed?"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/retrieval_comments"
+                android:hint="comments"
+                android:visibility="gone"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/retrieval_update_btn"
+                    android:text="update"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/retrieval_finalise_btn"
+                    android:text="finalise"/>
+            </LinearLayout>
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -277,7 +277,6 @@ public class AckReceiveFragment extends Fragment {
                         }else{
                             ((TextView)view).setText(text);
                             requisitionDetails.get(position).setQtyReceived(Integer.valueOf(text));
-                            System.out.println("asdf");
                         }
                     }
                 })

@@ -4,16 +4,16 @@ import java.io.Serializable;
 
 public class TenderQuotation implements Serializable {
 
-    public int id;
-    public String supplierId;
-    public int year;
+    private int id;
+    private String supplierId;
+    private int year;
 
-    public String productId;
-    public double unitprice;
-    public String uom;
-    public int rank;
-    public  Supplier supplier;
-    public  Product product;
+    private String productId;
+    private double unitprice;
+    private String uom;
+    private int rank;
+    private  Supplier supplier;
+    private  Product product;
 
     public TenderQuotation() {
     }

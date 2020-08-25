@@ -3,14 +3,14 @@ package iss.team1.ad.ssis_android.modal;
 import java.io.Serializable;
 
 public class Supplier implements Serializable {
-    public String id;
-    public String name;
-    public String contactPersonName;
-    public int phoneNo;
-    public int faxNo;
-    public String address;
-    public String email;
-    public String gstRegNo;
+    private String id;
+    private String name;
+    private String contactPersonName;
+    private int phoneNo;
+    private int faxNo;
+    private String address;
+    private String email;
+    private String gstRegNo;
 
     public Supplier() {
     }

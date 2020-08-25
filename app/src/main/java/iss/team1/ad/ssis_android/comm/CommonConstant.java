@@ -33,6 +33,7 @@ public class CommonConstant {
             return root+"storeclerk/supplier/"+id;
         }
         public static final String UPDATE_PURCHASE_REQUEST = root+"storesup/updatepr";
+        public static final String UPDATE_RETRIEVAL = root+"storeclerk/ret";
     }
 
     public static class ROLE
@@ -60,5 +61,11 @@ public class CommonConstant {
         public static final String PENDING_APPROVAL = "Pending Approval"; //after submit for approval
         public static final String REJECTED = "Rejected";
         public static final String APPROVED = "Approved";
+    }
+
+    public static class RetrievalStatus
+    {
+        public static final String CREATED = "Created"; //upon creation of retrieval form
+        public static final String RETRIEVED = "Retrieved"; //after clicking retrieved
     }
 }
