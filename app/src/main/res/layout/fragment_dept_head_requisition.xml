@@ -18,37 +18,61 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/calendar"
-            android:hint="filter by date"
+            android:hint="Filter by Date"
+            android:textColorHint="@color/black"
+            android:textSize="16dp"
+            android:layout_marginLeft="15dp"
             android:id="@+id/depthead_requisition_date"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:layout_height="wrap_content"
-                android:text="Form Id"/>
+                android:text="Form Id\n"
+                android:textSize="18dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@color/black"
+                android:textColor="@color/white"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:layout_height="wrap_content"
-                android:text="Requested Date"/>
+                android:text="Requested Date"
+                android:textSize="18dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@color/black"
+                android:textColor="@color/white"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:layout_height="wrap_content"
-                android:text="Requested By"/>
+                android:text="Requested By"
+                android:textSize="18dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@color/black"
+                android:textColor="@color/white"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:layout_height="wrap_content"
-                android:text="Status"/>
+                android:text="Status\n"
+                android:textSize="18dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@color/black"
+                android:textColor="@color/white"/>
 
         </LinearLayout>
 
