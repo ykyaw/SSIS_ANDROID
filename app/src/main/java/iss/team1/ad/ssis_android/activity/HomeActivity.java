@@ -25,6 +25,7 @@ import java.util.List;
 
 import iss.team1.ad.ssis_android.R;
 import iss.team1.ad.ssis_android.comm.CommonConstant;
+import iss.team1.ad.ssis_android.comm.utils.ApplicationUtil;
 import iss.team1.ad.ssis_android.components.ActivityCollector;
 import iss.team1.ad.ssis_android.fragment.AckReceiveFragment;
 import iss.team1.ad.ssis_android.fragment.DelegateFragment;
@@ -56,6 +57,7 @@ public class HomeActivity extends AppCompatActivity {
 
         Intent intent=getIntent();
         currentUser=(Employee)intent.getSerializableExtra("currentUser");
+        ApplicationUtil.setCurrentUser(currentUser);
 //        currentUser=new Employee();
 //        currentUser.setName("Wee Kian Fatt(de)");
 //        currentUser.setRole("de");
