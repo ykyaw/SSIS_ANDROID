@@ -4,145 +4,144 @@ import java.io.Serializable;
 import java.util.List;
 
 public class AdjustmentVoucher implements Serializable {
-    private String Id;
-    private int InitiatedClerkId;
-    private long InitiatedDate;
-    private int ApprovedSupId;
-    private long ApprovedSupDate;
-    private int ApprovedMgrId;
-    private long ApprovedMgrDate;
-    private String Status;
-    private String Reason ;
+    public String id;
+    public int initiatedClerkId;
+    public long initiatedDate;
+    public int approvedSupId;
+    public long approvedSupDate;
+    public int approvedMgrId;
+    public long approvedMgrDate;
+    public String status;
+    public String reason ;
 
-    private  Employee InitiatedClerk ;
-    private  Employee ApprovedSup;
-    private  Employee ApprovedMgr;
-    private List<AdjustmentVoucherDetail> AdjustmentVoucherDetails;
-
+    public  Employee initiatedClerk ;
+    public  Employee approvedSup;
+    public  Employee approvedMgr;
+    public List<AdjustmentVoucherDetail> adjustmentVoucherDetails;
     public AdjustmentVoucher() {
     }
 
-    public AdjustmentVoucher(String id) {
-        Id = id;
+    public AdjustmentVoucher(String id, int initiatedClerkId, long initiatedDate, int approvedSupId, long approvedSupDate, int approvedMgrId, long approvedMgrDate, String status, String reason, Employee initiatedClerk, Employee approvedSup, Employee approvedMgr, List<AdjustmentVoucherDetail> adjustmentVoucherDetails) {
+        this.id = id;
+        this.initiatedClerkId = initiatedClerkId;
+        this.initiatedDate = initiatedDate;
+        this.approvedSupId = approvedSupId;
+        this.approvedSupDate = approvedSupDate;
+        this.approvedMgrId = approvedMgrId;
+        this.approvedMgrDate = approvedMgrDate;
+        this.status = status;
+        this.reason = reason;
+        this.initiatedClerk = initiatedClerk;
+        this.approvedSup = approvedSup;
+        this.approvedMgr = approvedMgr;
+        this.adjustmentVoucherDetails = adjustmentVoucherDetails;
     }
 
-    public AdjustmentVoucher(String id, int initiatedClerkId, long initiatedDate, int approvedSupId, long approvedSupDate, int approvedMgrId, long approvedMgrDate, String status, String reason, Employee initiatedClerk, Employee approvedSup, Employee approvedMgr, List<AdjustmentVoucherDetail> adjustmentVoucherDetails) {
-        Id = id;
-        InitiatedClerkId = initiatedClerkId;
-        InitiatedDate = initiatedDate;
-        ApprovedSupId = approvedSupId;
-        ApprovedSupDate = approvedSupDate;
-        ApprovedMgrId = approvedMgrId;
-        ApprovedMgrDate = approvedMgrDate;
-        Status = status;
-        Reason = reason;
-        InitiatedClerk = initiatedClerk;
-        ApprovedSup = approvedSup;
-        ApprovedMgr = approvedMgr;
-        AdjustmentVoucherDetails = adjustmentVoucherDetails;
+    public AdjustmentVoucher(String id) {
+        this.id = id;
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
     public int getInitiatedClerkId() {
-        return InitiatedClerkId;
+        return initiatedClerkId;
     }
 
     public void setInitiatedClerkId(int initiatedClerkId) {
-        InitiatedClerkId = initiatedClerkId;
+        this.initiatedClerkId = initiatedClerkId;
     }
 
     public long getInitiatedDate() {
-        return InitiatedDate;
+        return initiatedDate;
     }
 
     public void setInitiatedDate(long initiatedDate) {
-        InitiatedDate = initiatedDate;
+        this.initiatedDate = initiatedDate;
     }
 
     public int getApprovedSupId() {
-        return ApprovedSupId;
+        return approvedSupId;
     }
 
     public void setApprovedSupId(int approvedSupId) {
-        ApprovedSupId = approvedSupId;
+        this.approvedSupId = approvedSupId;
     }
 
     public long getApprovedSupDate() {
-        return ApprovedSupDate;
+        return approvedSupDate;
     }
 
     public void setApprovedSupDate(long approvedSupDate) {
-        ApprovedSupDate = approvedSupDate;
+        this.approvedSupDate = approvedSupDate;
     }
 
     public int getApprovedMgrId() {
-        return ApprovedMgrId;
+        return approvedMgrId;
     }
 
     public void setApprovedMgrId(int approvedMgrId) {
-        ApprovedMgrId = approvedMgrId;
+        this.approvedMgrId = approvedMgrId;
     }
 
     public long getApprovedMgrDate() {
-        return ApprovedMgrDate;
+        return approvedMgrDate;
     }
 
     public void setApprovedMgrDate(long approvedMgrDate) {
-        ApprovedMgrDate = approvedMgrDate;
+        this.approvedMgrDate = approvedMgrDate;
     }
 
     public String getStatus() {
-        return Status;
+        return status;
     }
 
     public void setStatus(String status) {
-        Status = status;
+        this.status = status;
     }
 
     public String getReason() {
-        return Reason;
+        return reason;
     }
 
     public void setReason(String reason) {
-        Reason = reason;
+        this.reason = reason;
     }
 
     public Employee getInitiatedClerk() {
-        return InitiatedClerk;
+        return initiatedClerk;
     }
 
     public void setInitiatedClerk(Employee initiatedClerk) {
-        InitiatedClerk = initiatedClerk;
+        this.initiatedClerk = initiatedClerk;
     }
 
     public Employee getApprovedSup() {
-        return ApprovedSup;
+        return approvedSup;
     }
 
     public void setApprovedSup(Employee approvedSup) {
-        ApprovedSup = approvedSup;
+        this.approvedSup = approvedSup;
     }
 
     public Employee getApprovedMgr() {
-        return ApprovedMgr;
+        return approvedMgr;
     }
 
     public void setApprovedMgr(Employee approvedMgr) {
-        ApprovedMgr = approvedMgr;
+        this.approvedMgr = approvedMgr;
     }
 
     public List<AdjustmentVoucherDetail> getAdjustmentVoucherDetails() {
-        return AdjustmentVoucherDetails;
+        return adjustmentVoucherDetails;
     }
 
     public void setAdjustmentVoucherDetails(List<AdjustmentVoucherDetail> adjustmentVoucherDetails) {
-        AdjustmentVoucherDetails = adjustmentVoucherDetails;
+        this.adjustmentVoucherDetails = adjustmentVoucherDetails;
     }
 }

@@ -1,6 +1,7 @@
 package iss.team1.ad.ssis_android.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -25,12 +26,14 @@ import java.util.List;
 import java.util.Map;
 
 import iss.team1.ad.ssis_android.R;
+import iss.team1.ad.ssis_android.activity.StoreSupAVDetailActivity;
 import iss.team1.ad.ssis_android.adapter.MyAdapter;
 import iss.team1.ad.ssis_android.comm.CommonConstant;
 import iss.team1.ad.ssis_android.comm.utils.ApplicationUtil;
 import iss.team1.ad.ssis_android.comm.utils.EntityUtil;
 import iss.team1.ad.ssis_android.comm.utils.HttpUtil;
 import iss.team1.ad.ssis_android.comm.utils.JSONUtil;
+import iss.team1.ad.ssis_android.comm.utils.TimeUtil;
 import iss.team1.ad.ssis_android.components.Result;
 import iss.team1.ad.ssis_android.modal.AdjustmentVoucher;
 
@@ -39,7 +42,7 @@ import iss.team1.ad.ssis_android.modal.AdjustmentVoucher;
  * Use the {@link RetrieveAllVouchersFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RetrieveAllVouchersFragment extends Fragment {
+public class RetrieveAllVouchersFragment extends Fragment  {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -51,6 +54,7 @@ public class RetrieveAllVouchersFragment extends Fragment {
     private MyAdapter<AdjustmentVoucher> myAdapter1 = null;
     private Context context;
     private List<AdjustmentVoucher> avlist =null;
+    private boolean isSubmitted=false;
 
 
     public RetrieveAllVouchersFragment() {
@@ -76,6 +80,7 @@ public class RetrieveAllVouchersFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        //inflate list view
         View view=inflater.inflate(R.layout.fragment_retrieve_allav, container, false);
         init(view);
         context= ApplicationUtil.getContext();
@@ -85,15 +90,16 @@ public class RetrieveAllVouchersFragment extends Fragment {
 
     private void init(View view) {
         allvoucher_list = (ListView) view.findViewById(R.id.allvoucher_list);
-//        search_adjustmentvoucher_button = (Button) view.findViewById(R.id.retrieval_date_select_button);
-        search_adjustmentvoucher = (TextView) view.findViewById(R.id.retrieval_date_select);
-//        search_adjustmentvoucher_button.setOnClickListener(new View.OnClickListener() {
-//
-//            @RequiresApi(api = Build.VERSION_CODES.N)
-//            @Override
-//            public void onClick(View arg0) {
-//            }
-//        });
+        search_adjustmentvoucher_button = (Button) view.findViewById(R.id.search_adjustmentvoucher_button);
+        search_adjustmentvoucher = (TextView) view.findViewById(R.id.search_adjustmentvoucher);
+        context= ApplicationUtil.getContext();
+        search_adjustmentvoucher_button.setOnClickListener(new View.OnClickListener() {
+
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onClick(View arg0) {
+            }
+        });
         getAllVouchers();
 
     }
@@ -110,7 +116,14 @@ public class RetrieveAllVouchersFragment extends Fragment {
                                 if(result.getCode()==200){
                                     //map result data to local model class
                                     for(int i=0;i<((ArrayList)result.getData()).size();i++){
-                                        avlist.add((AdjustmentVoucher) EntityUtil.map2Object((Map<String, Object>) ((ArrayList)result.getData()).get(i),AdjustmentVoucher.class));
+                                        AdjustmentVoucher av= (AdjustmentVoucher) EntityUtil.map2Object((Map<String, Object>) ((ArrayList) result.getData()).get(i), AdjustmentVoucher.class);
+//                                        AdjustmentVoucher av=(AdjustmentVoucher) EntityUtil.map2Object((Map<String, Object>) (result.getData()).get(i),AdjustmentVoucher.class);
+                                        isSubmitted=av.getStatus().equals(CommonConstant.AdjsutmentVoucherStatus.PENDING_APPROVAL)||av.getStatus().equals(CommonConstant.AdjsutmentVoucherStatus.PENDMANAPPROV)
+                                                ||av.getStatus().equals(CommonConstant.AdjsutmentVoucherStatus.APPROVED)||av.getStatus().equals(CommonConstant.AdjsutmentVoucherStatus.REJECTED);
+                                        if(isSubmitted){
+                                        avlist.add(av);
+
+                                      }
                                     }
                                     displayAdjustmentVoucherList(avlist);
                                 }else{
@@ -131,18 +144,42 @@ public class RetrieveAllVouchersFragment extends Fragment {
     }
 
     private void displayAdjustmentVoucherList(List<AdjustmentVoucher> avlist) {
+        //adapter to each item
+        myAdapter1 = new MyAdapter<AdjustmentVoucher>((ArrayList) avlist, R.layout.item_adjustmentvoucher) {
+            @Override
+            public void bindView(ViewHolder holder, AdjustmentVoucher av) {
+                holder.setText(R.id.av_id, av.getId());
+                holder.setText(R.id.initiated_by, av.getInitiatedClerk().getName());
+                holder.setText(R.id.date_issued, TimeUtil.convertTimestampToyyyyMMddHHmm(av.getInitiatedDate()));
+                holder.setText(R.id.adjustmentvoucher_status, av.getStatus() + "");
+                holder.setOnClickListener(R.id.item_adjustmentvoucher_row, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String avid = (String) ((TextView) holder.getView(R.id.av_id)).getText();
+                        Intent intent = new Intent(context, StoreSupAVDetailActivity.class);
+                        intent.putExtra("adjustmentvoucherId",avid);
+                        startActivity(intent);
+                    }
+                });
+                if (av.getStatus().equals(CommonConstant.AdjsutmentVoucherStatus.PENDMANAPPROV) ||
+                        av.getStatus().equals(CommonConstant.AdjsutmentVoucherStatus.PENDING_APPROVAL)) {
+                    holder.setVisibility(R.id.apprve_or_reject, View.VISIBLE);
+                }
 
-//        myAdapter1 = new MyAdapter<AdjustmentVoucher>((ArrayList)avlist,R.layout.item_adjustmentvoucher) {
-//            @Override
-//            public void bindView(ViewHolder holder, AdjustmentVoucher av) {
-//                holder.setText(R.id.av_id,av.getId());
-//                holder.setText(R.id.initiated_by,av.getInitiatedClerk().getName());
-//                holder.setText(R.id.date_issued,av.getInitiatedDate()+"");
-//                holder.setText(R.id.status,av.getStatus()+"");
-//            }
-//        };
+            }
 
+        };
         allvoucher_list.setAdapter(myAdapter1);
+//        allvoucher_list.setOnItemClickListener(this);
     }
 
+//    @Override
+//    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+//        String avId=avlist.get(position).getId();
+//        AdjustmentVoucher voucher=avlist.get(position);
+//        Intent intent=new Intent(getActivity().getBaseContext(), AVDetailFragment.class);
+//        intent.putExtra("adjustmentvoucherId",avId);
+//        intent.putExtra("adjustmentvoucher",voucher);
+//        getActivity().startActivity(intent);
+//    }
 }

@@ -3,104 +3,104 @@ package iss.team1.ad.ssis_android.modal;
 import java.io.Serializable;
 
 public class AdjustmentVoucherDetail implements Serializable {
-    private int Id;
-    private String AdjustmentVoucherId;
-    private String ProductId;
-    private int QtyAdjusted;
-    private double TotalPrice;
-    private double Unitprice;
-    private String Reason;
-    private  AdjustmentVoucher AdjustmentVoucher;
-    private  Product Product;
+    public int id;
+    public String adjustmentVoucherId;
+    public String productId;
+    public int qtyAdjusted;
+    public double totalPrice;
+    public double unitprice;
+    public String reason;
+    public  AdjustmentVoucher adjustmentVoucher;
+    public  Product product;
 
     public AdjustmentVoucherDetail() {
     }
 
     public AdjustmentVoucherDetail(int id) {
-        Id = id;
+        this.id = id;
     }
 
-    public AdjustmentVoucherDetail(int id, String adjustmentVoucherId, String productId, int qtyAdjusted, double totalPrice, double unitprice, String reason, iss.team1.ad.ssis_android.modal.AdjustmentVoucher adjustmentVoucher, iss.team1.ad.ssis_android.modal.Product product) {
-        Id = id;
-        AdjustmentVoucherId = adjustmentVoucherId;
-        ProductId = productId;
-        QtyAdjusted = qtyAdjusted;
-        TotalPrice = totalPrice;
-        Unitprice = unitprice;
-        Reason = reason;
-        AdjustmentVoucher = adjustmentVoucher;
-        Product = product;
+    public AdjustmentVoucherDetail(int id, String adjustmentVoucherId, String productId, int qtyAdjusted, double totalPrice, double unitprice, String reason, AdjustmentVoucher adjustmentVoucher, Product product) {
+        this.id = id;
+        this.adjustmentVoucherId = adjustmentVoucherId;
+        this.productId = productId;
+        this.qtyAdjusted = qtyAdjusted;
+        this.totalPrice = totalPrice;
+        this.unitprice = unitprice;
+        this.reason = reason;
+        this.adjustmentVoucher = adjustmentVoucher;
+        this.product = product;
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getAdjustmentVoucherId() {
-        return AdjustmentVoucherId;
+        return adjustmentVoucherId;
     }
 
     public void setAdjustmentVoucherId(String adjustmentVoucherId) {
-        AdjustmentVoucherId = adjustmentVoucherId;
+        this.adjustmentVoucherId = adjustmentVoucherId;
     }
 
     public String getProductId() {
-        return ProductId;
+        return productId;
     }
 
     public void setProductId(String productId) {
-        ProductId = productId;
+        this.productId = productId;
     }
 
     public int getQtyAdjusted() {
-        return QtyAdjusted;
+        return qtyAdjusted;
     }
 
     public void setQtyAdjusted(int qtyAdjusted) {
-        QtyAdjusted = qtyAdjusted;
+        this.qtyAdjusted = qtyAdjusted;
     }
 
     public double getTotalPrice() {
-        return TotalPrice;
+        return totalPrice;
     }
 
     public void setTotalPrice(double totalPrice) {
-        TotalPrice = totalPrice;
+        this.totalPrice = totalPrice;
     }
 
     public double getUnitprice() {
-        return Unitprice;
+        return unitprice;
     }
 
     public void setUnitprice(double unitprice) {
-        Unitprice = unitprice;
+        this.unitprice = unitprice;
     }
 
     public String getReason() {
-        return Reason;
+        return reason;
     }
 
     public void setReason(String reason) {
-        Reason = reason;
+        this.reason = reason;
     }
 
-    public iss.team1.ad.ssis_android.modal.AdjustmentVoucher getAdjustmentVoucher() {
-        return AdjustmentVoucher;
+    public AdjustmentVoucher getAdjustmentVoucher() {
+        return adjustmentVoucher;
     }
 
-    public void setAdjustmentVoucher(iss.team1.ad.ssis_android.modal.AdjustmentVoucher adjustmentVoucher) {
-        AdjustmentVoucher = adjustmentVoucher;
+    public void setAdjustmentVoucher(AdjustmentVoucher adjustmentVoucher) {
+        this.adjustmentVoucher = adjustmentVoucher;
     }
 
-    public iss.team1.ad.ssis_android.modal.Product getProduct() {
-        return Product;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProduct(iss.team1.ad.ssis_android.modal.Product product) {
-        Product = product;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }
