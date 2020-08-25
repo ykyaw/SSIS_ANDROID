@@ -85,15 +85,15 @@ public class RetrieveAllVouchersFragment extends Fragment {
 
     private void init(View view) {
         allvoucher_list = (ListView) view.findViewById(R.id.allvoucher_list);
-        search_adjustmentvoucher_button = (Button) view.findViewById(R.id.retrieval_date_select_button);
+//        search_adjustmentvoucher_button = (Button) view.findViewById(R.id.retrieval_date_select_button);
         search_adjustmentvoucher = (TextView) view.findViewById(R.id.retrieval_date_select);
-        search_adjustmentvoucher_button.setOnClickListener(new View.OnClickListener() {
-
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onClick(View arg0) {
-            }
-        });
+//        search_adjustmentvoucher_button.setOnClickListener(new View.OnClickListener() {
+//
+//            @RequiresApi(api = Build.VERSION_CODES.N)
+//            @Override
+//            public void onClick(View arg0) {
+//            }
+//        });
         getAllVouchers();
 
     }
@@ -132,15 +132,15 @@ public class RetrieveAllVouchersFragment extends Fragment {
 
     private void displayAdjustmentVoucherList(List<AdjustmentVoucher> avlist) {
 
-        myAdapter1 = new MyAdapter<AdjustmentVoucher>((ArrayList)avlist,R.layout.item_adjustmentvoucher) {
-            @Override
-            public void bindView(ViewHolder holder, AdjustmentVoucher av) {
-                holder.setText(R.id.av_id,av.getId());
-                holder.setText(R.id.initiated_by,av.getInitiatedClerk().getName());
-                holder.setText(R.id.date_issued,av.getInitiatedDate()+"");
-                holder.setText(R.id.status,av.getStatus()+"");
-            }
-        };
+//        myAdapter1 = new MyAdapter<AdjustmentVoucher>((ArrayList)avlist,R.layout.item_adjustmentvoucher) {
+//            @Override
+//            public void bindView(ViewHolder holder, AdjustmentVoucher av) {
+//                holder.setText(R.id.av_id,av.getId());
+//                holder.setText(R.id.initiated_by,av.getInitiatedClerk().getName());
+//                holder.setText(R.id.date_issued,av.getInitiatedDate()+"");
+//                holder.setText(R.id.status,av.getStatus()+"");
+//            }
+//        };
 
         allvoucher_list.setAdapter(myAdapter1);
     }
