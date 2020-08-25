@@ -53,7 +53,6 @@ import iss.team1.ad.ssis_android.modal.Retrieval;
 public class RetrievalFragment extends Fragment {
 
     private ListView retrieval_list;
-    private Button retrieval_date_select_button;
     private TextView retrieval_date_select;
 
     int mYear;
@@ -96,11 +95,10 @@ public class RetrievalFragment extends Fragment {
 
     private void init(View view){
         retrieval_list=(ListView)view.findViewById(R.id.retrieval_list);
-        retrieval_date_select_button=(Button) view.findViewById(R.id.retrieval_date_select_button);
         retrieval_date_select=(TextView)view.findViewById(R.id.retrieval_date_select);
 
 
-        retrieval_date_select_button.setOnClickListener(new View.OnClickListener() {
+        retrieval_date_select.setOnClickListener(new View.OnClickListener() {
 
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
