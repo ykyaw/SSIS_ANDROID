@@ -67,6 +67,7 @@ public class RetrieveAllVouchersFragment extends Fragment  {
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
+
     }
 
     @Override
@@ -75,6 +76,7 @@ public class RetrieveAllVouchersFragment extends Fragment  {
         if (getArguments() != null) {
 
         }
+
     }
 
     @Override
@@ -161,9 +163,9 @@ public class RetrieveAllVouchersFragment extends Fragment  {
                         startActivity(intent);
                     }
                 });
-                if (av.getStatus().equals(CommonConstant.AdjsutmentVoucherStatus.PENDMANAPPROV) ||
-                        av.getStatus().equals(CommonConstant.AdjsutmentVoucherStatus.PENDING_APPROVAL)) {
-                    holder.setVisibility(R.id.apprve_or_reject, View.VISIBLE);
+                if (av.getStatus().equals(CommonConstant.AdjsutmentVoucherStatus.APPROVED) ||
+                        av.getStatus().equals(CommonConstant.AdjsutmentVoucherStatus.REJECTED)) {
+                    holder.setVisibility(R.id.apprve_or_reject, View.INVISIBLE);
                 }
 
             }

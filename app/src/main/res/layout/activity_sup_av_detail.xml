@@ -142,11 +142,11 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/store_sup_av_approve_btn"
                     android:text="approve"/>
-<!--                <Button-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:id="@+id/store_man_av_approve_btn"-->
-<!--                    android:text="approve"/>-->
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/store_man_av_approve_btn"
+                    android:text="Proceed"/>
             </LinearLayout>
 
             <LinearLayout
@@ -159,6 +159,7 @@
                     android:id="@+id/av_alert"
                     android:visibility="invisible"
                     android:text="Adjustment Price >250, Proceed to Manager's Approval"
+
                     />
             </LinearLayout>
 
