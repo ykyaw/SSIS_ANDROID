@@ -178,15 +178,15 @@
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="80dp"
                 android:textSize="16dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp"
                 android:paddingLeft="10dp"
-                android:paddingBottom="70dp"
+                android:paddingBottom="50dp"
                 android:id="@+id/store_sup_av_reject_reason"
-                android:hint="reason"/>
+                android:hint="Reason"
                 android:background="@drawable/rounded_edittext"/>
 
 <!--            <LinearLayout-->
@@ -202,11 +202,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:orientation="horizontal">
-<!--                <Button-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:id="@+id/store_sup_av_reject_btn"-->
-<!--                    android:text="reject"/>-->
+
                 <Button
                     android:id="@+id/store_sup_av_reject_btn"
                     android:layout_width="0dp"
@@ -220,11 +216,7 @@
                     android:textStyle="bold"
                     android:textSize="20dp"
                     android:background="@drawable/rounded_rejectbutton"/>
-<!--                <Button-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:id="@+id/store_sup_av_approve_btn"-->
-<!--                    android:text="approve"/>-->
+
                 <Button
                     android:id="@+id/store_sup_av_approve_btn"
                     android:layout_width="0dp"
@@ -238,22 +230,33 @@
                     android:textSize="20dp"
                     android:background="@drawable/rounded_approvebutton"/>
                 <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
                     android:layout_height="wrap_content"
                     android:id="@+id/store_man_av_approve_btn"
-                    android:text="Proceed"/>
+                    android:text="Proceed"
+                    android:layout_marginLeft="10dp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:background="@drawable/rounded_filterbutton"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="2">
+                android:layout_weight="2"
+                android:layout_marginTop="10dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/av_alert"
                     android:visibility="invisible"
                     android:text="Adjustment Price >250, Proceed to Manager's Approval"
+                    android:textSize="16dp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="15dp"
 
                     />
             </LinearLayout>
