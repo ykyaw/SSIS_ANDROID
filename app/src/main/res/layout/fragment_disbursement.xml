@@ -29,14 +29,29 @@
         <TextView
             android:id="@+id/disbursement_dept"
             android:layout_width="match_parent"
-            android:text="department"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Select Department"
+            android:textColor="@color/black"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textSize="18dp"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:background="@drawable/rounded_tokenbutton"/>
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:id="@+id/disbursement_search"
-            android:text="Search"/>
+            android:text="Search"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="17dp"
+            android:background="@drawable/rounded_filterbutton"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,17 +68,20 @@
                 android:layout_height="wrap_content"
                 android:text="Received By(Rep): "
                 android:textSize="16dp"
+                android:textColor="@color/black"
                 android:layout_marginLeft="15dp"/>
 
             <TextView
                 android:id="@+id/received_by_rep"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:textColor="@color/black"
                 android:textSize="16dp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
+                android:textColor="@color/black"
                 android:id="@+id/received_date" />
 
         </LinearLayout>
@@ -79,25 +97,38 @@
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
                 android:text="Acknowledged By(Rep): "
-                android:layout_marginLeft="15dp" />
+                android:layout_marginLeft="15dp"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/ack_by_clerk"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16dp" />
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
-                android:id="@+id/ack_date" />
+                android:id="@+id/ack_date"
+                android:textColor="@color/black"/>
         </LinearLayout>
 
             <Button
                 android:id="@+id/clerk_update_remark_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Update Remarks" />
+                android:text="Update Remarks"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="17dp"
+                android:background="@drawable/rounded_filterbutton"/>
 
             <LinearLayout
             android:layout_width="match_parent"

@@ -18,16 +18,18 @@
         android:layout_weight="9">
         <TextView
             android:id="@+id/search_adjustmentvoucher"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Keyword of adjustment voucher"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/search_adjustmentvoucher_button"
-            android:text="Search"/>
+            android:hint="Keyword of adjustment voucher"
+            android:textColor="@color/black"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textSize="18dp"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:background="@drawable/rounded_tokenbutton"/>
 
-<!--        <LinearLayout-->
+        <!--        <LinearLayout-->
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="wrap_content"-->
 <!--            android:orientation="horizontal">-->
@@ -65,6 +67,20 @@
 <!--                android:textSize="20sp" />-->
 
 <!--        </LinearLayout>-->
+        <Button
+            android:id="@+id/search_adjustmentvoucher_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="17dp"
+            android:background="@drawable/rounded_filterbutton"/>
+
         <ListView
             android:id="@+id/allvoucher_list"
             android:layout_width="wrap_content"

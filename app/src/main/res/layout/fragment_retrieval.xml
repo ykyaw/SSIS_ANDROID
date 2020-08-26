@@ -24,6 +24,7 @@
             android:hint="Collection Date"
             android:textColorHint="@color/black"
             android:textSize="16dp"
+            android:layout_marginLeft="15dp"
             android:id="@+id/retrieval_date_select"/>
 
         <LinearLayout
@@ -38,11 +39,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Retrieval Id: "/>
+                    android:text="Retrieval Id: "
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/retrieval_id"/>
+                    android:id="@+id/retrieval_id"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -51,11 +59,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Status: "/>
+                    android:text="Status: "
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="10dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/retrieval_status"/>
+                    android:id="@+id/retrieval_status"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -64,11 +79,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Retrieved By: "/>
+                    android:text="Retrieved By: "
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="10dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/retrieval_retrieved_by"/>
+                    android:id="@+id/retrieval_retrieved_by"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -77,11 +99,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Date of Retrieval: "/>
+                    android:text="Date of Retrieval: "
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="10dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/retrieval_date_of_retrieval"/>
+                    android:id="@+id/retrieval_date_of_retrieval"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -97,33 +126,70 @@
             android:id="@+id/retrieval_btn_panel"
             android:visibility="invisible"
             android:orientation="vertical"
-            android:layout_weight="2">
+            android:layout_weight="2"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/retrieval_comments"
+                android:hint="Comments"
+                android:padding="10dp"
+                android:paddingBottom="20dp"
+                android:background="@drawable/rounded_edittext"
+                android:visibility="gone"/>
             <CheckBox
                 android:id="@+id/retrieval_is_need_voucher"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Adjustment Voucher needed?"/>
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/retrieval_comments"
-                android:hint="comments"
-                android:visibility="gone"/>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp">
+<!--                <Button-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:id="@+id/retrieval_update_btn"-->
+<!--                    android:text="update"/>-->
+<!--                <Button-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:id="@+id/retrieval_finalise_btn"-->
+<!--                    android:text="finalise"/>-->
                 <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:id="@+id/retrieval_update_btn"
-                    android:text="update"/>
-                <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentTop="false"
+                    android:layout_weight="0.5"
+                    android:text="Update"
+                    android:layout_marginRight="10dp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:background="@drawable/rounded_updatebutton" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:text="Finalise"
+                    android:layout_marginLeft="10dp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
                     android:id="@+id/retrieval_finalise_btn"
-                    android:text="finalise"/>
+                    android:background="@drawable/rounded_approvebutton"/>
             </LinearLayout>
         </LinearLayout>
+
+
+
+
 
     </LinearLayout>
 

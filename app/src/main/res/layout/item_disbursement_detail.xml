@@ -14,20 +14,27 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Item :  " />
+            android:text="Item: "
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:layout_marginLeft="15dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/item_code"
-            android:text="item code"/>
+            android:text="item code "
+            android:textColor="@color/black"
+            android:textSize="16dp"/>
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/item_description"
-            android:text="a desc"/>
+            android:text="a desc"
+            android:textColor="@color/black"
+            android:textSize="16dp"/>
     </LinearLayout>
 
 
@@ -39,12 +46,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Qty Req: " />
+            android:text="Qty Req: "
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:layout_marginLeft="15dp"/>
 
         <TextView
             android:id="@+id/qty"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -55,24 +67,33 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Qty Dis: " />
+            android:text="Qty Dis: "
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:layout_marginLeft="15dp"/>
 
         <TextView
             android:id="@+id/qty_disbursed"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:id="@+id/dis_remark"
-            android:text="Dis Remarks: " />
+            android:text="Dis Remarks: "
+            android:textColor="@color/black"
+            android:textSize="16dp"/>
 
         <TextView
             android:id="@+id/remarks"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16dp"/>
 
     </LinearLayout>
 
@@ -84,12 +105,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Qty Rec: " />
+            android:text="Qty Rec: "
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:layout_marginLeft="15dp"/>
 
         <TextView
             android:id="@+id/qty_received"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16dp"/>
 <!--            android:drawableRight="@drawable/edit"/>-->
 
         <TextView
@@ -97,12 +123,16 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:id="@+id/rep_remark"
-            android:text="Dept Remarks: " />
+            android:text="Dept Remarks: "
+            android:textColor="@color/black"
+            android:textSize="16dp"/>
 
         <TextView
             android:id="@+id/dept_remarks"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16dp"/>
 
     </LinearLayout>
 
@@ -116,19 +146,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/cl_remark"
-            android:text="Clerk Remarks: " />
+            android:text="Clerk Remarks: "
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:layout_marginLeft="15dp"/>
 
         <TextView
             android:id="@+id/clerk_remarks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16dp"
             />
 
         <TextView
             android:id="@+id/clerk_set_remarks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableRight="@drawable/edit"/>
+            android:drawableRight="@drawable/edit"
+            android:textColor="@color/black"
+            android:textSize="16dp"/>
 
     </LinearLayout>
 

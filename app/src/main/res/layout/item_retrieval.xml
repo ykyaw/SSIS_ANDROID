@@ -11,12 +11,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Item Code: "/>
+            android:text="Item Code: "
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="5dp"/>
         <TextView
             android:id="@+id/item_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp" />
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="5dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,12 +29,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Desc: "/>
+            android:text="Desc: "
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="5dp"/>
         <TextView
             android:id="@+id/item_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp" />
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="5dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,12 +47,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Qty Needed: "/>
+            android:text="Qty Needed: "
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="5dp"/>
         <TextView
             android:id="@+id/qty_needed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp" />
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="5dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -50,13 +65,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Qty Retrieved: "/>
+            android:text="Qty Retrieved: "
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="5dp"/>
         <TextView
             android:id="@+id/qty_retrieved"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableRight="@drawable/edit"
-            android:textSize="20sp" />
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="5dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -64,13 +84,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Remarks: "/>
+            android:text="Remarks: "
+            android:textSize="15dp"
+            android:textColor="@color/black" />
         <TextView
             android:id="@+id/item_retrieval_remarks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableRight="@drawable/edit"
-            android:textSize="20sp" />
+            android:textSize="15dp"
+            android:textColor="@color/black" />
     </LinearLayout>
 
 
