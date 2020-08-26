@@ -41,74 +41,146 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/requisition_info">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
-                android:id="@+id/item_code"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Item Code"
-                android:gravity="center"
-                android:textSize="18dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:background="@color/black"
-                android:textColor="@color/white" />
+                android:text="Received By(Rep): "
+                android:textSize="16dp"
+                android:layout_marginLeft="15dp"/>
+
             <TextView
-                android:id="@+id/item_description"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:text="Description\n"
-                android:gravity="center"
-                android:textSize="18dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:background="@color/black"
-                android:textColor="@color/white" />
+                android:textSize="16dp"
+                android:id="@+id/received_by_rep" />
             <TextView
-                android:id="@+id/qty_needed"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Qty\n"
-                android:textSize="18dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:background="@color/black"
-                android:textColor="@color/white"
-                android:gravity="center" />
-            <TextView
-                android:id="@+id/qty_disbursed"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Qty Disbursed"
-                android:textSize="18dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:background="@color/black"
-                android:textColor="@color/white"/>
-            <TextView
-                android:id="@+id/qty_received"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Qty Received"
-                android:textSize="18dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:background="@color/black"
-                android:textColor="@color/white" />
+                android:textSize="16dp"
+                android:id="@+id/received_date" />
 
         </LinearLayout>
-        <ListView
-            android:id="@+id/disbursement_list"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="0dp"/>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:text="Acknowledged By(Rep): "
+                android:layout_marginLeft="15dp" />
+
+            <TextView
+                android:id="@+id/ack_by_clerk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:id="@+id/ack_date" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/clerk_update_remark_button"
+                android:text="Update Remarks"/>
+        </LinearLayout>
+        </LinearLayout>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/disbursement_list"/>
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal">-->
+<!--            <TextView-->
+<!--                android:id="@+id/item_code"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="Item Code"-->
+<!--                android:gravity="center"-->
+<!--                android:textSize="18dp"-->
+<!--                android:paddingTop="5dp"-->
+<!--                android:paddingBottom="5dp"-->
+<!--                android:background="@color/black"-->
+<!--                android:textColor="@color/white" />-->
+<!--            <TextView-->
+<!--                android:id="@+id/item_description"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1.5"-->
+<!--                android:text="Description\n"-->
+<!--                android:gravity="center"-->
+<!--                android:textSize="18dp"-->
+<!--                android:paddingTop="5dp"-->
+<!--                android:paddingBottom="5dp"-->
+<!--                android:background="@color/black"-->
+<!--                android:textColor="@color/white" />-->
+<!--            <TextView-->
+<!--                android:id="@+id/qty_needed"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="Qty\n"-->
+<!--                android:textSize="18dp"-->
+<!--                android:paddingTop="5dp"-->
+<!--                android:paddingBottom="5dp"-->
+<!--                android:background="@color/black"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:gravity="center" />-->
+<!--            <TextView-->
+<!--                android:id="@+id/qty_disbursed"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:gravity="center"-->
+<!--                android:text="Qty Disbursed"-->
+<!--                android:textSize="18dp"-->
+<!--                android:paddingTop="5dp"-->
+<!--                android:paddingBottom="5dp"-->
+<!--                android:background="@color/black"-->
+<!--                android:textColor="@color/white"/>-->
+<!--            <TextView-->
+<!--                android:id="@+id/qty_received"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:gravity="center"-->
+<!--                android:text="Qty Received"-->
+<!--                android:textSize="18dp"-->
+<!--                android:paddingTop="5dp"-->
+<!--                android:paddingBottom="5dp"-->
+<!--                android:background="@color/black"-->
+<!--                android:textColor="@color/white" />-->
+
+<!--        </LinearLayout>-->
+<!--        <ListView-->
+<!--            android:id="@+id/disbursement_list"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:layout_height="0dp"/>-->
     </LinearLayout>
 
 </LinearLayout>

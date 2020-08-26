@@ -60,10 +60,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:id="@+id/remarks_title"
-                android:text="Remarks: " />
+                android:text="Dis Remarks: " />
 
             <TextView
-                android:id="@+id/remarks"
+                android:id="@+id/dis_remarks"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
