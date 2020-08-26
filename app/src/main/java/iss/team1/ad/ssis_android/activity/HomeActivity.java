@@ -98,22 +98,17 @@ public class HomeActivity extends AppCompatActivity {
             case CommonConstant.ROLE.DEPARTMENT_HEAD:
                 tabFragments.add(new DeptHeadRequisitionFragment());
                 tabFragments.add(new DelegateFragment());
-                tabFragments.add(new TabFragment());
-                tabFragments.add(new TabFragment());
                 break;
             case CommonConstant.ROLE.STORE_CLERK:
                 tabFragments.add(new RetrievalFragment());
                 tabFragments.add(new DisbursementFragment());
-                tabFragments.add(new TabFragment());
-                tabFragments.add(new TabFragment());
-                tabFragments.add(new TabFragment());
                 break;
             case CommonConstant.ROLE.STORE_MANAGER:
+                tabFragments.add(new RetrieveAllVouchersFragment());
+                break;
             case CommonConstant.ROLE.STORE_SUPERVISOR:
                 tabFragments.add(new RetrieveAllVouchersFragment());
                 tabFragments.add(new PurchaseRquestFragment());
-                tabFragments.add(new TabFragment());
-                tabFragments.add(new TabFragment());
                 break;
         }
 

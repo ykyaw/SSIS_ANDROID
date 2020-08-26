@@ -96,12 +96,16 @@ public class MenuFragment extends Fragment {
         menuItemList.clear();
         String[] menu_store_clerk=getResources().getStringArray(R.array.menu_store_clerk);
         String[] menu_store_supervisor=getResources().getStringArray(R.array.menu_store_supervisor);
+        String[] menu_store_manager=getResources().getStringArray(R.array.menu_store_manager);
         String[] menu_dept_head=getResources().getStringArray(R.array.menu_dept_head);
         String[] menu_dept_repo=getResources().getStringArray(R.array.menu_dept_repo);
+
         String[] current_menu=menu_store_clerk;
         if(currentUser!=null){
             switch (currentUser.getRole()){
                 case CommonConstant.ROLE.STORE_MANAGER:
+                    current_menu=menu_store_manager;
+                    break;
                 case CommonConstant.ROLE.STORE_SUPERVISOR:
                     current_menu=menu_store_supervisor;
                     break;
