@@ -99,13 +99,13 @@ public class DeptheadRequisitionDetailActivity extends AppCompatActivity {
         depthead_requisition_detail_approve_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateRequisition();
+                updateRequisition(CommonConstant.RequsitionStatus.APPROVED);
             }
         });
         depthead_requisition_detail_reject_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateRequisition();
+                updateRequisition(CommonConstant.RequsitionStatus.REJECT);
             }
         });
 
@@ -181,10 +181,10 @@ public class DeptheadRequisitionDetailActivity extends AppCompatActivity {
         depthead_requisition_detail_detail_list.setAdapter(requisitionDetailMyAdapter);
     }
 
-    private void updateRequisition(){
+    private void updateRequisition(String status){
         String remarks=depthead_requisition_detail_reject_reason.getText().toString();
         requisition.setRemarks(remarks);
-        requisition.setStatus(CommonConstant.RequsitionStatus.APPROVED);
+        requisition.setStatus(status);
         LoadingPopupView loadingPopup = (LoadingPopupView) new XPopup.Builder(context)
                 .asLoading("loading")
                 .show();
