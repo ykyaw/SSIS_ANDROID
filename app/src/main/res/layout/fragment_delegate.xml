@@ -23,7 +23,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/delegate_non_delegate_tip"
             android:visibility="invisible"
-            android:text="There is no assigned delegate for this department."/>
+            android:text="There is no assigned delegate for this department."
+            android:textColor="@color/black"
+            android:layout_marginLeft="20dp"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,9 +34,9 @@
             android:background="@drawable/rounded_approvebutton"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:textSize="15dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:textSize="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:textAllCaps="false"/>
         <ListView
             android:layout_width="match_parent"

@@ -29,11 +29,12 @@
                 android:id="@+id/disbursement_date"
                 android:textColorHint="@color/black"
                 android:textSize="16dp"
-                android:layout_marginLeft="15dp" />
+                android:layout_marginLeft="15dp"
+                android:paddingBottom="5dp"/>
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
                 android:id="@+id/ack_filter_btn"
                 android:text="Filter"
                 android:textAllCaps="false"
@@ -52,10 +53,11 @@
             android:text="Acknowledge Receive"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:textSize="17dp"
+            android:textSize="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textAllCaps="false"
             android:background="@drawable/rounded_filterbutton"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="5dp"/>
 
@@ -66,16 +68,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Received by:"
+                android:text="Received by: "
                 android:textColor="@color/black"
-                android:textSize="16dp"
+                android:textSize="18dp"
                 android:layout_marginLeft="15dp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/receied_by"
                 android:textColor="@color/black"
-                android:textSize="16dp" />
+                android:textSize="18dp" />
         </LinearLayout>
 
 
@@ -88,14 +90,16 @@
                 android:layout_height="wrap_content"
                 android:text="Acknowledged by: "
                 android:textColor="@color/black"
-                android:textSize="16dp"
-                android:layout_marginLeft="15dp"/>
+                android:textSize="18dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/ack_by"
                 android:textColor="@color/black"
-                android:textSize="16dp" />
+                android:textSize="18dp"
+                android:layout_marginTop="5dp"/>
         </LinearLayout>
         <ListView
             android:id="@+id/disbursement_list"
