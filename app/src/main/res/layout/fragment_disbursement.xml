@@ -29,14 +29,26 @@
         <TextView
             android:id="@+id/disbursement_dept"
             android:layout_width="match_parent"
-            android:text="department"
-            android:layout_height="wrap_content" />
+            android:text="Select Department"
+            android:textColor="@color/black"
+            android:layout_marginLeft="15dp"
+            android:textSize="18dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"/>
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:id="@+id/disbursement_search"
-            android:text="Search"/>
+            android:text="Search"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="17dp"
+            android:background="@drawable/rounded_filterbutton"/>
 
         <LinearLayout
             android:layout_width="match_parent"
