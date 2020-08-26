@@ -262,7 +262,7 @@ public class DisbursementFragment extends Fragment {
                                                     received_by_rep.setVisibility(View.INVISIBLE);
 
                                                 }
-                                                if(StringUtil.isEmpty(String.valueOf(requisitionDetails.get(0).getRequisition().getReceivedDate()))){
+                                                if(!StringUtil.isEmpty(String.valueOf(requisitionDetails.get(0).getRequisition().getReceivedDate()))){
                                                     received_date.setText(TimeUtil.convertTimestampToyyyyMMdd(requisitionDetails.get(0).getRequisition().getReceivedDate()));}
                                                 else{
                                                     received_date.setVisibility(View.INVISIBLE);
