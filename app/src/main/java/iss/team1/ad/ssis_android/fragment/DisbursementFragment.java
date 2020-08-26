@@ -231,123 +231,8 @@ public class DisbursementFragment extends Fragment {
         disbursement_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (selectDay == null || selectDay.equals("")) {
-                    Toast.makeText(context, "please select a date", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                Requisition requisition = new Requisition();
-                requisition.setDepartmentId(dept_select);
-                requisition.setCollectionDate(TimeUtil.convertyyyyMMddToTimestamp(selectDay));
-                HttpUtil.getInstance()
-                        .sendJSONRequest(Request.Method.POST, CommonConstant.HttpUrl.GET_DISBURSEMENT,
-                                new JSONObject(EntityUtil.object2Map(requisition)), new Response.Listener<JSONObject>() {
-                                    @Override
-                                    public void onResponse(JSONObject response) {
-                                        Result result = (Result) JSONUtil.JsonToObject(response.toString(), Result.class);
-                                        if (result.getCode() == 200) {
-                                            //final List<RequisitionDetail> requisitionDetails=new ArrayList<>();
-                                            requisitionDetails = new ArrayList<>();
-                                            for (int i = 0; i < ((ArrayList) result.getData()).size(); i++) {
-                                                requisitionDetails.add((RequisitionDetail) EntityUtil.map2Object((Map<String, Object>) ((ArrayList) result.getData()).get(i), RequisitionDetail.class));
-                                            }
+                fetchRequisitionDetailsByDate();
 
-                                            //XJ
-
-                                            if(!requisitionDetails.isEmpty()) {
-                                                requisition_info.setVisibility(View.VISIBLE);
-                                                if (requisitionDetails.get(0).getRequisition()!=null){
-                                                    System.out.println(requisitionDetails.get(0).getRequisition().getReceivedByRepId());
-                                                    received_by_rep.setText(requisitionDetails.get(0).getRequisition().getReceivedByRep().getName());}
-                                                else{
-                                                    received_by_rep.setVisibility(View.INVISIBLE);
-
-                                                }
-                                                if(!StringUtil.isEmpty(String.valueOf(requisitionDetails.get(0).getRequisition().getReceivedDate()))){
-                                                    received_date.setText(TimeUtil.convertTimestampToyyyyMMdd(requisitionDetails.get(0).getRequisition().getReceivedDate()));}
-                                                else{
-                                                    received_date.setVisibility(View.INVISIBLE);
-                                                }
-                                                if (!StringUtil.isEmpty(String.valueOf(requisitionDetails.get(0).getRequisition().getAckByClerkId()))){
-                                                ack_by_clerk.setText(requisitionDetails.get(0).getRequisition().getAckByClerk().getName());}
-                                                else{
-                                                    ack_by_clerk.setVisibility(View.INVISIBLE);
-                                                }
-                                                if(!StringUtil.isEmpty(String.valueOf(requisitionDetails.get(0).getRequisition().getAckDate()))){
-                                                    ack_date.setText(TimeUtil.convertTimestampToyyyyMMdd(requisitionDetails.get(0).getRequisition().getAckDate()));}
-                                                else{
-                                                    ack_date.setVisibility(View.INVISIBLE);
-                                                }
-                                            }
-                                            final int renderSize = requisitionDetails.size();
-                                            disbursementAdapter = new MyAdapter<RequisitionDetail>((ArrayList) requisitionDetails, R.layout.item_disbursement_detail) {
-                                                @Override
-                                                public void bindView(ViewHolder holder, RequisitionDetail obj) {
-                                                    holder.setText(R.id.item_code, obj.getProduct().getId());
-                                                    holder.setText(R.id.item_description, obj.getProduct().getDescription());
-                                                    holder.setText(R.id.qty, obj.getQtyNeeded() + "");
-                                                    holder.setText(R.id.qty_received, obj.getQtyReceived() + "");
-                                                    holder.setText(R.id.qty_disbursed, obj.getQtyDisbursed() + "");
-
-                                                    //xj start
-                                                    //received by +ack by
-                                                    if (!StringUtil.isEmpty(obj.getDisburseRemark())) {
-                                                        holder.setVisibility(R.id.dis_remark, View.VISIBLE);
-                                                        holder.setVisibility(R.id.remarks, View.VISIBLE);
-                                                        holder.setText(R.id.remarks, obj.getDisburseRemark());
-                                                    } else {
-                                                        holder.setVisibility(R.id.dis_remark, View.INVISIBLE);
-                                                        holder.setVisibility(R.id.remarks, View.INVISIBLE);
-                                                    }
-                                                    if (!StringUtil.isEmpty(obj.getRepRemark())) {
-                                                        holder.setVisibility(R.id.rep_remark, View.VISIBLE);
-                                                        holder.setVisibility(R.id.dept_remarks, View.VISIBLE);
-                                                        holder.setText(R.id.dept_remarks, obj.getRepRemark());
-                                                    } else {
-                                                        holder.setVisibility(R.id.rep_remark, View.INVISIBLE);
-                                                        holder.setVisibility(R.id.dept_remarks, View.INVISIBLE);
-                                                    }
-                                                    if (!StringUtil.isEmpty(obj.getClerkRemark())) {
-                                                        holder.setVisibility(R.id.cl_remark, View.VISIBLE);
-                                                        holder.setVisibility(R.id.clerk_remarks, View.INVISIBLE);
-                                                        holder.setText(R.id.clerk_remarks, obj.getClerkRemark());
-                                                        holder.setVisibility(R.id.clerk_set_remarks, View.VISIBLE);
-                                                    } else {
-                                                        holder.setVisibility(R.id.cl_remark, View.INVISIBLE);
-                                                        holder.setVisibility(R.id.clerk_remarks, View.INVISIBLE);
-                                                        holder.setVisibility(R.id.clerk_set_remarks, View.INVISIBLE);
-                                                    }
-
-                                                    final ViewHolder thisHolder = holder;
-                                                    if (obj.getRequisition().getStatus().equals(CommonConstant.RequsitionStatus.RECEIVED)) {
-                                                        holder.setVisibility(R.id.cl_remark, View.VISIBLE);
-                                                        holder.setVisibility(R.id.clerk_remarks, View.INVISIBLE);
-                                                        holder.setVisibility(R.id.clerk_set_remarks, View.VISIBLE);
-
-                                                        holder.setOnClickListener(R.id.clerk_set_remarks, new View.OnClickListener() {
-                                                            @Override
-                                                            public void onClick(View view) {
-                                                                showClerkRemarksInputDialog(view, thisHolder.getItemPosition());
-                                                            }
-                                                        });
-                                                    }
-
-                                                }
-                                            };
-                                            disbursement_list.setAdapter(disbursementAdapter);
-                                        } else {
-                                            Toast.makeText(context, result.getMsg(), Toast.LENGTH_LONG).show();
-                                        }
-                                    }
-                                }, new Response.ErrorListener() {
-                                    @Override
-                                    public void onErrorResponse(VolleyError error) {
-                                        Toast.makeText(context, "invalid token", Toast.LENGTH_LONG).show();
-                                        System.out.println("error");
-                                        error.printStackTrace();
-                                        System.out.println(error.getMessage());
-
-                                    }
-                                });
             }
         });
 
@@ -362,6 +247,136 @@ public class DisbursementFragment extends Fragment {
         });
     }
 
+    private void fetchRequisitionDetailsByDate() {
+        if (selectDay == null || selectDay.equals("")) {
+            Toast.makeText(context, "please select a date", Toast.LENGTH_LONG).show();
+            return;
+        }
+        Requisition requisition = new Requisition();
+        requisition.setDepartmentId(dept_select);
+        requisition.setCollectionDate(TimeUtil.convertyyyyMMddToTimestamp(selectDay));
+        HttpUtil.getInstance()
+                .sendJSONRequest(Request.Method.POST, CommonConstant.HttpUrl.GET_DISBURSEMENT,
+                        new JSONObject(EntityUtil.object2Map(requisition)), new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Result result = (Result) JSONUtil.JsonToObject(response.toString(), Result.class);
+                                if (result.getCode() == 200) {
+                                    //final List<RequisitionDetail> requisitionDetails=new ArrayList<>();
+                                    requisitionDetails = new ArrayList<>();
+                                    for (int i = 0; i < ((ArrayList) result.getData()).size(); i++) {
+                                        requisitionDetails.add((RequisitionDetail) EntityUtil.map2Object((Map<String, Object>) ((ArrayList) result.getData()).get(i), RequisitionDetail.class));
+                                    }
+
+                                    //XJ
+
+                                    if(!requisitionDetails.isEmpty()) {
+                                        requisition_info.setVisibility(View.VISIBLE);
+                                        if (requisitionDetails.get(0).getRequisition()!=null){
+                                            System.out.println(requisitionDetails.get(0).getRequisition().getReceivedByRepId());
+                                            if(requisitionDetails.get(0).getRequisition().getReceivedByRep()!=null){
+                                                received_by_rep.setText(requisitionDetails.get(0).getRequisition().getReceivedByRep().getName());}
+                                        }
+                                        else{
+                                            received_by_rep.setVisibility(View.INVISIBLE);
+
+                                        }
+                                        if(!StringUtil.isEmpty(String.valueOf(requisitionDetails.get(0).getRequisition().getReceivedDate()))){
+                                            received_date.setText(TimeUtil.convertTimestampToyyyyMMdd(requisitionDetails.get(0).getRequisition().getReceivedDate()));}
+                                        else{
+                                            received_date.setVisibility(View.INVISIBLE);
+                                        }
+                                        if (requisitionDetails.get(0).getRequisition().getAckByClerk()!=null){
+                                            ack_by_clerk.setText(requisitionDetails.get(0).getRequisition().getAckByClerk().getName());}
+                                        else{
+                                            ack_by_clerk.setVisibility(View.INVISIBLE);
+                                        }
+                                        if(!StringUtil.isEmpty(String.valueOf(requisitionDetails.get(0).getRequisition().getAckDate()))){
+                                            ack_date.setText(TimeUtil.convertTimestampToyyyyMMdd(requisitionDetails.get(0).getRequisition().getAckDate()));}
+                                        else{
+                                            ack_date.setVisibility(View.INVISIBLE);
+                                        }
+                                    }
+                                    final int renderSize = requisitionDetails.size();
+                                    disbursementAdapter = new MyAdapter<RequisitionDetail>((ArrayList) requisitionDetails, R.layout.item_disbursement_detail) {
+                                        @Override
+                                        public void bindView(ViewHolder holder, RequisitionDetail obj) {
+                                            holder.setText(R.id.item_code, obj.getProduct().getId());
+                                            holder.setText(R.id.item_description, obj.getProduct().getDescription());
+                                            holder.setText(R.id.qty, obj.getQtyNeeded() + "");
+                                            holder.setText(R.id.qty_received, obj.getQtyReceived() + "");
+                                            holder.setText(R.id.qty_disbursed, obj.getQtyDisbursed() + "");
+
+                                            //xj start
+                                            //received by +ack by
+                                            if (!StringUtil.isEmpty(obj.getDisburseRemark())) {
+                                                holder.setVisibility(R.id.dis_remark, View.VISIBLE);
+                                                holder.setVisibility(R.id.remarks, View.VISIBLE);
+                                                holder.setText(R.id.remarks, obj.getDisburseRemark());
+                                            } else {
+                                                holder.setVisibility(R.id.dis_remark, View.INVISIBLE);
+                                                holder.setVisibility(R.id.remarks, View.INVISIBLE);
+                                            }
+                                            if (!StringUtil.isEmpty(obj.getRepRemark())) {
+                                                holder.setVisibility(R.id.rep_remark, View.VISIBLE);
+                                                holder.setVisibility(R.id.dept_remarks, View.VISIBLE);
+                                                holder.setText(R.id.dept_remarks, obj.getRepRemark());
+                                            } else {
+                                                holder.setVisibility(R.id.rep_remark, View.INVISIBLE);
+                                                holder.setVisibility(R.id.dept_remarks, View.INVISIBLE);
+                                            }
+                                            if (!StringUtil.isEmpty(obj.getClerkRemark())) {
+                                                holder.setVisibility(R.id.cl_remark, View.VISIBLE);
+                                                holder.setVisibility(R.id.clerk_remarks, View.INVISIBLE);
+                                                holder.setText(R.id.clerk_remarks, obj.getClerkRemark());
+                                                holder.setVisibility(R.id.clerk_set_remarks, View.VISIBLE);
+                                            } else {
+                                                holder.setVisibility(R.id.cl_remark, View.INVISIBLE);
+                                                holder.setVisibility(R.id.clerk_remarks, View.INVISIBLE);
+                                                holder.setVisibility(R.id.clerk_set_remarks, View.INVISIBLE);
+                                            }
+
+                                            final ViewHolder thisHolder = holder;
+                                            if (obj.getRequisition().getStatus().equals(CommonConstant.RequsitionStatus.RECEIVED)) {
+                                                holder.setVisibility(R.id.cl_remark, View.VISIBLE);
+                                                holder.setVisibility(R.id.clerk_remarks, View.INVISIBLE);
+                                                holder.setVisibility(R.id.clerk_set_remarks, View.VISIBLE);
+
+                                                holder.setOnClickListener(R.id.clerk_set_remarks, new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View view) {
+                                                        showClerkRemarksInputDialog(view, thisHolder.getItemPosition());
+                                                    }
+                                                });
+                                            }
+                                            if (obj.getRequisition().getStatus().equals(CommonConstant.RequsitionStatus.COMPLETED)){
+                                                clerk_update_remark_button.setText("This List is completed");
+                                                clerk_update_remark_button.setClickable(false);
+                                                holder.setVisibility(R.id.cl_remark, View.VISIBLE);
+                                                holder.setVisibility(R.id.clerk_remarks, View.VISIBLE);
+                                                holder.setVisibility(R.id.clerk_set_remarks, View.INVISIBLE);
+                                            }
+
+                                        }
+                                    };
+                                    disbursement_list.setAdapter(disbursementAdapter);
+                                } else {
+                                    Toast.makeText(context, result.getMsg(), Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(context, "invalid token", Toast.LENGTH_LONG).show();
+                                System.out.println("error");
+                                error.printStackTrace();
+                                System.out.println(error.getMessage());
+
+                            }
+                        });
+
+    }
+
 
     //xj
     private void showClerkRemarksInputDialog(final View view, final int position) {
@@ -369,7 +384,7 @@ public class DisbursementFragment extends Fragment {
                 new OnInputConfirmListener() {
                     @Override
                     public void onConfirm(String text) {
-                        if (!StringUtil.isEmpty(text.trim())) {
+                        if (StringUtil.isEmpty(text.trim())) {
                             Toast.makeText(context, "No input found", Toast.LENGTH_LONG).show();
                         } else {
 
@@ -397,14 +412,19 @@ public class DisbursementFragment extends Fragment {
                                 public void onResponse(JSONObject response) {
                                     Result result = (Result) JSONUtil.JsonToObject(response.toString(), Result.class);
                                     if(result.getCode()==200){
-                                        clerk_update_remark_button.setVisibility(View.INVISIBLE);
-                                        disbursement_search.setVisibility(View.INVISIBLE);
-                                        disbursement_date.setEnabled(false);
-                                        disbursement_dept.setEnabled(false);
-                                        ack_by_clerk.setText(requisitionDetails.get(0).getRequisition().getAckByClerk().getName());
-                                        ack_date.setText(TimeUtil.convertTimestampToyyyyMMdd(requisitionDetails.get(0).getRequisition().getAckDate()));
-
+//                                        clerk_update_remark_button.setVisibility(View.INVISIBLE);
+//                                        disbursement_search.setVisibility(View.INVISIBLE);
+//                                        disbursement_date.setText(selectDay);
+//                                        disbursement_date.setClickable(false);
+//                                        disbursement_dept.setEnabled(false);
                                         Toast.makeText(context,"successfully saved",Toast.LENGTH_LONG).show();
+                                        fetchRequisitionDetailsByDate();
+//                                        if(requisitionDetails.get(0).getRequisition().getAckByClerk()!=null){
+//                                            ack_by_clerk.setText(requisitionDetails.get(0).getRequisition().getAckByClerk().getName());
+//                                        }
+//                                        ack_date.setText(TimeUtil.convertTimestampToyyyyMMdd(requisitionDetails.get(0).getRequisition().getAckDate()));
+
+
                                     }else{
                                         Toast.makeText(context,result.getMsg(),Toast.LENGTH_LONG).show();
                                     }
