@@ -12,12 +12,16 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:id="@+id/item_purchase_request_id"/>
+            android:id="@+id/item_purchase_request_id"
+            android:textSize="16dp"
+            android:textColor="@color/black"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:id="@+id/item_purchase_request_status"/>
+            android:id="@+id/item_purchase_request_status"
+            android:textSize="16dp"
+            android:textColor="@color/black"/>
     </LinearLayout>
 </LinearLayout>

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -52,9 +53,12 @@ public class PurchaseRequestDeatilActivity extends AppCompatActivity {
     private EditText purchase_request_detail_reason;
     private Button purchase_request_detail_reject_btn;
     private Button purchase_request_detail_approve_btn;
+    private TextView purchase_request_detail_reason_txt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);//will hide the title
+        getSupportActionBar().hide(); //hide the title bar
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purchase_request_deatil);
 
@@ -73,6 +77,7 @@ public class PurchaseRequestDeatilActivity extends AppCompatActivity {
         purchase_request_detail_reason_panel=findViewById(R.id.purchase_request_detail_reason_panel);
         purchase_request_detail_reject_btn=findViewById(R.id.purchase_request_detail_reject_btn);
         purchase_request_detail_approve_btn=findViewById(R.id.purchase_request_detail_approve_btn);
+        purchase_request_detail_reason_txt=findViewById(R.id.purchase_request_detail_reason_txt);
 
         fetchDetail();
 
@@ -125,6 +130,7 @@ public class PurchaseRequestDeatilActivity extends AppCompatActivity {
         try{
             purchase_request_detail_id.setText(purchaseRequestDetails.get(0).getPurchaseRequestId()+"");
             purchase_request_detail_status.setText(purchaseRequestDetails.get(0).getStatus());
+            purchase_request_detail_reason_txt.setText(purchaseRequestDetails.get(0).getRemarks());
             if(purchaseRequestDetails.get(0).getStatus().equals(CommonConstant.PurchaseRequestStatus.PENDING_APPROVAL)){
                 purchase_request_detail_reason_panel.setVisibility(View.VISIBLE);
             }
