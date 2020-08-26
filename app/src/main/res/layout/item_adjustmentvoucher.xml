@@ -17,13 +17,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Voucher # " />
+            android:text="Voucher#: "
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="15dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/av_id"
-            android:text="this is a desc"/>
+            android:text="this is a desc"
+            android:textSize="16dp"
+            android:textColor="@color/black" />
     </LinearLayout>
 
     <LinearLayout
@@ -34,12 +39,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Initiated By: " />
+            android:text="Initiated By: "
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="15dp"/>
 
         <TextView
             android:id="@+id/initiated_by"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textColor="@color/black"/>
     </LinearLayout>
 
     <LinearLayout
@@ -50,12 +60,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Date Issued" />
+            android:text="Date Issued: "
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="15dp"/>
 
         <TextView
             android:id="@+id/date_issued"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textColor="@color/black"/>
     </LinearLayout>
 
     <LinearLayout
@@ -66,18 +81,25 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Status: " />
+            android:text="Status: "
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="15dp"/>
 
         <TextView
             android:id="@+id/adjustmentvoucher_status"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/apprve_or_reject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:drawableRightCompat="@drawable/edit" />
+            app:drawableRightCompat="@drawable/edit"
+            android:textSize="16dp"
+            android:textColor="@color/black"/>
 
     </LinearLayout>
 
