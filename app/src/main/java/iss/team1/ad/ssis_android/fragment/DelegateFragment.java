@@ -111,7 +111,7 @@ public class DelegateFragment extends Fragment implements CallStateListener {
             public void onClick(View view) {
                 popupView = new XPopup.Builder(getContext())
                         .enableDrag(true)
-                        .isDestroyOnDismiss(true) //对于只使用一次的弹窗，推荐设置这个
+                        .isDestroyOnDismiss(true)
                         .asCustom(new SelectDelegateTimeRange(getContext(), (ArrayList<Employee>) nonDelegates, thiz)/*.enableDrag(false)*/)
                         .show();
             }
@@ -169,7 +169,7 @@ public class DelegateFragment extends Fragment implements CallStateListener {
         delegateEmployeeAdapter = new MyAdapter<Employee>((ArrayList) delegates,R.layout.item_delegate) {
             @Override
             public void bindView(final ViewHolder holder, Employee obj) {
-                if(tableRowRenderTime<delegates.size()){
+//                if(tableRowRenderTime<delegates.size()){
                     holder.setText(R.id.item_delegate_name,obj.getName());
                     holder.setText(R.id.item_delegate_start_date, TimeUtil.convertTimestampToyyyyMMdd(obj.getDelegateFromDate()));
                     holder.setText(R.id.item_delegate_end_date,TimeUtil.convertTimestampToyyyyMMdd(obj.getDelegateToDate()));
@@ -362,8 +362,8 @@ public class DelegateFragment extends Fragment implements CallStateListener {
                                     month, day).show();
                         }
                     });
-                    tableRowRenderTime++;
-                }
+//                    tableRowRenderTime++;
+//                }
             }
         };
         delegate_list.setAdapter(delegateEmployeeAdapter);
