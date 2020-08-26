@@ -162,7 +162,7 @@ public class StoreSupAVDetailActivity extends AppCompatActivity {
             store_sup_av_detail_list_btn_panel.setVisibility(View.INVISIBLE);
             av_approve_by_sup.setText(adjustmentvoucher.getApprovedSup().getName());
 
-            if (!StringUtil.isEmpty(adjustmentvoucher.getReason())) {
+            if (StringUtil.isEmpty(adjustmentvoucher.getReason())) {
                 av_reject_reason.setVisibility(View.INVISIBLE);
             }
             if (adjustmentvoucher.getApprovedMgrId() != 0) {
