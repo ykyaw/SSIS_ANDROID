@@ -7,39 +7,81 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:id="@+id/item_delegate_name"/>
+            android:id="@+id/item_delegate_name"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:gravity="center"/>
 
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:id="@+id/item_delegate_start_date"
-            android:drawableRight="@drawable/edit"/>
+            android:drawableRight="@drawable/edit"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:gravity="center"/>
 
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:id="@+id/item_delegate_end_date"
-            android:drawableRight="@drawable/edit"/>
+            android:drawableRight="@drawable/edit"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:gravity="center" />
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="1">
-        <Button
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_height="0dp"
-            android:id="@+id/item_delegate_delete_btn"
-            android:text="delete"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="0dp"
-            android:id="@+id/item_delegate_update_btn"
-            android:text="update"/>
+            android:orientation="horizontal">
+<!--        <Button-->
+<!--            android:layout_width="wrap_content"-->
+
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/item_delegate_delete_btn"-->
+<!--            android:text="delete"-->
+<!--            android:background="@drawable/rounded_rejectbutton"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textSize="15dp"-->
+<!--            android:textAllCaps="false"/>-->
+<!--        <Button-->
+<!--            android:layout_width="wrap_content"-->
+
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/item_delegate_update_btn"-->
+<!--            android:text="update"-->
+<!--            android:background="@drawable/rounded_updatebutton"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textSize="15dp"-->
+<!--            android:textAllCaps="false"/>-->
+            <ImageButton
+                android:id="@+id/item_delegate_update_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/simpleImageButtonHome"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/rounded_updatebutton"
+                android:src="@drawable/update_icon"
+                android:padding="8dp"
+                android:layout_marginLeft="10dp"/>
+
+
+            <ImageButton
+                android:id="@+id/item_delegate_delete_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/rounded_rejectbutton"
+                android:src="@drawable/delete_icon"
+                android:layout_marginLeft="10dp"
+                android:padding="8dp"/>
+
+
     </LinearLayout>
 
 </LinearLayout>

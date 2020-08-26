@@ -14,9 +14,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp"
-            android:text="choose delegate"
+            android:text="Choose Delegate"
             android:textColor="#000"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            />
     </com.google.android.material.appbar.AppBarLayout>
 
     <ListView

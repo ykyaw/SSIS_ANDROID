@@ -7,87 +7,139 @@
     android:orientation="vertical"
     tools:context=".activity.DeptheadRequisitionDetailActivity">
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Requisition Form"
+        android:textSize="26dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:textAlignment="center"/>
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Form ID: "/>
+                android:text="Form ID: "
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/depthead_requisition_detail_form_ID"/>
+                android:id="@+id/depthead_requisition_detail_form_ID"
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Employee Name: "/>
+                android:text="Employee Name: "
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/depthead_requisition_detail_employee_name"/>
+                android:id="@+id/depthead_requisition_detail_employee_name"
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Requested Date: "/>
+                android:text="Requested Date: "
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/depthead_requisition_detail_requested_date"/>
+                android:id="@+id/depthead_requisition_detail_requested_date"
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Status: "/>
+                android:text="Status: "
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/depthead_requisition_detail_status"/>
+                android:id="@+id/depthead_requisition_detail_status"
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:id="@+id/depthead_requisition_detail_collection_point_panel"
             android:visibility="gone"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Collection Point: "/>
+                android:text="Collection Point: "
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/depthead_requisition_detail_collection_point"/>
+                android:id="@+id/depthead_requisition_detail_collection_point"
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:id="@+id/depthead_requisition_detail_disbursement_date_panel"
             android:visibility="gone"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Disbursement Date: "/>
+                android:text="Disbursement Date: "
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/depthead_requisition_detail_disbursement_date"/>
+                android:id="@+id/depthead_requisition_detail_disbursement_date"
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
         </LinearLayout>
 
 
@@ -95,37 +147,57 @@
             android:layout_width="match_parent"
             android:id="@+id/depthead_requisition_detail_reject_reason_display_panel"
             android:visibility="gone"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Reject Reason: "/>
+                android:text="Reject Reason: "
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/depthead_requisition_detail_reject_reason_display"/>
+                android:id="@+id/depthead_requisition_detail_reject_reason_display"
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Description: "/>
+                android:text="Description"
+                android:textSize="18dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@color/black"
+                android:textColor="@color/white"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Qty"/>
+                android:text="Qty"
+                android:textSize="18dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@color/black"
+                android:textColor="@color/white"/>
         </LinearLayout>
+
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/depthead_requisition_detail_list"/>
+            android:id="@+id/depthead_requisition_detail_list"
+            android:textColor="@color/black"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -133,28 +205,94 @@
             android:orientation="vertical"
             android:id="@+id/depthead_requisition_detail_btn_panel"
             android:layout_weight="3">
+
+<!--            <EditText-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:id="@+id/depthead_requisition_detail_reject_reason"-->
+<!--                android:hint="Reject Reason"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginRight="20dp"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:paddingLeft="20dp"-->
+<!--                android:background="@drawable/rounded_edittext"/>-->
+
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="100dp"
+                android:hint="Reject Reason"
+                android:textSize="16dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="10dp"
+                android:paddingBottom="70dp"
                 android:id="@+id/depthead_requisition_detail_reject_reason"
-                android:hint="reject reason"/>
+                android:background="@drawable/rounded_edittext"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2">
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal">
+
                 <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:id="@+id/depthead_requisition_detail_reject_btn"
-                    android:text="reject"/>
-                <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentTop="false"
+                    android:layout_weight="0.5"
+                    android:text="Reject"
+                    android:layout_marginRight="10dp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:background="@drawable/rounded_rejectbutton"/>
+
+                <Button
                     android:id="@+id/depthead_requisition_detail_approve_btn"
-                    android:text="approve"/>
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:text="Approve"
+                    android:layout_marginLeft="10dp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:background="@drawable/rounded_approvebutton"/>
             </LinearLayout>
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:layout_weight="2"-->
+<!--                android:layout_marginTop="20dp">-->
+<!--                -->
+<!--                <Button-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:id="@+id/depthead_requisition_detail_reject_btn"-->
+<!--                    android:text="Reject"-->
+<!--                    android:textAllCaps="false"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:background="@drawable/rounded_rejectbutton"/>-->
+<!--                <Button-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:id="@+id/depthead_requisition_detail_approve_btn"-->
+<!--                    android:text="Approve"-->
+<!--                    android:textAllCaps="false"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:background="@drawable/rounded_approvebutton"/>-->
+<!--            </LinearLayout>-->
     </LinearLayout>
 
 

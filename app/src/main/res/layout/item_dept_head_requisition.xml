@@ -9,23 +9,31 @@
         android:layout_weight="1"
         android:gravity="center"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="16dp"
         android:id="@+id/item_dept_head_requisition_form_id"/>
     <TextView
         android:layout_width="0dp"
         android:layout_weight="1"
         android:gravity="center"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="16dp"
         android:id="@+id/item_dept_head_requisition_requested_date"/>
     <TextView
         android:layout_width="0dp"
         android:layout_weight="1"
         android:gravity="center"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="16dp"
         android:id="@+id/item_dept_head_requisition_requested_by"/>
     <TextView
         android:layout_width="0dp"
         android:layout_weight="1"
         android:gravity="center"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="16dp"
         android:id="@+id/item_dept_head_requisition_status"/>
 </LinearLayout>

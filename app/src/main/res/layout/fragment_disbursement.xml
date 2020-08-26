@@ -20,9 +20,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/calendar"
-            android:hint="date of disbursement"
-            android:id="@+id/disbursement_date"
-            android:textSize="18sp"/>
+            android:hint="Date of Disbursement"
+            android:textColorHint="@color/black"
+            android:textSize="16dp"
+            android:layout_marginLeft="15dp"
+            android:id="@+id/disbursement_date" />
 
         <TextView
             android:id="@+id/disbursement_dept"
@@ -46,40 +48,60 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Item Code"
-                android:gravity="center_horizontal"
-                android:textSize="20sp" />
+                android:gravity="center"
+                android:textSize="18dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@color/black"
+                android:textColor="@color/white" />
             <TextView
                 android:id="@+id/item_description"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="Description"
-                android:gravity="center_horizontal"
-                android:textSize="20sp" />
+                android:layout_weight="1.5"
+                android:text="Description\n"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@color/black"
+                android:textColor="@color/white" />
             <TextView
                 android:id="@+id/qty_needed"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:text="Qty"
-                android:textSize="20sp" />
+                android:text="Qty\n"
+                android:textSize="18dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@color/black"
+                android:textColor="@color/white"
+                android:gravity="center" />
             <TextView
                 android:id="@+id/qty_disbursed"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:text="Qty Disbursed"
-                android:textSize="20sp" />
+                android:textSize="18dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@color/black"
+                android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/qty_received"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:text="Qty Received"
-                android:textSize="20sp" />
+                android:textSize="18dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@color/black"
+                android:textColor="@color/white" />
 
         </LinearLayout>
         <ListView

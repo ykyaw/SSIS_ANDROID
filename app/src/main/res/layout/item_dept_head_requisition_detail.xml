@@ -11,12 +11,16 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="16dp"
             android:id="@+id/item_dept_head_requisition_detail_desc"/>
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="16dp"
             android:id="@+id/item_dept_head_requisition_detail_qty"/>
     </LinearLayout>
 </LinearLayout>
