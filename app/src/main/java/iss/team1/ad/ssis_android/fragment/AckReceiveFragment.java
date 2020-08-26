@@ -126,89 +126,8 @@ public class AckReceiveFragment extends Fragment {
                     Toast.makeText(context,"please select a date",Toast.LENGTH_LONG).show();
                     return;
                 }
-                tableRowRenderTime=0;
-                requisitionDetails = new ArrayList<>();
-                HttpUtil.getInstance()
-                        .sendJSONRequest(Request.Method.GET, CommonConstant.HttpUrl.GET_DEPT_DISBURSEMENT_DETAIL(TimeUtil.convertyyyyMMddToTimestamp(selectDay)),
-                                new JSONObject(),new Response.Listener<JSONObject>(){
-                                    @Override
-                                    public void onResponse(JSONObject response) {
-                                        Result result = (Result) JSONUtil.JsonToObject(response.toString(), Result.class);
-                                        if(result.getCode()==200){
-                                            for(int i=0;i<((ArrayList)result.getData()).size();i++){
-                                                requisitionDetails.add((RequisitionDetail) EntityUtil.map2Object((Map<String, Object>) ((ArrayList)result.getData()).get(i),RequisitionDetail.class));
-                                            }
-                                            if(requisitionDetails.size()==0){
-                                                Toast.makeText(context,"No data in that day",Toast.LENGTH_LONG).show();
-                                                return;
-                                            }
-                                            if (requisitionDetails.get(0).getRequisition().getAckByClerk()!=null){
-                                                ack_by.setText(requisitionDetails.get(0).getRequisition().getAckByClerk().getName()
-                                                        +" "+TimeUtil.convertTimestampToyyyyMMddHHmm(requisitionDetails.get(0).getRequisition().getAckDate()));
-                                            }
-                                            if(requisitionDetails.get(0).getRequisition().getReceivedByRep()!=null){
-                                                receive_by.setText(requisitionDetails.get(0).getRequisition().getReceivedByRep().getName()
-                                                        +" "+TimeUtil.convertTimestampToyyyyMMddHHmm(requisitionDetails.get(0).getRequisition().getReceivedDate()));
-                                            }
-                                            isAck=requisitionDetails.get(0).getRequisition().getStatus().equals(CommonConstant.RequsitionStatus.COMPLETED)||
-                                                    requisitionDetails.get(0).getRequisition().getStatus().equals(CommonConstant.RequsitionStatus.RECEIVED);
-                                            if(!isAck){
-                                                ack_btn.setVisibility(View.VISIBLE);
-                                            }
-
-                                            final int size = requisitionDetails.size();
-                                            disbursementsAdapter = new MyAdapter<RequisitionDetail>((ArrayList) requisitionDetails,R.layout.item_disbursement) {
-                                                @Override
-                                                public void bindView(final ViewHolder holder, RequisitionDetail obj) {
-//                                                    if(tableRowRenderTime<size){
-                                                        holder.setText(R.id.item_desc, obj.getProduct().getDescription());
-                                                        holder.setText(R.id.qty_dis,obj.getQtyDisbursed()+"");
-                                                        holder.setText(R.id.qty_req,obj.getQtyNeeded()+"");
-                                                        if(!StringUtil.isEmpty(obj.getDisburseRemark())){
-                                                            holder.setVisibility(R.id.remarks_title, View.INVISIBLE);
-                                                        }else{
-                                                            holder.setText(R.id.remarks,obj.getDisburseRemark());
-                                                        }
-                                                        holder.setText(R.id.qty_rec,obj.getQtyReceived()+"");
-                                                        holder.setText(R.id.dept_remarks,obj.getRepRemark());
-                                                        final ViewHolder thisHolder=holder;
-                                                        if(!isAck){
-                                                            holder.setOnClickListener(R.id.qty_rec, new View.OnClickListener() {
-                                                                @Override
-                                                                public void onClick(View view) {
-                                                                    showQtyRecInputDialog(view,thisHolder.getItemPosition());
-                                                                }
-                                                            });
-                                                            final ViewHolder thizHolder=holder;
-                                                            holder.setOnClickListener(R.id.dept_remarks, new View.OnClickListener() {
-                                                                @Override
-                                                                public void onClick(View view) {
-                                                                    showDeptRemarksInputDialog(view,thizHolder.getItemPosition());
-                                                                }
-                                                            });
-                                                        }else{
-                                                            ((TextView)holder.getView(R.id.qty_rec)).setCompoundDrawables(null,null,null,null);
-                                                            ((TextView)holder.getView(R.id.dept_remarks)).setCompoundDrawables(null,null,null,null);
-                                                        }
-//                                                        tableRowRenderTime++;
-//                                                    }
-                                                }
-                                            };
-                                            disbursement_list.setAdapter(disbursementsAdapter);
-                                        }else{
-                                            Toast.makeText(context,result.getMsg(),Toast.LENGTH_LONG).show();
-                                        }
-                                    }
-                                }, new Response.ErrorListener() {
-                                    @Override
-                                    public void onErrorResponse(VolleyError error) {
-                                        Toast.makeText(context,"invalid token",Toast.LENGTH_LONG).show();
-                                        System.out.println("error");
-                                        error.printStackTrace();
-                                        System.out.println(error.getMessage());
-
-                                    }
-                                });
+//                tableRowRenderTime=0;
+               fetchData();
             }
         });
 
@@ -266,6 +185,91 @@ public class AckReceiveFragment extends Fragment {
         });
     }
 
+    private void fetchData() {
+        requisitionDetails = new ArrayList<>();
+        HttpUtil.getInstance()
+                .sendJSONRequest(Request.Method.GET, CommonConstant.HttpUrl.GET_DEPT_DISBURSEMENT_DETAIL(TimeUtil.convertyyyyMMddToTimestamp(selectDay)),
+                        new JSONObject(),new Response.Listener<JSONObject>(){
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Result result = (Result) JSONUtil.JsonToObject(response.toString(), Result.class);
+                                if(result.getCode()==200){
+                                    for(int i=0;i<((ArrayList)result.getData()).size();i++){
+                                        requisitionDetails.add((RequisitionDetail) EntityUtil.map2Object((Map<String, Object>) ((ArrayList)result.getData()).get(i),RequisitionDetail.class));
+                                    }
+                                    if(requisitionDetails.size()==0){
+                                        Toast.makeText(context,"No data in that day",Toast.LENGTH_LONG).show();
+                                        return;
+                                    }
+                                    if (requisitionDetails.get(0).getRequisition().getAckByClerk()!=null){
+                                        ack_by.setText(requisitionDetails.get(0).getRequisition().getAckByClerk().getName()
+                                                +" "+TimeUtil.convertTimestampToyyyyMMddHHmm(requisitionDetails.get(0).getRequisition().getAckDate()));
+                                    }
+                                    if(requisitionDetails.get(0).getRequisition().getReceivedByRep()!=null){
+                                        receive_by.setText(requisitionDetails.get(0).getRequisition().getReceivedByRep().getName()
+                                                +" "+TimeUtil.convertTimestampToyyyyMMddHHmm(requisitionDetails.get(0).getRequisition().getReceivedDate()));
+                                    }
+                                    isAck=requisitionDetails.get(0).getRequisition().getStatus().equals(CommonConstant.RequsitionStatus.COMPLETED)||
+                                            requisitionDetails.get(0).getRequisition().getStatus().equals(CommonConstant.RequsitionStatus.RECEIVED);
+                                    if(!isAck){
+                                        ack_btn.setVisibility(View.VISIBLE);
+                                    }
+
+                                    final int size = requisitionDetails.size();
+                                    disbursementsAdapter = new MyAdapter<RequisitionDetail>((ArrayList) requisitionDetails,R.layout.item_disbursement) {
+                                        @Override
+                                        public void bindView(final ViewHolder holder, RequisitionDetail obj) {
+//                                                    if(tableRowRenderTime<size){
+                                            holder.setText(R.id.item_desc, obj.getProduct().getDescription());
+                                            holder.setText(R.id.qty_dis,obj.getQtyDisbursed()+"");
+                                            holder.setText(R.id.qty_req,obj.getQtyNeeded()+"");
+                                            if(StringUtil.isEmpty(obj.getDisburseRemark())){
+                                                holder.setVisibility(R.id.remarks_title, View.INVISIBLE);
+                                            }else{
+                                                holder.setText(R.id.remarks,obj.getDisburseRemark());
+                                            }
+                                            holder.setText(R.id.qty_rec,obj.getQtyReceived()+"");
+                                            holder.setText(R.id.dept_remarks,obj.getRepRemark());
+                                            final ViewHolder thisHolder=holder;
+                                            if(!isAck){
+                                                holder.setOnClickListener(R.id.qty_rec, new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View view) {
+                                                        showQtyRecInputDialog(view,thisHolder.getItemPosition());
+                                                    }
+                                                });
+                                                final ViewHolder thizHolder=holder;
+                                                holder.setOnClickListener(R.id.dept_remarks, new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View view) {
+                                                        showDeptRemarksInputDialog(view,thizHolder.getItemPosition());
+                                                    }
+                                                });
+                                            }else{
+                                                ((TextView)holder.getView(R.id.qty_rec)).setCompoundDrawables(null,null,null,null);
+                                                ((TextView)holder.getView(R.id.dept_remarks)).setCompoundDrawables(null,null,null,null);
+                                            }
+//                                                        tableRowRenderTime++;
+//                                                    }
+                                        }
+                                    };
+                                    disbursement_list.setAdapter(disbursementsAdapter);
+                                }else{
+                                    Toast.makeText(context,result.getMsg(),Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(context,"invalid token",Toast.LENGTH_LONG).show();
+                                System.out.println("error");
+                                error.printStackTrace();
+                                System.out.println(error.getMessage());
+
+                            }
+                        });
+    }
+
     private void showQtyRecInputDialog(final View view, final int position){
         new XPopup.Builder(getContext()).asInputConfirm("Quantity Receive", "",
                 new OnInputConfirmListener() {
@@ -315,6 +319,7 @@ public class AckReceiveFragment extends Fragment {
                                 Result result = (Result) JSONUtil.JsonToObject(response.toString(), Result.class);
                                 if(result.getCode()==200){
                                     ack_btn.setVisibility(View.INVISIBLE);
+                                    fetchData();
                                 }else{
                                     Toast.makeText(context,result.getMsg(),Toast.LENGTH_LONG).show();
                                 }

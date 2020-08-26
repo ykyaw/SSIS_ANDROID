@@ -5,7 +5,9 @@ import iss.team1.ad.ssis_android.modal.AdjustmentVoucher;
 public class CommonConstant {
 
     public static class HttpUrl{
-        private static final String root="http://192.168.1.89:51769/";
+
+        private static final String root="http://192.168.8.75:51769/";
+
         public static final String LOGIN=root+"Login/Verify";
         public static final String TEST=root+"Login/Index";
         public static String GENERATE_RETRIEVAL_FORM(long date){
@@ -38,6 +40,7 @@ public class CommonConstant {
         public static final String UPDATE_RETRIEVAL = root+"storeclerk/ret";
         public static final String Get_AV_DETAIL_BY_AVID(String avid){return root+"storesup/voucher/"+avid;}
         public static final String APPRO_REJ_ADJUSTMENT_VOUCHER(AdjustmentVoucher adjustmentvoucher){return root+"storesup/voucher/"+1;}
+        public static final String ACK_DISBURSEMENT_COMPLETION=root+"storeclerk/ackreq";
     }
 
     public static class ROLE

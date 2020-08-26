@@ -7,63 +7,135 @@
     android:orientation="vertical"
     tools:context=".activity.PurchaseRequestDeatilActivity">
 
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Purchase Request"
+        android:textSize="26dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:textAlignment="center"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Purchase Request No: "/>
+            android:text="Purchase Request No: "
+            android:textSize="16dp"
+            android:textColor="@color/black"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/purchase_request_detail_id"/>
+            android:id="@+id/purchase_request_detail_id"
+            android:textSize="16dp"
+            android:textColor="@color/black"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Status: "/>
+            android:text="Status: "
+            android:textSize="16dp"
+            android:textColor="@color/black"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/purchase_request_detail_status"/>
+            android:id="@+id/purchase_request_detail_status"
+            android:textSize="16dp"
+            android:textColor="@color/black"/>
     </LinearLayout>
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"
-        android:id="@+id/purchase_request_detail_list"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reason: "
+            android:textSize="16dp"
+            android:textColor="@color/black"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/purchase_request_detail_reason_txt"
+            android:textSize="16dp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:layout_marginTop="5dp"
         android:orientation="vertical"
         android:visibility="invisible"
         android:id="@+id/purchase_request_detail_reason_panel">
 
+
         <EditText
+            android:id="@+id/purchase_request_detail_reason"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="reason"
-            android:id="@+id/purchase_request_detail_reason"/>
+            android:layout_height="80dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:hint="Reason"
+            android:paddingLeft="10dp"
+            android:textSize="16dp"
+            android:paddingBottom="50dp"/>
+
         <LinearLayout
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
             <Button
-                android:layout_width="wrap_content"
+                android:id="@+id/purchase_request_detail_reject_btn"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="reject"
-                android:id="@+id/purchase_request_detail_reject_btn"/>
+                android:layout_alignParentTop="false"
+                android:layout_weight="0.5"
+                android:text="Reject"
+                android:layout_marginRight="10dp"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:background="@drawable/rounded_rejectbutton" />
+
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="approve"
-                android:id="@+id/purchase_request_detail_approve_btn"/>
+                android:layout_weight="0.5"
+                android:text="Approve"
+                android:layout_marginLeft="10dp"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:id="@+id/purchase_request_detail_approve_btn"
+                android:background="@drawable/rounded_approvebutton"/>
         </LinearLayout>
     </LinearLayout>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:id="@+id/purchase_request_detail_list" />
 
 </LinearLayout>
