@@ -52,6 +52,7 @@ public class PurchaseRequestDeatilActivity extends AppCompatActivity {
     private EditText purchase_request_detail_reason;
     private Button purchase_request_detail_reject_btn;
     private Button purchase_request_detail_approve_btn;
+    private TextView purchase_request_detail_reason_txt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +74,7 @@ public class PurchaseRequestDeatilActivity extends AppCompatActivity {
         purchase_request_detail_reason_panel=findViewById(R.id.purchase_request_detail_reason_panel);
         purchase_request_detail_reject_btn=findViewById(R.id.purchase_request_detail_reject_btn);
         purchase_request_detail_approve_btn=findViewById(R.id.purchase_request_detail_approve_btn);
+        purchase_request_detail_reason_txt=findViewById(R.id.purchase_request_detail_reason_txt);
 
         fetchDetail();
 
@@ -125,6 +127,7 @@ public class PurchaseRequestDeatilActivity extends AppCompatActivity {
         try{
             purchase_request_detail_id.setText(purchaseRequestDetails.get(0).getPurchaseRequestId()+"");
             purchase_request_detail_status.setText(purchaseRequestDetails.get(0).getStatus());
+            purchase_request_detail_reason_txt.setText(purchaseRequestDetails.get(0).getRemarks());
             if(purchaseRequestDetails.get(0).getStatus().equals(CommonConstant.PurchaseRequestStatus.PENDING_APPROVAL)){
                 purchase_request_detail_reason_panel.setVisibility(View.VISIBLE);
             }
