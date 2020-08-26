@@ -31,6 +31,7 @@ import iss.team1.ad.ssis_android.comm.CommonConstant;
 import iss.team1.ad.ssis_android.comm.utils.EntityUtil;
 import iss.team1.ad.ssis_android.comm.utils.HttpUtil;
 import iss.team1.ad.ssis_android.comm.utils.JSONUtil;
+import iss.team1.ad.ssis_android.comm.utils.StringUtil;
 import iss.team1.ad.ssis_android.comm.utils.TimeUtil;
 import iss.team1.ad.ssis_android.components.Result;
 import iss.team1.ad.ssis_android.modal.Employee;
@@ -165,7 +166,7 @@ public class DeptheadRequisitionDetailActivity extends AppCompatActivity {
             depthead_requisition_detail_collection_point_panel.setVisibility(View.VISIBLE);
         }
 
-        if(requisition.getStatus().equals(CommonConstant.RequsitionStatus.REJECT)){
+        if(!StringUtil.isEmpty(requisition.getRemarks())){
             depthead_requisition_detail_reject_reason_display.setText(requisition.getRemarks());
             depthead_requisition_detail_reject_reason_display_panel.setVisibility(View.VISIBLE);
         }
