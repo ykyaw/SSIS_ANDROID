@@ -126,7 +126,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:id="@+id/store_sup_av_reject_reason"
-                android:hint="reject reason"/>
+                android:hint="reason"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
