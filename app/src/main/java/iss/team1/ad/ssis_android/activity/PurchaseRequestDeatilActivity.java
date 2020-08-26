@@ -16,8 +16,10 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -150,14 +152,21 @@ public class PurchaseRequestDeatilActivity extends AppCompatActivity {
             purchaseRequestDetail.setRemarks(remarks);
             purchaseRequestDetail.setStatus(status);
         }
+        JSONArray jsonArray=null;
+        try {
+            jsonArray = new JSONArray(new Gson().toJson(purchaseRequestDetails));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         HttpUtil.getInstance()
                 .sendJSONRequest(Request.Method.PUT, CommonConstant.HttpUrl.UPDATE_PURCHASE_REQUEST,
-                        new JSONArray(purchaseRequestDetails),new Response.Listener<JSONObject>(){
+                        jsonArray,new Response.Listener<JSONObject>(){
                             @Override
                             public void onResponse(JSONObject response) {
                                 Result result = (Result) JSONUtil.JsonToObject(response.toString(), Result.class);
                                 if(result.getCode()==200){
                                     fetchDetail();
+                                    purchase_request_detail_reason_panel.setVisibility(View.INVISIBLE);
                                 }else{
                                     Toast.makeText(context,result.getMsg(),Toast.LENGTH_LONG).show();
                                 }

@@ -14,13 +14,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Item Desc: " />
+            android:text="Item Desc: "
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:layout_marginLeft="15dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/item_desc"
-            android:text="this is a desc"/>
+            android:text="this is a desc"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            />
     </LinearLayout>
 
 
@@ -32,12 +38,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Qty Req: " />
+                android:text="Qty Req: "
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:layout_marginLeft="15dp" />
 
             <TextView
                 android:id="@+id/qty_req"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -48,24 +59,32 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Qty Dis: " />
+                android:text="Qty Dis: "
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:layout_marginLeft="15dp" />
 
             <TextView
                 android:id="@+id/qty_dis"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="35dp"
                 android:id="@+id/remarks_title"
-                android:text="Dis Remarks: " />
-
+                android:text="Remarks: "
+                android:textColor="@color/black"
+                android:textSize="16dp" />
             <TextView
                 android:id="@+id/dis_remarks"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
 
         </LinearLayout>
 
@@ -77,25 +96,35 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Qty Rec: " />
+                android:text="Qty Rec: "
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:layout_marginLeft="15dp" />
 
             <TextView
                 android:id="@+id/qty_rec"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableRight="@drawable/edit"/>
+                android:drawableRight="@drawable/edit"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="Dept Remarks: " />
+                android:text="Dept Remarks: "
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                />
 
             <TextView
                 android:id="@+id/dept_remarks"
                 android:layout_width="wrap_content"
                 android:drawableRight="@drawable/edit"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                />
 
         </LinearLayout>
 
@@ -108,12 +137,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Clerk Remarks: " />
+                android:text="Clerk Remarks: "
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:layout_marginLeft="15dp" />
 
             <TextView
                 android:id="@+id/clerk_remarks"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
 
         </LinearLayout>
 

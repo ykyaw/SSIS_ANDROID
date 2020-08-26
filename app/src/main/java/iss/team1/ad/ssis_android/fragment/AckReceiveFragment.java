@@ -160,7 +160,7 @@ public class AckReceiveFragment extends Fragment {
                                             disbursementsAdapter = new MyAdapter<RequisitionDetail>((ArrayList) requisitionDetails,R.layout.item_disbursement) {
                                                 @Override
                                                 public void bindView(final ViewHolder holder, RequisitionDetail obj) {
-                                                    if(tableRowRenderTime<size){
+//                                                    if(tableRowRenderTime<size){
                                                         holder.setText(R.id.item_desc, obj.getProduct().getDescription());
                                                         holder.setText(R.id.qty_dis,obj.getQtyDisbursed()+"");
                                                         holder.setText(R.id.qty_req,obj.getQtyNeeded()+"");
@@ -190,8 +190,8 @@ public class AckReceiveFragment extends Fragment {
                                                             ((TextView)holder.getView(R.id.qty_rec)).setCompoundDrawables(null,null,null,null);
                                                             ((TextView)holder.getView(R.id.dept_remarks)).setCompoundDrawables(null,null,null,null);
                                                         }
-                                                        tableRowRenderTime++;
-                                                    }
+//                                                        tableRowRenderTime++;
+//                                                    }
                                                 }
                                             };
                                             disbursement_list.setAdapter(disbursementsAdapter);
@@ -273,6 +273,9 @@ public class AckReceiveFragment extends Fragment {
                     public void onConfirm(String text) {
                         if(!StringUtil.isNumeric(text)){
                             Toast.makeText(context,"please input a numberic",Toast.LENGTH_LONG).show();
+                            return;
+                        }else if(Integer.valueOf(text)> requisitionDetails.get(position).getQtyDisbursed()){
+                            Toast.makeText(context,"receieve qty can not more than disbursement qty",Toast.LENGTH_LONG).show();
                             return;
                         }else{
                             ((TextView)view).setText(text);

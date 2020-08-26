@@ -221,7 +221,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:hint="Reject Reason"
+                android:hint="Reason"
                 android:textSize="16dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"

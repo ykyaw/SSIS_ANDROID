@@ -25,24 +25,41 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/calendar"
-                android:hint="date of disbursement"
+                android:hint="Date of Disbursement"
                 android:id="@+id/disbursement_date"
-                android:textSize="18sp"/>
+                android:textColorHint="@color/black"
+                android:textSize="16dp"
+                android:layout_marginLeft="15dp"
+                android:paddingBottom="5dp"/>
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
                 android:id="@+id/ack_filter_btn"
                 android:text="Filter"
-                android:textSize="18sp"/>
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="17dp"
+                android:background="@drawable/rounded_filterbutton"
+                android:layout_marginLeft="15dp" />
         </LinearLayout>
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/ack_btn"
             android:visibility="invisible"
-            android:text="Ack Receive"/>
+            android:text="Acknowledge Receive"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textAllCaps="false"
+            android:background="@drawable/rounded_filterbutton"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="5dp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -51,11 +68,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Received by:"/>
+                android:text="Received by: "
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:layout_marginLeft="15dp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/receied_by"/>
+                android:id="@+id/receied_by"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
         </LinearLayout>
 
 
@@ -66,11 +88,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Acknowledged by: "/>
+                android:text="Acknowledged by: "
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/ack_by"/>
+                android:id="@+id/ack_by"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:layout_marginTop="5dp"/>
         </LinearLayout>
         <ListView
             android:id="@+id/disbursement_list"
