@@ -7,74 +7,118 @@
         android:orientation="vertical"
         tools:context=".activity.StoreSupAVDetailActivity">
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Adjustment Voucher"
+        android:textSize="26dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:textAlignment="center"/>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Voucher#: "/>
+                android:text="Voucher#: "
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/av_id"/>
+                android:id="@+id/av_id"
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Clerk Name: "/>
+                android:text="Clerk Name: "
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/initiated_by"/>
+                android:id="@+id/initiated_by"
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Status: "/>
+                android:text="Status: "
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/adjustmentvoucher_status"/>
+                android:id="@+id/adjustmentvoucher_status"
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:id="@+id/av_read_only"
             android:visibility="gone"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Approved By Supervisor: "/>
+                android:text="Approved By Supervisor: "
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/av_approve_by_sup"/>
+                android:id="@+id/av_approve_by_sup"
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:id="@+id/depthead_requisition_detail_disbursement_date_panel"
             android:visibility="gone"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Approved By Manager: "/>
+                android:text="Approved By Manager: "
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/av_approve_by_man"/>
+                android:id="@+id/av_approve_by_man"
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
         </LinearLayout>
 
 
@@ -82,15 +126,22 @@
             android:layout_width="match_parent"
             android:id="@+id/depthead_requisition_detail_reject_reason_display_panel"
             android:visibility="gone"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Reject Reason: "/>
+                android:text="Reject Reason: "
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/av_reject_reason"/>
+                android:id="@+id/av_reject_reason"
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
         </LinearLayout>
 
 <!--        <LinearLayout-->
@@ -121,27 +172,68 @@
             android:orientation="vertical"
             android:id="@+id/store_sup_av_detail_list_btn_panel"
             android:layout_weight="3">
+
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:textSize="16dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="10dp"
+                android:paddingBottom="70dp"
                 android:id="@+id/store_sup_av_reject_reason"
                 android:hint="reason"/>
+                android:background="@drawable/rounded_edittext"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2">
-                <Button
-                    android:layout_width="wrap_content"
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:layout_weight="2">-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="horizontal">
+<!--                <Button-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:id="@+id/store_sup_av_reject_btn"-->
+<!--                    android:text="reject"/>-->
+                <Button
                     android:id="@+id/store_sup_av_reject_btn"
-                    android:text="reject"/>
-                <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentTop="false"
+                    android:layout_weight="0.5"
+                    android:text="Reject"
+                    android:layout_marginRight="10dp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:background="@drawable/rounded_rejectbutton"/>
+<!--                <Button-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:id="@+id/store_sup_av_approve_btn"-->
+<!--                    android:text="approve"/>-->
+                <Button
                     android:id="@+id/store_sup_av_approve_btn"
-                    android:text="approve"/>
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:text="Approve"
+                    android:layout_marginLeft="10dp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:background="@drawable/rounded_approvebutton"/>
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

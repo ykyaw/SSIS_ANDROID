@@ -17,8 +17,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Description: "
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/av_item_description"
-            android:text="Description:" />
+            android:textSize="16dp"
+            android:textColor="@color/black" />
 
     </LinearLayout>
 
@@ -30,12 +39,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Quantity Adjusted:  " />
+            android:text="Quantity Adjusted: "
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="15dp"/>
 
         <TextView
             android:id="@+id/qty_adjusted"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textColor="@color/black" />
     </LinearLayout>
 
     <LinearLayout
@@ -46,12 +60,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Reason:" />
+            android:text="Reason: "
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="15dp"/>
 
         <TextView
             android:id="@+id/item_adjusted_reason"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textColor="@color/black" />
     </LinearLayout>
 
     <LinearLayout
@@ -62,12 +81,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Unit Price: " />
+            android:text="Unit Price: "
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="15dp"/>
 
         <TextView
             android:id="@+id/item_unit_price"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textColor="@color/black" />
     </LinearLayout>
 
     <LinearLayout
@@ -79,13 +103,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Toal Price: " />
+            android:text="Total Price: "
+            android:textSize="16dp"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/item_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-             />
+            android:textSize="16dp"
+            android:textColor="@color/black" />
 
     </LinearLayout>
 
