@@ -8,20 +8,29 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:id="@+id/item_retrieval_id"/>
+        android:id="@+id/item_retrieval_id"
+        android:textSize="16dp"
+        android:gravity="center"
+        android:textColor="@color/black"/>
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:id="@+id/item_retrieval_disbursement_date"/>
+        android:id="@+id/item_retrieval_disbursement_date"
+        android:textSize="16dp"
+        android:textColor="@color/black"/>
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:id="@+id/item_retrieval_retrieved_by"/>
+        android:id="@+id/item_retrieval_retrieved_by"
+        android:textSize="16dp"
+        android:textColor="@color/black"/>
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:id="@+id/item_retrieval_status"/>
+        android:id="@+id/item_retrieval_status"
+        android:textSize="16dp"
+        android:textColor="@color/black"/>
 </LinearLayout>

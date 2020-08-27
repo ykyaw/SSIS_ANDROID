@@ -16,14 +16,22 @@
             android:text="Requisition ID: "
             android:textColor="@color/black"
             android:textSize="16dp"
-            android:layout_marginLeft="15dp" />
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"/>
 
         <TextView
             android:id="@+id/item_disbursement_requisition_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:layout_marginTop="5dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -31,14 +39,16 @@
             android:text="Collection Date: "
             android:textColor="@color/black"
             android:textSize="16dp"
-            android:layout_marginLeft="15dp" />
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"/>
 
         <TextView
             android:id="@+id/item_disbursement_collection_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:layout_marginTop="5dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -51,17 +61,16 @@
             android:text="Requested By: "
             android:textColor="@color/black"
             android:textSize="16dp"
-            android:layout_marginLeft="15dp" />
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"/>
 
         <TextView
             android:id="@+id/item_disbursement_requested_by"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="16dp" />
-
-
-
+            android:textSize="16dp"
+            android:layout_marginTop="5dp"/>
 
     </LinearLayout>
 
@@ -79,14 +88,22 @@
             android:text="Department: "
             android:textColor="@color/black"
             android:textSize="16dp"
-            android:layout_marginLeft="15dp" />
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"/>
 
         <TextView
             android:id="@+id/item_disbursement_department"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:layout_marginTop="5dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -94,14 +111,16 @@
             android:text="Status: "
             android:textColor="@color/black"
             android:textSize="16dp"
-            android:layout_marginLeft="15dp" />
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"/>
 
         <TextView
             android:id="@+id/item_disbursement_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:layout_marginTop="5dp"/>
     </LinearLayout>
 
 </LinearLayout>
