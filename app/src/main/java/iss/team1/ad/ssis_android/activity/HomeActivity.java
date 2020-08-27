@@ -36,6 +36,7 @@ import iss.team1.ad.ssis_android.fragment.PurchaseRquestFragment;
 import iss.team1.ad.ssis_android.fragment.RetrievalFragment;
 import iss.team1.ad.ssis_android.fragment.RetrieveAllVouchersFragment;
 import iss.team1.ad.ssis_android.fragment.TabFragment;
+import iss.team1.ad.ssis_android.fragment.WelcomeFragment;
 import iss.team1.ad.ssis_android.modal.Employee;
 
 public class HomeActivity extends AppCompatActivity {
@@ -90,23 +91,28 @@ public class HomeActivity extends AppCompatActivity {
         final CardView cardView = (CardView) findViewById(R.id.card_view);
         switch (currentUser.getRole()){
             case CommonConstant.ROLE.DEPARTMENT_EMPLOYEE:
+                tabFragments.add(new WelcomeFragment());
                 tabFragments.add(new AckReceiveFragment());
                 tabFragments.add(new TabFragment());
                 tabFragments.add(new TabFragment());
                 tabFragments.add(new TabFragment());
                 break;
             case CommonConstant.ROLE.DEPARTMENT_HEAD:
+                tabFragments.add(new WelcomeFragment());
                 tabFragments.add(new DeptHeadRequisitionFragment());
                 tabFragments.add(new DelegateFragment());
                 break;
             case CommonConstant.ROLE.STORE_CLERK:
+                tabFragments.add(new WelcomeFragment());
                 tabFragments.add(new RetrievalFragment());
                 tabFragments.add(new DisbursementFragment());
                 break;
             case CommonConstant.ROLE.STORE_MANAGER:
+                tabFragments.add(new WelcomeFragment());
                 tabFragments.add(new RetrieveAllVouchersFragment());
                 break;
             case CommonConstant.ROLE.STORE_SUPERVISOR:
+                tabFragments.add(new WelcomeFragment());
                 tabFragments.add(new RetrieveAllVouchersFragment());
                 tabFragments.add(new PurchaseRquestFragment());
                 break;
