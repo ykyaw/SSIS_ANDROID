@@ -222,6 +222,7 @@ public class StoreSupAVDetailActivity extends AppCompatActivity {
                 holder.setText(R.id.qty_adjusted, obj.getQtyAdjusted() + "");
                 holder.setText(R.id.item_unit_price, "$" + obj.getUnitprice() + "");
                 holder.setText(R.id.item_price, "$" + obj.getTotalPrice() + "");
+                holder.setText(R.id.item_adjusted_reason,obj.getReason());
 //                if (obj.getTotalPrice() >= 250) {
 //                    av_alert.setVisibility(View.VISIBLE);
 //                    if (adjustmentvoucher.getStatus().equals(CommonConstant.AdjsutmentVoucherStatus.PENDING_APPROVAL)) {
