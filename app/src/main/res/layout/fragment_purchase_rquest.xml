@@ -9,12 +9,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_weight=".5"
+            android:text="Purchase Requests"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="26dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical"
-        android:layout_weight="9">
+        android:layout_weight="9"
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,39 +38,39 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/black"
                 android:gravity="center"
-                android:text="Purchase Request#"
-                android:textSize="18dp"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
-                android:background="@color/black"
-                android:textColor="@color/white"/>
+                android:text="Purchase Request#"
+                android:textColor="@color/white"
+                android:textSize="18dp" />
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/black"
                 android:gravity="center"
-                android:text="Status"
-                android:textSize="18dp"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
-                android:background="@color/black"
-                android:textColor="@color/white"/>
+                android:text="Status"
+                android:textColor="@color/white"
+                android:textSize="18dp" />
         </LinearLayout>
 
 
-
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/purchase_request_swl"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/purchase_request_swl">
+            android:layout_height="wrap_content">
+
             <ListView
+                android:id="@+id/purchase_request_list"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/purchase_request_list"/>
+                android:layout_height="wrap_content" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </LinearLayout>

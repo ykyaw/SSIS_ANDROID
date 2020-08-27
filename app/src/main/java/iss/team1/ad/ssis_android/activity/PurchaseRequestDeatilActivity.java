@@ -23,6 +23,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -54,6 +55,7 @@ public class PurchaseRequestDeatilActivity extends AppCompatActivity {
     private Button purchase_request_detail_reject_btn;
     private Button purchase_request_detail_approve_btn;
     private TextView purchase_request_detail_reason_txt;
+    DecimalFormat formatter = new DecimalFormat("$0.00");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,7 +145,7 @@ public class PurchaseRequestDeatilActivity extends AppCompatActivity {
                     holder.setText(R.id.item_purchase_request_detail_qty_order,obj.getReorderQty()+"");
                     holder.setText(R.id.item_purchase_request_detail_vender,obj.getSupplier().getName());
                     holder.setText(R.id.item_purchase_request_detail_vender_quote,obj.getVenderQuote());
-                    holder.setText(R.id.item_purchase_request_detail_total_price,"$"+obj.getTotalPrice());
+                    holder.setText(R.id.item_purchase_request_detail_total_price,formatter.format(obj.getTotalPrice()));
                 }
             };
             purchase_request_detail_list.setAdapter(adapter);

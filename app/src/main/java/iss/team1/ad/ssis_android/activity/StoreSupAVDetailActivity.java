@@ -24,6 +24,7 @@ import com.lxj.xpopup.impl.LoadingPopupView;
 
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -67,6 +68,7 @@ public class StoreSupAVDetailActivity extends AppCompatActivity {
     private String avid;
     private Context context;
     private AdjustmentVoucher adjustmentvoucher=null;
+    DecimalFormat formatter = new DecimalFormat("$0.00");
 
 
     @Override
@@ -220,8 +222,9 @@ public class StoreSupAVDetailActivity extends AppCompatActivity {
             public void bindView(ViewHolder holder, AdjustmentVoucherDetail obj) {
                 holder.setText(R.id.av_item_description, obj.getProduct().getDescription());
                 holder.setText(R.id.qty_adjusted, obj.getQtyAdjusted() + "");
-                holder.setText(R.id.item_unit_price, "$" + obj.getUnitprice() + "");
-                holder.setText(R.id.item_price, "$" + obj.getTotalPrice() + "");
+                holder.setText(R.id.item_unit_price, formatter.format(obj.getUnitprice()));
+
+                holder.setText(R.id.item_price, formatter.format(obj.getTotalPrice()));
                 holder.setText(R.id.item_adjusted_reason,obj.getReason());
 //                if (obj.getTotalPrice() >= 250) {
 //                    av_alert.setVisibility(View.VISIBLE);
