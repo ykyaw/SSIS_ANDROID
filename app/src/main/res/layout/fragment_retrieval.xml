@@ -53,10 +53,15 @@
                 android:text="Status"/>
         </LinearLayout>
 
-        <ListView
-            android:id="@+id/fragment_retrieval_list"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:id="@+id/fragment_retrieval_swl">
+            <ListView
+                android:id="@+id/fragment_retrieval_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </LinearLayout>
 

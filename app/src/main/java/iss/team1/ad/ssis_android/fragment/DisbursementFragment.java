@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -56,6 +57,7 @@ public class DisbursementFragment extends Fragment {
     private TextView disbursement_dept;
     private Button disbursement_search;
     private ListView fragment_disbursement_list;
+    private SwipeRefreshLayout fragment_disbursement_swl;
 
 
     private MyAdapter<Department> spinnerItemMyAdapter;
@@ -108,11 +110,13 @@ public class DisbursementFragment extends Fragment {
 
     private void fetchDisbursemnets(){
         requisitions=new ArrayList<>();
+        fragment_disbursement_swl.setRefreshing(true);
         HttpUtil.getInstance()
                 .sendJSONRequest(Request.Method.GET, CommonConstant.HttpUrl.GET_ALL_DISBURSEMENTS,
                         new JSONObject(), new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
+                                fragment_disbursement_swl.setRefreshing(false);
                                 Result result = (Result) JSONUtil.JsonToObject(response.toString(), Result.class);
                                 if (result.getCode() == 200) {
                                     for (int i = 0; i < ((ArrayList) result.getData()).size(); i++) {
@@ -190,6 +194,14 @@ public class DisbursementFragment extends Fragment {
         disbursement_date = (TextView) view.findViewById(R.id.disbursement_date);
         disbursement_search = (Button) view.findViewById(R.id.disbursement_search);
         fragment_disbursement_list = (ListView) view.findViewById(R.id.fragment_disbursement_list);
+        fragment_disbursement_swl=view.findViewById(R.id.fragment_disbursement_swl);
+
+        fragment_disbursement_swl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fetchDisbursemnets();
+            }
+        });
 
         getAllDept();
 

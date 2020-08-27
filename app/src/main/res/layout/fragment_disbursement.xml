@@ -53,10 +53,17 @@
             android:textSize="17dp"
             android:background="@drawable/rounded_filterbutton"/>
 
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fragment_disbursement_swl">
+
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/fragment_disbursement_list"/>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </LinearLayout>
 
 </LinearLayout>

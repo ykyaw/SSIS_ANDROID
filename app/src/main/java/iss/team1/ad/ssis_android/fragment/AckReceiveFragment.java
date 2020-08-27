@@ -203,11 +203,11 @@ public class AckReceiveFragment extends Fragment {
                                     }
                                     if (requisitionDetails.get(0).getRequisition().getAckByClerk()!=null){
                                         ack_by.setText(requisitionDetails.get(0).getRequisition().getAckByClerk().getName()
-                                                +" "+TimeUtil.convertTimestampToyyyyMMddHHmm(requisitionDetails.get(0).getRequisition().getAckDate()));
+                                                +" "+TimeUtil.convertTimestampToyyyyMMdd(requisitionDetails.get(0).getRequisition().getAckDate()));
                                     }
                                     if(requisitionDetails.get(0).getRequisition().getReceivedByRep()!=null){
                                         receive_by.setText(requisitionDetails.get(0).getRequisition().getReceivedByRep().getName()
-                                                +" "+TimeUtil.convertTimestampToyyyyMMddHHmm(requisitionDetails.get(0).getRequisition().getReceivedDate()));
+                                                +" "+TimeUtil.convertTimestampToyyyyMMdd(requisitionDetails.get(0).getRequisition().getReceivedDate()));
                                     }
                                     isAck=requisitionDetails.get(0).getRequisition().getStatus().equals(CommonConstant.RequsitionStatus.COMPLETED)||
                                             requisitionDetails.get(0).getRequisition().getStatus().equals(CommonConstant.RequsitionStatus.RECEIVED);
