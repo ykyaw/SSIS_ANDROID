@@ -13,6 +13,7 @@
         android:layout_height="24dp"
         android:layout_marginTop="20dp"
         android:text="Adjustment Voucher"
+        android:textStyle="bold"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="26dp" />
