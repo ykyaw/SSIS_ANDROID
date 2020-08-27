@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Adjustment Voucher"
+        android:layout_weight=".5"
         android:textStyle="bold"
         android:textAlignment="center"
         android:textColor="@color/black"
@@ -21,6 +22,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight=".1"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp">
@@ -42,6 +44,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight=".1"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp">
@@ -62,6 +65,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight=".1"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp">
@@ -152,7 +156,7 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="5"
+            android:layout_weight="6"
             android:id="@+id/store_sup_av_detail_list"/>
 
         <LinearLayout
@@ -162,24 +166,25 @@
             android:id="@+id/store_sup_av_detail_list_btn_panel"
             android:layout_weight="4">
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:textSize="16dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
-                android:paddingLeft="10dp"
-                android:paddingBottom="50dp"
-                android:id="@+id/store_sup_av_reject_reason"
-                android:hint="Reason"
-                android:background="@drawable/rounded_edittext"/>
-<!--            <LinearLayout-->
+            <!--            <LinearLayout-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="0dp"-->
 <!--                android:layout_weight="2">-->
 
-                <LinearLayout
+            <EditText
+                android:id="@+id/store_sup_av_reject_reason"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/rounded_edittext"
+                android:hint="Reason"
+                android:paddingLeft="10dp"
+                android:paddingBottom="50dp"
+                android:textSize="16dp" />
+
+            <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -206,14 +211,15 @@
                     android:id="@+id/store_sup_av_approve_btn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
-                    android:text="Approve"
                     android:layout_marginLeft="10dp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/rounded_approvebutton"
+                    android:text="Approve"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textStyle="bold"
                     android:textSize="20dp"
-                    android:background="@drawable/rounded_approvebutton"/>
+                    android:textStyle="bold" />
+
                 <Button
                     android:layout_width="0dp"
                     android:layout_weight="0.5"
