@@ -22,7 +22,7 @@
         <item>Quit</item>
     </string-array>
     <string-array name="menu_dept_repo">
-        <item>Acknowledge Item</item>
+        <item>Acknowledge Items</item>
         <item>Quit</item>
     </string-array>
 </resources>

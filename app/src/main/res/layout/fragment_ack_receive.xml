@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/ack_btn"
             android:visibility="invisible"
-            android:text="Acknowledge Receive"
+            android:text="Acknowledge Receipt"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="20dp"
