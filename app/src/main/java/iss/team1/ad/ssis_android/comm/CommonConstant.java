@@ -41,6 +41,11 @@ public class CommonConstant {
         public static final String Get_AV_DETAIL_BY_AVID(String avid){return root+"storesup/voucher/"+avid;}
         public static final String APPRO_REJ_ADJUSTMENT_VOUCHER(AdjustmentVoucher adjustmentvoucher){return root+"storesup/voucher/"+1;}
         public static final String ACK_DISBURSEMENT_COMPLETION=root+"storeclerk/ackreq";
+        public static final String FETCH_RETRIEVAL_FORMS = root+"storeclerk/allrf";
+
+        public static String GET_RETRIEVAL_FORM_BY_ID(String id) {
+            return root+"storeclerk/retid/"+id;
+        }
     }
 
     public static class ROLE

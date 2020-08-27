@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.RetrievalFormActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="9">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/retrieval_info_row"
+            android:visibility="invisible"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Retrieval Id: "
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/retrieval_id"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Status: "
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="15dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/retrieval_status"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Retrieved By: "
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="15dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/retrieval_retrieved_by"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date of Retrieval: "
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="15dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/retrieval_date_of_retrieval"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/retrieval_list"
+            android:layout_width="wrap_content"
+            android:layout_weight="5"
+            android:layout_height="0dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/retrieval_btn_panel"
+            android:visibility="invisible"
+            android:orientation="vertical"
+            android:layout_weight="2"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/retrieval_comments"
+                android:hint="Comments"
+                android:padding="10dp"
+                android:paddingBottom="20dp"
+                android:background="@drawable/rounded_edittext"
+                android:visibility="gone"/>
+            <CheckBox
+                android:id="@+id/retrieval_is_need_voucher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Adjustment Voucher needed?"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp">
+                <Button
+                    android:id="@+id/retrieval_update_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="false"
+                    android:layout_weight="0.5"
+                    android:text="Update"
+                    android:layout_marginRight="10dp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:background="@drawable/rounded_updatebutton" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:text="Finalise"
+                    android:layout_marginLeft="10dp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:id="@+id/retrieval_finalise_btn"
+                    android:background="@drawable/rounded_approvebutton"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
