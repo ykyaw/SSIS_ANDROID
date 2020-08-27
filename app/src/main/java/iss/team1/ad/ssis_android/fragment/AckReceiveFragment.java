@@ -226,7 +226,7 @@ public class AckReceiveFragment extends Fragment {
                                             if(StringUtil.isEmpty(obj.getDisburseRemark())){
                                                 holder.setVisibility(R.id.remarks_title, View.INVISIBLE);
                                             }else{
-                                                holder.setText(R.id.remarks,obj.getDisburseRemark());
+                                                holder.setText(R.id.dis_remarks,obj.getDisburseRemark());
                                             }
                                             holder.setText(R.id.qty_rec,obj.getQtyReceived()+"");
                                             holder.setText(R.id.dept_remarks,obj.getRepRemark());
