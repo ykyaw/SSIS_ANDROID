@@ -192,12 +192,15 @@ public class DisbursementDetailActivity extends AppCompatActivity {
                                             ack_date.setText("");
                                         }
 
-                                        if(requisitionDetails.get(0).getRequisition().getStatus().equals(CommonConstant.RequsitionStatus.COMPLETED)){
+                                        if(!requisitionDetails.get(0).getRequisition().getStatus().equals(CommonConstant.RequsitionStatus.RECEIVED)){
                                             clerk_update_remark_button.setVisibility(View.GONE);
-                                            confirm_complete.setVisibility(View.VISIBLE);
                                         }else{
                                             clerk_update_remark_button.setVisibility(View.VISIBLE);
                                             confirm_complete.setVisibility(View.GONE);
+                                        }
+
+                                        if(requisitionDetails.get(0).getRequisition().getStatus().equals(CommonConstant.RequsitionStatus.COMPLETED)){
+                                            confirm_complete.setVisibility(View.VISIBLE);
                                         }
                                     }
                                     final int renderSize = requisitionDetails.size();

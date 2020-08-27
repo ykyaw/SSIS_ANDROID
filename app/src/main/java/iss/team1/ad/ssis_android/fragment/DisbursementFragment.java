@@ -276,6 +276,10 @@ public class DisbursementFragment extends Fragment {
             @Override
             public void onClick(View view) {
 //                fetchRequisitionDetailsByDate();
+                if(StringUtil.isEmpty(selectDay)||StringUtil.isEmpty(dept_select)){
+                    Toast.makeText(context,"please select disbursement date or department",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 startDisbursementDetailActivity(TimeUtil.convertyyyyMMddToTimestamp(selectDay),dept_select);
             }
         });
