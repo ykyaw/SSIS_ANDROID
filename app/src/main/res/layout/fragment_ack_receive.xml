@@ -9,14 +9,23 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
-
-
+        android:layout_weight="1">
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Disbursement List"
+        android:textStyle="bold"
+        android:textSize="26dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:textAlignment="center"/>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:layout_weight="9">
+        android:layout_weight="7">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,16 +43,16 @@
                 android:paddingBottom="5dp"/>
 
             <Button
+                android:id="@+id/ack_filter_btn"
                 android:layout_width="60dp"
                 android:layout_height="30dp"
-                android:id="@+id/ack_filter_btn"
-                android:text="Filter"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/rounded_filterbutton"
+                android:text="Search"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textStyle="bold"
                 android:textSize="17dp"
-                android:background="@drawable/rounded_filterbutton"
-                android:layout_marginLeft="15dp" />
+                android:textStyle="bold" />
         </LinearLayout>
 
         <ListView
@@ -57,7 +66,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/ack_btn"
             android:visibility="invisible"
-            android:text="Acknowledge Receipt"
+            android:text="Acknowledge Item Received"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="20dp"
