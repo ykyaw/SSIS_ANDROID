@@ -100,7 +100,9 @@ public class HomeActivity extends AppCompatActivity {
             case CommonConstant.ROLE.DEPARTMENT_HEAD:
                 tabFragments.add(new WelcomeFragment());
                 tabFragments.add(new DeptHeadRequisitionFragment());
-                tabFragments.add(new DelegateFragment());
+                if(currentUser.getDelegateToDate()==null){
+                    tabFragments.add(new DelegateFragment());
+                }
                 break;
             case CommonConstant.ROLE.STORE_CLERK:
                 tabFragments.add(new WelcomeFragment());

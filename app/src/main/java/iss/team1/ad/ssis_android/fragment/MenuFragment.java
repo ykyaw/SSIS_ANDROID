@@ -4,8 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
@@ -19,6 +21,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import iss.team1.ad.ssis_android.R;
@@ -92,6 +95,7 @@ public class MenuFragment extends Fragment {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void initListView() {
         menuItemList.clear();
         String[] menu_store_clerk=getResources().getStringArray(R.array.menu_store_clerk);
@@ -114,6 +118,12 @@ public class MenuFragment extends Fragment {
                     break;
                 case CommonConstant.ROLE.DEPARTMENT_HEAD:
                     current_menu=menu_dept_head;
+                    if(ApplicationUtil.getCurrentUser().getDelegateToDate()!=null){
+                        current_menu= Arrays.stream(menu_dept_head)
+                                .filter(item->!item.equals("Delegate"))
+                                .toArray(String[]::new);
+                        System.out.println("asdf");
+                    }
                     break;
                 default:
                     current_menu=menu_store_clerk;
@@ -131,6 +141,7 @@ public class MenuFragment extends Fragment {
 
     public void clickEvents() {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @SuppressLint("WrongConstant")
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -153,6 +164,11 @@ public class MenuFragment extends Fragment {
                             break;
                         case CommonConstant.ROLE.DEPARTMENT_HEAD:
                             current_menu=menu_dept_head;
+                            if(ApplicationUtil.getCurrentUser().getDelegateToDate()!=null){
+                                current_menu= Arrays.stream(menu_dept_head)
+                                        .filter(item->!item.equals("Delegate"))
+                                        .toArray(String[]::new);
+                            }
                             break;
                         default:
                             current_menu=menu_store_clerk;
