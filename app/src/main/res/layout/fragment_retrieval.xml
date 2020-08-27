@@ -40,7 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Retrieval Id: "
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="15dp"
                     android:layout_marginTop="5dp"
                     android:textColor="@color/black"
                     android:textSize="16dp"/>
@@ -63,7 +63,7 @@
                     android:layout_marginTop="5dp"
                     android:textColor="@color/black"
                     android:textSize="16dp"
-                    android:layout_marginLeft="10dp"/>
+                    android:layout_marginLeft="15dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
                     android:layout_marginTop="5dp"
                     android:textColor="@color/black"
                     android:textSize="16dp"
-                    android:layout_marginLeft="10dp"/>
+                    android:layout_marginLeft="15dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -103,7 +103,7 @@
                     android:layout_marginTop="5dp"
                     android:textColor="@color/black"
                     android:textSize="16dp"
-                    android:layout_marginLeft="10dp"/>
+                    android:layout_marginLeft="15dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -148,16 +148,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp">
-<!--                <Button-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:id="@+id/retrieval_update_btn"-->
-<!--                    android:text="update"/>-->
-<!--                <Button-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:id="@+id/retrieval_finalise_btn"-->
-<!--                    android:text="finalise"/>-->
                 <Button
                     android:id="@+id/retrieval_update_btn"
                     android:layout_width="0dp"
