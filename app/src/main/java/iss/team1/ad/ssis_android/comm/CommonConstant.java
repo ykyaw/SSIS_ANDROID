@@ -45,7 +45,8 @@ public class CommonConstant {
 
         public static String GET_RETRIEVAL_FORM_BY_ID(String id) {
             return root+"storeclerk/retid/"+id;
-        }
+        };
+        public static final String GET_ALL_DISBURSEMENTS = root+"storeclerk/alldis";
     }
 
     public static class ROLE

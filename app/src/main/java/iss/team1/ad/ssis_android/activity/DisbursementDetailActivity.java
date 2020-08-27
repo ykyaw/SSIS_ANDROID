@@ -2,6 +2,7 @@ package iss.team1.ad.ssis_android.activity;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
@@ -47,10 +48,8 @@ import iss.team1.ad.ssis_android.modal.RequisitionDetail;
 
 public class DisbursementDetailActivity extends AppCompatActivity {
 
-    private TextView disbursement_date;
-    private TextView disbursement_dept;
-    private Button disbursement_search;
     private ListView disbursement_list;
+    private TextView disbursement_detail_date;
 
 
     //XJ
@@ -72,7 +71,7 @@ public class DisbursementDetailActivity extends AppCompatActivity {
     int mYear;
     int mMonth;
     int mDay;
-    String selectDay = null;
+    long selectDay;
 
     private int tableRowRenderTime = 0;
     private List<Department> departments = new ArrayList<>();
@@ -83,110 +82,57 @@ public class DisbursementDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_disbursement_detail);
 
         //get intent
+        Intent intent = getIntent();
+        selectDay=intent.getLongExtra("date",0);
+        dept_select=intent.getStringExtra("deptId");
 
         context= this;
         init();
     }
 
-    private void init(View view) {
-        disbursement_dept = (TextView) view.findViewById(R.id.disbursement_dept);
-        disbursement_date = (TextView) view.findViewById(R.id.disbursement_date);
-        disbursement_search = (Button) view.findViewById(R.id.disbursement_search);
-        disbursement_list = (ListView) view.findViewById(R.id.disbursement_list);
-        received_by_rep=(TextView) view.findViewById(R.id.received_by_rep);
-        received_date=(TextView) view.findViewById(R.id.received_date);
-        ack_by_clerk=(TextView) view.findViewById(R.id.ack_by_clerk);
-        ack_date=(TextView) view.findViewById(R.id.ack_date);
-        clerk_update_remark_button=(Button)view.findViewById(R.id.clerk_update_remark_button) ;
-        requisition_info=(LinearLayout)view.findViewById(R.id.requisition_info);
-        requisition_info.setVisibility(View.INVISIBLE);
-        confirm_complete=(TextView)view.findViewById(R.id.confirm_complete);
-        getAllDept();
-
-
-        disbursement_dept.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onClick(View view) {
-                new XPopup.Builder(getContext())
-                        .hasShadowBg(false)
-                        .isDestroyOnDismiss(false)
-                        .atView(disbursement_dept)  // 依附于所点击的View，内部会自动判断在上方或者下方显示
-                        .asAttachList(departments.stream().map(item -> item.getName()).toArray(String[]::new),
-                                new int[]{},
-                                new OnSelectListener() {
-                                    @Override
-                                    public void onSelect(int position, String text) {
-                                        disbursement_dept.setText(text);
-                                        dept_select = departments.get(position).getId();
-//                                        Toast.makeText(context,"click " + departments.get(position).getName(),Toast.LENGTH_LONG).show();
+    private void getAllDept() {
+        HttpUtil.getInstance()
+                .sendJSONRequest(Request.Method.GET, CommonConstant.HttpUrl.GET_ALL_DEPARTMENT,
+                        new JSONObject(), new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Result result = (Result) JSONUtil.JsonToObject(response.toString(), Result.class);
+                                if (result.getCode() == 200) {
+                                    departments = new ArrayList<>();
+                                    for (int i = 0; i < ((ArrayList) result.getData()).size(); i++) {
+                                        departments.add((Department) EntityUtil.map2Object((Map<String, Object>) ((ArrayList) result.getData()).get(i), Department.class));
                                     }
-                                })
-                        .show();
-            }
-        });
-        disbursement_date.setOnClickListener(new View.OnClickListener() {
-
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onClick(View arg0) {
-                Calendar mCalendar = Calendar.getInstance(Locale.CHINA);
-                int year = mCalendar.get(Calendar.YEAR);
-                int month = mCalendar.get(Calendar.MARCH);
-                int day = mCalendar.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
-
-                    @Override
-                    public void onDateSet(DatePicker view, int year,
-                                          int monthOfYear, int dayOfMonth) {
-                        // TODO Auto-generated method stub
-                        mYear = year;
-                        mMonth = monthOfYear;
-                        mDay = dayOfMonth;
-                        if (mMonth + 1 < 10) {
-                            if (mDay < 10) {
-                                selectDay = new StringBuffer().append(mYear)
-                                        .append("-").append("0")
-                                        .append(mMonth + 1)
-                                        .append("-").append("0")
-                                        .append(mDay).toString();
-                            } else {
-                                selectDay = new StringBuffer().append(mYear)
-                                        .append("-").append("0")
-                                        .append(mMonth + 1).append("-")
-                                        .append(mDay).toString();
+                                } else {
+                                    Toast.makeText(context, result.getMsg(), Toast.LENGTH_LONG).show();
+                                }
                             }
-                        } else {
-                            if (mDay < 10) {
-                                selectDay = new StringBuffer().append(mYear)
-                                        .append("-").append(mMonth + 1)
-                                        .append("-").append("0")
-                                        .append(mDay).toString();
-                            } else {
-                                selectDay = new StringBuffer().append(mYear)
-                                        .append("-").append(mMonth + 1).append("-")
-                                        .append(mDay)
-                                        .toString();
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(context, "invalid token", Toast.LENGTH_LONG).show();
+                                System.out.println("error");
+                                error.printStackTrace();
+                                System.out.println(error.getMessage());
+
                             }
-                        }
-                        disbursement_date.setText(selectDay);
+                        });
+    }
 
-                    }
-                };
-                new DatePickerDialog(getActivity(), onDateSetListener, year,
-                        month, day).show();
-            }
-        });
+    private void init() {
+        disbursement_detail_date=findViewById(R.id.disbursement_detail_date);
+        disbursement_list = (ListView) findViewById(R.id.disbursement_list);
+        received_by_rep=(TextView) findViewById(R.id.received_by_rep);
+        received_date=(TextView) findViewById(R.id.received_date);
+        ack_by_clerk=(TextView) findViewById(R.id.ack_by_clerk);
+        ack_date=(TextView) findViewById(R.id.ack_date);
+        clerk_update_remark_button=(Button)findViewById(R.id.clerk_update_remark_button) ;
+        requisition_info=(LinearLayout)findViewById(R.id.requisition_info);
+        requisition_info.setVisibility(View.INVISIBLE);
+        confirm_complete=(TextView)findViewById(R.id.confirm_complete);
 
+        disbursement_detail_date.setText(TimeUtil.convertTimestampToyyyyMMdd(selectDay));
 
-        disbursement_search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                fetchRequisitionDetailsByDate();
-
-            }
-        });
-
+        fetchRequisitionDetailsByDate();
         clerk_update_remark_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -197,15 +143,13 @@ public class DisbursementDetailActivity extends AppCompatActivity {
 
         });
     }
+
     private void fetchRequisitionDetailsByDate() {
 
-        if (selectDay == null || selectDay.equals("")) {
-            Toast.makeText(context, "please select a date", Toast.LENGTH_LONG).show();
-            return;
-        }
+
         Requisition requisition = new Requisition();
         requisition.setDepartmentId(dept_select);
-        requisition.setCollectionDate(TimeUtil.convertyyyyMMddToTimestamp(selectDay));
+        requisition.setCollectionDate(selectDay);
         HttpUtil.getInstance()
                 .sendJSONRequest(Request.Method.POST, CommonConstant.HttpUrl.GET_DISBURSEMENT,
                         new JSONObject(EntityUtil.object2Map(requisition)), new Response.Listener<JSONObject>() {
@@ -339,24 +283,24 @@ public class DisbursementDetailActivity extends AppCompatActivity {
     }
 
 
+    //xj
+    private void showClerkRemarksInputDialog(final View view, final int position) {
+        new XPopup.Builder(context).asInputConfirm("Remarks From Clerk", "please input your remarks",
+                new OnInputConfirmListener() {
+                    @Override
+                    public void onConfirm(String text) {
+                        if (StringUtil.isEmpty(text.trim())) {
+                            Toast.makeText(context, "No input found", Toast.LENGTH_LONG).show();
+                        } else {
 
-}  private void showClerkRemarksInputDialog(final View view, final int position) {
-    new XPopup.Builder(getContext()).asInputConfirm("Remarks From Clerk", "please input your remarks",
-            new OnInputConfirmListener() {
-                @Override
-                public void onConfirm(String text) {
-                    if (StringUtil.isEmpty(text.trim())) {
-                        Toast.makeText(context, "No input found", Toast.LENGTH_LONG).show();
-                    } else {
-
-                        ((TextView) view).setText(text);
-                        requisitionDetails.get(position).setClerkRemark(text);
-                        //System.out.println("asdf");
+                            ((TextView) view).setText(text);
+                            requisitionDetails.get(position).setClerkRemark(text);
+                            //System.out.println("asdf");
+                        }
                     }
-                }
-            })
-            .show();
-}
+                })
+                .show();
+    }
 
     //update into database, via requisition Details, from clerk controller
     private void clerkUpdateRemark() {
@@ -390,3 +334,7 @@ public class DisbursementDetailActivity extends AppCompatActivity {
                             }
                         });
     }
+
+
+
+}  

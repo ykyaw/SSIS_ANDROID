@@ -26,7 +26,6 @@
         <item>Quit</item>
     </string-array>
     <string-array name="menu_dept_repo">
-
         <item>Welcome</item>
         <item>Acknowledge Items</item>
         <item>Quit</item>

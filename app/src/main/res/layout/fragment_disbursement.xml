@@ -6,227 +6,57 @@
     android:orientation="vertical"
     tools:context=".fragment.DisbursementFragment">
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_weight="1"/>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:orientation="vertical"-->
-<!--        android:layout_weight="9">-->
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:drawableLeft="@drawable/calendar"-->
-<!--            android:hint="Date of Disbursement"-->
-<!--            android:textColorHint="@color/black"-->
-<!--            android:textSize="16dp"-->
-<!--            android:layout_marginLeft="15dp"-->
-<!--            android:id="@+id/disbursement_date" />-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="9">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/calendar"
+            android:hint="Date of Disbursement"
+            android:textColorHint="@color/black"
+            android:textSize="16dp"
+            android:layout_marginLeft="15dp"
+            android:id="@+id/disbursement_date" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/disbursement_dept"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Select Department"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:layout_marginLeft="15dp"-->
-<!--            android:layout_marginRight="15dp"-->
-<!--            android:textSize="18dp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:padding="5dp"-->
-<!--            android:background="@drawable/rounded_tokenbutton"/>-->
+        <TextView
+            android:id="@+id/disbursement_dept"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Department"
+            android:textColor="@color/black"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textSize="18dp"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:background="@drawable/rounded_tokenbutton"/>
 
-<!--        <Button-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="40dp"-->
-<!--            android:id="@+id/disbursement_search"-->
-<!--            android:text="Search"-->
-<!--            android:layout_marginLeft="15dp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:layout_marginBottom="10dp"-->
-<!--            android:textAllCaps="false"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textStyle="bold"-->
-<!--            android:textSize="17dp"-->
-<!--            android:background="@drawable/rounded_filterbutton"/>-->
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:id="@+id/disbursement_search"
+            android:text="Search"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="17dp"
+            android:background="@drawable/rounded_filterbutton"/>
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="vertical"-->
-<!--            android:id="@+id/requisition_info">-->
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="horizontal">-->
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Received By(Rep): "-->
-<!--                android:textSize="16dp"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:layout_marginLeft="15dp"/>-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/received_by_rep"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="16dp" />-->
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textSize="16dp"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:id="@+id/received_date" />-->
-
-<!--        </LinearLayout>-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="horizontal"-->
-<!--            >-->
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textSize="16dp"-->
-<!--                android:text="Acknowledged By(Clerk): "-->
-<!--                android:layout_marginLeft="15dp"-->
-<!--                android:textColor="@color/black"/>-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/ack_by_clerk"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textSize="16dp"-->
-<!--                android:textColor="@color/black"/>-->
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textSize="16dp"-->
-<!--                android:id="@+id/ack_date"-->
-<!--                android:textColor="@color/black"/>-->
-<!--        </LinearLayout>-->
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textSize="16dp"-->
-<!--                android:text="This List is completed"-->
-<!--                android:visibility="gone"-->
-<!--                android:layout_marginLeft="15dp"-->
-<!--                android:id="@+id/confirm_complete"-->
-<!--                android:textColor="@color/black"/>-->
-
-<!--            <Button-->
-<!--                android:id="@+id/clerk_update_remark_button"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Update Remarks"-->
-<!--                android:layout_marginLeft="15dp"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:layout_marginBottom="10dp"-->
-<!--                android:paddingLeft="10dp"-->
-<!--                android:paddingRight="10dp"-->
-<!--                android:textAllCaps="false"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:textStyle="bold"-->
-<!--                android:textSize="17dp"-->
-<!--                android:background="@drawable/rounded_filterbutton"/>-->
-
-
-
-<!--            <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="horizontal">-->
-
-<!--            </LinearLayout>-->
-<!--        </LinearLayout>-->
-
-<!--        <ListView-->
-<!--            android:id="@+id/disbursement_list"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content" />-->
-
-<!--        &lt;!&ndash;        <LinearLayout&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:orientation="horizontal">&ndash;&gt;-->
-<!--&lt;!&ndash;            <TextView&ndash;&gt;-->
-<!--&lt;!&ndash;                android:id="@+id/item_code"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_width="0dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_weight="1"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:text="Item Code"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:gravity="center"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:textSize="18dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:paddingTop="5dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:paddingBottom="5dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:background="@color/black"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:textColor="@color/white" />&ndash;&gt;-->
-<!--&lt;!&ndash;            <TextView&ndash;&gt;-->
-<!--&lt;!&ndash;                android:id="@+id/item_description"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_width="0dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_weight="1.5"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:text="Description\n"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:gravity="center"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:textSize="18dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:paddingTop="5dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:paddingBottom="5dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:background="@color/black"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:textColor="@color/white" />&ndash;&gt;-->
-<!--&lt;!&ndash;            <TextView&ndash;&gt;-->
-<!--&lt;!&ndash;                android:id="@+id/qty_needed"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_width="0dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_weight="1"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:text="Qty\n"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:textSize="18dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:paddingTop="5dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:paddingBottom="5dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:background="@color/black"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:textColor="@color/white"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:gravity="center" />&ndash;&gt;-->
-<!--&lt;!&ndash;            <TextView&ndash;&gt;-->
-<!--&lt;!&ndash;                android:id="@+id/qty_disbursed"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_width="0dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_weight="1"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:gravity="center"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:text="Qty Disbursed"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:textSize="18dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:paddingTop="5dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:paddingBottom="5dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:background="@color/black"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:textColor="@color/white"/>&ndash;&gt;-->
-<!--&lt;!&ndash;            <TextView&ndash;&gt;-->
-<!--&lt;!&ndash;                android:id="@+id/qty_received"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_width="0dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_weight="1"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:gravity="center"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:text="Qty Received"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:textSize="18dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:paddingTop="5dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:paddingBottom="5dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:background="@color/black"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:textColor="@color/white" />&ndash;&gt;-->
-
-<!--&lt;!&ndash;        </LinearLayout>&ndash;&gt;-->
-<!--&lt;!&ndash;        <ListView&ndash;&gt;-->
-<!--&lt;!&ndash;            android:id="@+id/disbursement_list"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_weight="1"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_height="0dp"/>&ndash;&gt;-->
-<!--    </LinearLayout>-->
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fragment_disbursement_list"/>
+    </LinearLayout>
 
 </LinearLayout>

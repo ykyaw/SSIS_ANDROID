@@ -17,42 +17,28 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         android:layout_weight="9">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/calendar"
-            android:hint="Date of Disbursement"
-            android:textColorHint="@color/black"
-            android:textSize="16dp"
-            android:layout_marginLeft="15dp"
-            android:id="@+id/disbursement_date" />
 
-        <TextView
-            android:id="@+id/disbursement_dept"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Select Department"
-            android:textColor="@color/black"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:textSize="18dp"
-            android:layout_marginTop="10dp"
-            android:padding="5dp"
-            android:background="@drawable/rounded_tokenbutton"/>
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Date of Disbursement"
+                android:textColorHint="@color/black"
+                android:textSize="16dp"
+                android:layout_marginLeft="15dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/disbursement_detail_date"
+                android:textColorHint="@color/black"
+                android:textSize="16dp"
+                android:layout_marginLeft="15dp" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:id="@+id/disbursement_search"
-            android:text="Search"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textSize="17dp"
-            android:background="@drawable/rounded_filterbutton"/>
+        </LinearLayout>
+
+
 
         <LinearLayout
             android:layout_width="match_parent"

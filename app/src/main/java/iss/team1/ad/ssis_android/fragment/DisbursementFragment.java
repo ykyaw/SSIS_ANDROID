@@ -2,6 +2,7 @@ package iss.team1.ad.ssis_android.fragment;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
@@ -35,6 +36,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import iss.team1.ad.ssis_android.R;
+import iss.team1.ad.ssis_android.activity.DisbursementDetailActivity;
 import iss.team1.ad.ssis_android.adapter.MyAdapter;
 import iss.team1.ad.ssis_android.comm.CommonConstant;
 import iss.team1.ad.ssis_android.comm.utils.ApplicationUtil;
@@ -53,22 +55,16 @@ public class DisbursementFragment extends Fragment {
     private TextView disbursement_date;
     private TextView disbursement_dept;
     private Button disbursement_search;
-    private ListView disbursement_list;
+    private ListView fragment_disbursement_list;
 
 
-    //XJ
-    private List<RequisitionDetail> requisitionDetails = null;
-    private TextView received_by_rep;
-    private TextView received_date;
-    private TextView ack_by_clerk;
-    private TextView ack_date;
-    private Button clerk_update_remark_button;
-    private LinearLayout requisition_info;
+    private MyAdapter<Department> spinnerItemMyAdapter;
+    private MyAdapter<Requisition> disbursementAdapter;
+
+
+
 
     private Context context;
-    private MyAdapter<Department> spinnerItemMyAdapter;
-    private MyAdapter<RequisitionDetail> disbursementAdapter;
-    private TextView confirm_complete;
 
 
     String dept_select;
@@ -77,8 +73,8 @@ public class DisbursementFragment extends Fragment {
     int mDay;
     String selectDay = null;
 
-    private int tableRowRenderTime = 0;
     private List<Department> departments = new ArrayList<>();
+    private List<Requisition> requisitions;
 
     public DisbursementFragment() {
         // Required empty public constructor
@@ -108,6 +104,57 @@ public class DisbursementFragment extends Fragment {
         context = ApplicationUtil.getContext();
         init(view);
         return view;
+    }
+
+    private void fetchDisbursemnets(){
+        requisitions=new ArrayList<>();
+        HttpUtil.getInstance()
+                .sendJSONRequest(Request.Method.GET, CommonConstant.HttpUrl.GET_ALL_DISBURSEMENTS,
+                        new JSONObject(), new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Result result = (Result) JSONUtil.JsonToObject(response.toString(), Result.class);
+                                if (result.getCode() == 200) {
+                                    for (int i = 0; i < ((ArrayList) result.getData()).size(); i++) {
+                                        requisitions.add((Requisition) EntityUtil.map2Object((Map<String, Object>) ((ArrayList) result.getData()).get(i), Requisition.class));
+                                    }
+                                    setDisbursementAdapter();
+                                } else {
+                                    Toast.makeText(context, result.getMsg(), Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(context, "invalid token", Toast.LENGTH_LONG).show();
+                                System.out.println("error");
+                                error.printStackTrace();
+                                System.out.println(error.getMessage());
+
+                            }
+                        });
+    }
+
+    private void setDisbursementAdapter() {
+        disbursementAdapter=new MyAdapter<Requisition>((ArrayList<Requisition>) requisitions,R.layout.item_disbursement_row) {
+            @Override
+            public void bindView(ViewHolder holder, Requisition obj) {
+                holder.setText(R.id.item_disbursement_requisition_id,obj.getId()+"");
+                holder.setText(R.id.item_disbursement_collection_date,TimeUtil.convertTimestampToyyyyMMdd(obj.getCollectionDate()));
+                holder.setText(R.id.item_disbursement_department,obj.getDepartment().getName());
+                holder.setText(R.id.item_disbursement_requested_by,obj.getReqByEmp().getName());
+                holder.setText(R.id.item_disbursement_status,obj.getStatus());
+
+                holder.setOnClickListener(R.id.item_disbursement_row, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startDisbursementDetailActivity(obj.getCollectionDate(),obj.getDepartmentId());
+                    }
+                });
+            }
+        };
+
+        fragment_disbursement_list.setAdapter(disbursementAdapter);
     }
 
     private void getAllDept() {
@@ -142,16 +189,11 @@ public class DisbursementFragment extends Fragment {
         disbursement_dept = (TextView) view.findViewById(R.id.disbursement_dept);
         disbursement_date = (TextView) view.findViewById(R.id.disbursement_date);
         disbursement_search = (Button) view.findViewById(R.id.disbursement_search);
-        disbursement_list = (ListView) view.findViewById(R.id.disbursement_list);
-        received_by_rep=(TextView) view.findViewById(R.id.received_by_rep);
-        received_date=(TextView) view.findViewById(R.id.received_date);
-        ack_by_clerk=(TextView) view.findViewById(R.id.ack_by_clerk);
-        ack_date=(TextView) view.findViewById(R.id.ack_date);
-        clerk_update_remark_button=(Button)view.findViewById(R.id.clerk_update_remark_button) ;
-        requisition_info=(LinearLayout)view.findViewById(R.id.requisition_info);
-        requisition_info.setVisibility(View.INVISIBLE);
-        confirm_complete=(TextView)view.findViewById(R.id.confirm_complete);
+        fragment_disbursement_list = (ListView) view.findViewById(R.id.fragment_disbursement_list);
+
         getAllDept();
+
+        fetchDisbursemnets();
 
 
         disbursement_dept.setOnClickListener(new View.OnClickListener() {
@@ -161,7 +203,7 @@ public class DisbursementFragment extends Fragment {
                 new XPopup.Builder(getContext())
                         .hasShadowBg(false)
                         .isDestroyOnDismiss(false)
-                        .atView(disbursement_dept)  // 依附于所点击的View，内部会自动判断在上方或者下方显示
+                        .atView(disbursement_dept)
                         .asAttachList(departments.stream().map(item -> item.getName()).toArray(String[]::new),
                                 new int[]{},
                                 new OnSelectListener() {
@@ -233,216 +275,19 @@ public class DisbursementFragment extends Fragment {
         disbursement_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fetchRequisitionDetailsByDate();
-
+//                fetchRequisitionDetailsByDate();
+                startDisbursementDetailActivity(TimeUtil.convertyyyyMMddToTimestamp(selectDay),dept_select);
             }
         });
 
-        clerk_update_remark_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                clerkUpdateRemark();
-
-            }
-
-
-        });
     }
 
-    private void fetchRequisitionDetailsByDate() {
-
-        if (selectDay == null || selectDay.equals("")) {
-            Toast.makeText(context, "please select a date", Toast.LENGTH_LONG).show();
-            return;
-        }
-        Requisition requisition = new Requisition();
-        requisition.setDepartmentId(dept_select);
-        requisition.setCollectionDate(TimeUtil.convertyyyyMMddToTimestamp(selectDay));
-        HttpUtil.getInstance()
-                .sendJSONRequest(Request.Method.POST, CommonConstant.HttpUrl.GET_DISBURSEMENT,
-                        new JSONObject(EntityUtil.object2Map(requisition)), new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                Result result = (Result) JSONUtil.JsonToObject(response.toString(), Result.class);
-                                if (result.getCode() == 200) {
-                                    //final List<RequisitionDetail> requisitionDetails=new ArrayList<>();
-                                    requisitionDetails = new ArrayList<>();
-                                    for (int i = 0; i < ((ArrayList) result.getData()).size(); i++) {
-                                        requisitionDetails.add((RequisitionDetail) EntityUtil.map2Object((Map<String, Object>) ((ArrayList) result.getData()).get(i), RequisitionDetail.class));
-                                    }
-
-                                    //XJ
-
-                                    if(!requisitionDetails.isEmpty()) {
-                                        requisition_info.setVisibility(View.VISIBLE);
-                                        if (requisitionDetails.get(0).getRequisition()!=null){
-                                            System.out.println(requisitionDetails.get(0).getRequisition().getReceivedByRepId());
-                                            if(requisitionDetails.get(0).getRequisition().getReceivedByRep()!=null){
-                                                received_by_rep.setText(requisitionDetails.get(0).getRequisition().getReceivedByRep().getName());
-                                            }
-                                            else{
-                                                received_by_rep.setText("");
-                                            }
-                                        }
-                                        if(requisitionDetails.get(0).getRequisition().getReceivedDate()!=0){
-                                            received_date.setText(TimeUtil.convertTimestampToyyyyMMdd(requisitionDetails.get(0).getRequisition().getReceivedDate()));}
-                                        else{
-                                            received_date.setText("");
-                                        }
-                                        if (requisitionDetails.get(0).getRequisition().getAckByClerk()!=null){
-                                            ack_by_clerk.setText(requisitionDetails.get(0).getRequisition().getAckByClerk().getName());
-                                        }else{
-                                            ack_by_clerk.setText("");
-                                        }
-                                        if(requisitionDetails.get(0).getRequisition().getAckDate()!=0){
-                                            ack_date.setText(TimeUtil.convertTimestampToyyyyMMdd(requisitionDetails.get(0).getRequisition().getAckDate()));
-                                        }else{
-                                            ack_date.setText("");
-                                        }
-
-                                        if(requisitionDetails.get(0).getRequisition().getStatus().equals(CommonConstant.RequsitionStatus.COMPLETED)){
-                                            clerk_update_remark_button.setVisibility(View.GONE);
-                                            confirm_complete.setVisibility(View.VISIBLE);
-                                        }else{
-                                            clerk_update_remark_button.setVisibility(View.VISIBLE);
-                                            confirm_complete.setVisibility(View.GONE);
-                                        }
-                                    }
-                                    final int renderSize = requisitionDetails.size();
-                                    disbursementAdapter = new MyAdapter<RequisitionDetail>((ArrayList) requisitionDetails, R.layout.item_disbursement_detail) {
-                                        @Override
-                                        public void bindView(ViewHolder holder, RequisitionDetail obj) {
-                                            holder.setText(R.id.item_code, obj.getProduct().getId());
-                                            holder.setText(R.id.item_description, obj.getProduct().getDescription());
-                                            holder.setText(R.id.qty, obj.getQtyNeeded() + "");
-                                            holder.setText(R.id.qty_received, obj.getQtyReceived() + "");
-                                            holder.setText(R.id.qty_disbursed, obj.getQtyDisbursed() + "");
-
-                                            //xj start
-                                            //received by +ack by
-                                            if (!StringUtil.isEmpty(obj.getDisburseRemark())) {
-                                                holder.setVisibility(R.id.dis_remark, View.VISIBLE);
-                                                holder.setVisibility(R.id.remarks, View.VISIBLE);
-                                                holder.setText(R.id.remarks, obj.getDisburseRemark());
-                                            } else {
-                                                holder.setVisibility(R.id.dis_remark, View.INVISIBLE);
-                                                holder.setVisibility(R.id.remarks, View.INVISIBLE);
-                                            }
-                                            if (!StringUtil.isEmpty(obj.getRepRemark())) {
-                                                holder.setVisibility(R.id.rep_remark, View.VISIBLE);
-                                                holder.setVisibility(R.id.dept_remarks, View.VISIBLE);
-                                                holder.setText(R.id.dept_remarks, obj.getRepRemark());
-                                            } else {
-                                                holder.setVisibility(R.id.rep_remark, View.INVISIBLE);
-                                                holder.setVisibility(R.id.dept_remarks, View.INVISIBLE);
-                                            }
-                                            if (!StringUtil.isEmpty(obj.getClerkRemark())) {
-                                                holder.setVisibility(R.id.cl_remark, View.VISIBLE);
-                                                holder.setVisibility(R.id.clerk_remarks, View.INVISIBLE);
-                                                holder.setText(R.id.clerk_remarks, obj.getClerkRemark());
-                                                holder.setVisibility(R.id.clerk_set_remarks, View.VISIBLE);
-                                            } else {
-                                                holder.setVisibility(R.id.cl_remark, View.INVISIBLE);
-                                                holder.setVisibility(R.id.clerk_remarks, View.INVISIBLE);
-                                                holder.setVisibility(R.id.clerk_set_remarks, View.INVISIBLE);
-                                            }
-
-                                            final ViewHolder thisHolder = holder;
-                                            if (obj.getRequisition().getStatus().equals(CommonConstant.RequsitionStatus.RECEIVED)) {
-
-                                                holder.setVisibility(R.id.cl_remark, View.VISIBLE);
-                                                holder.setVisibility(R.id.clerk_remarks, View.INVISIBLE);
-                                                holder.setVisibility(R.id.clerk_set_remarks, View.VISIBLE);
-
-                                                holder.setOnClickListener(R.id.clerk_set_remarks, new View.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(View view) {
-                                                        showClerkRemarksInputDialog(view, thisHolder.getItemPosition());
-                                                    }
-                                                });
-                                            }
-                                            if (obj.getRequisition().getStatus().equals(CommonConstant.RequsitionStatus.COMPLETED)){
-//                                                clerk_update_remark_button.setVisibility(View.INVISIBLE);
-//                                                confirm_complete.setVisibility(View.VISIBLE);
-//                                                clerk_update_remark_button.setClickable(false);
-                                                holder.setVisibility(R.id.cl_remark, View.VISIBLE);
-                                                holder.setVisibility(R.id.clerk_remarks, View.VISIBLE);
-                                                holder.setVisibility(R.id.clerk_set_remarks, View.INVISIBLE);
-                                            }
-
-                                        }
-                                    };
-                                    disbursement_list.setAdapter(disbursementAdapter);
-                                } else {
-                                    Toast.makeText(context, result.getMsg(), Toast.LENGTH_LONG).show();
-                                }
-                            }
-                        }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(context, "invalid token", Toast.LENGTH_LONG).show();
-                                System.out.println("error");
-                                error.printStackTrace();
-                                System.out.println(error.getMessage());
-
-                            }
-                        });
-
+    private void startDisbursementDetailActivity(long date,String deptId) {
+        Intent intent = new Intent(context, DisbursementDetailActivity.class);
+        intent.putExtra("date",date);
+        intent.putExtra("deptId",deptId);
+        startActivity(intent);
     }
-
-
-    //xj
-    private void showClerkRemarksInputDialog(final View view, final int position) {
-        new XPopup.Builder(getContext()).asInputConfirm("Remarks From Clerk", "please input your remarks",
-                new OnInputConfirmListener() {
-                    @Override
-                    public void onConfirm(String text) {
-                        if (StringUtil.isEmpty(text.trim())) {
-                            Toast.makeText(context, "No input found", Toast.LENGTH_LONG).show();
-                        } else {
-
-                            ((TextView) view).setText(text);
-                            requisitionDetails.get(position).setClerkRemark(text);
-                            //System.out.println("asdf");
-                        }
-                    }
-                })
-                .show();
-    }
-
-        //update into database, via requisition Details, from clerk controller
-        private void clerkUpdateRemark() {
-            JSONArray jsonArray = null;
-            try {
-                jsonArray=new JSONArray(new Gson().toJson(requisitionDetails));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            HttpUtil.getInstance()
-                    .sendJSONRequest(Request.Method.PUT, CommonConstant.HttpUrl.ACK_DISBURSEMENT_COMPLETION,
-                            jsonArray,new Response.Listener<JSONObject>(){
-                                @Override
-                                public void onResponse(JSONObject response) {
-                                    Result result = (Result) JSONUtil.JsonToObject(response.toString(), Result.class);
-                                    if(result.getCode()==200){
-                                        Toast.makeText(context,"successfully saved",Toast.LENGTH_LONG).show();
-                                        fetchRequisitionDetailsByDate();
-                                    }else{
-                                        Toast.makeText(context,result.getMsg(),Toast.LENGTH_LONG).show();
-                                    }
-                                }
-                            }, new Response.ErrorListener() {
-                                @Override
-                                public void onErrorResponse(VolleyError error) {
-                                    Toast.makeText(context,"invalid token",Toast.LENGTH_LONG).show();
-                                    System.out.println("error");
-                                    error.printStackTrace();
-                                    System.out.println(error.getMessage());
-
-                                }
-                            });
-        }
-
 
 
 }
