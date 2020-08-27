@@ -68,6 +68,7 @@ public class DisbursementFragment extends Fragment {
     private Context context;
     private MyAdapter<Department> spinnerItemMyAdapter;
     private MyAdapter<RequisitionDetail> disbursementAdapter;
+    private TextView confirm_complete;
 
 
     String dept_select;
@@ -149,6 +150,7 @@ public class DisbursementFragment extends Fragment {
         clerk_update_remark_button=(Button)view.findViewById(R.id.clerk_update_remark_button) ;
         requisition_info=(LinearLayout)view.findViewById(R.id.requisition_info);
         requisition_info.setVisibility(View.INVISIBLE);
+        confirm_complete=(TextView)view.findViewById(R.id.confirm_complete);
         getAllDept();
 
 
@@ -248,6 +250,7 @@ public class DisbursementFragment extends Fragment {
     }
 
     private void fetchRequisitionDetailsByDate() {
+
         if (selectDay == null || selectDay.equals("")) {
             Toast.makeText(context, "please select a date", Toast.LENGTH_LONG).show();
             return;
@@ -295,6 +298,7 @@ public class DisbursementFragment extends Fragment {
                                             ack_date.setText(TimeUtil.convertTimestampToyyyyMMdd(requisitionDetails.get(0).getRequisition().getAckDate()));}
                                         else{
                                             ack_date.setVisibility(View.INVISIBLE);
+
                                         }
                                     }
                                     final int renderSize = requisitionDetails.size();
@@ -338,6 +342,8 @@ public class DisbursementFragment extends Fragment {
 
                                             final ViewHolder thisHolder = holder;
                                             if (obj.getRequisition().getStatus().equals(CommonConstant.RequsitionStatus.RECEIVED)) {
+                                                confirm_complete.setVisibility(View.INVISIBLE);
+                                                clerk_update_remark_button.setVisibility(View.VISIBLE);
                                                 holder.setVisibility(R.id.cl_remark, View.VISIBLE);
                                                 holder.setVisibility(R.id.clerk_remarks, View.INVISIBLE);
                                                 holder.setVisibility(R.id.clerk_set_remarks, View.VISIBLE);
@@ -350,7 +356,8 @@ public class DisbursementFragment extends Fragment {
                                                 });
                                             }
                                             if (obj.getRequisition().getStatus().equals(CommonConstant.RequsitionStatus.COMPLETED)){
-                                                clerk_update_remark_button.setText("This List is completed");
+                                                clerk_update_remark_button.setVisibility(View.INVISIBLE);
+                                                confirm_complete.setVisibility(View.VISIBLE);
                                                 clerk_update_remark_button.setClickable(false);
                                                 holder.setVisibility(R.id.cl_remark, View.VISIBLE);
                                                 holder.setVisibility(R.id.clerk_remarks, View.VISIBLE);

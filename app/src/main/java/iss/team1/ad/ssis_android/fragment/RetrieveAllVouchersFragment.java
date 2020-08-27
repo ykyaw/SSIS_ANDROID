@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -44,8 +45,7 @@ import iss.team1.ad.ssis_android.modal.AdjustmentVoucher;
  */
 public class RetrieveAllVouchersFragment extends Fragment  {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private SwipeRefreshLayout adjsutment_voucher_swl;
     private ListView allvoucher_list;
     private Button search_adjustmentvoucher_button;
     private TextView search_adjustmentvoucher;
@@ -91,10 +91,18 @@ public class RetrieveAllVouchersFragment extends Fragment  {
     }
 
     private void init(View view) {
+        adjsutment_voucher_swl=view.findViewById(R.id.adjustment_voucher_swl);
         allvoucher_list = (ListView) view.findViewById(R.id.allvoucher_list);
         search_adjustmentvoucher_button = (Button) view.findViewById(R.id.search_adjustmentvoucher_button);
         search_adjustmentvoucher = (TextView) view.findViewById(R.id.search_adjustmentvoucher);
         context= ApplicationUtil.getContext();
+        adjsutment_voucher_swl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getAllVouchers();
+            }
+        });
+
         search_adjustmentvoucher_button.setOnClickListener(new View.OnClickListener() {
 
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -107,12 +115,14 @@ public class RetrieveAllVouchersFragment extends Fragment  {
     }
 
     private void getAllVouchers() {
+        adjsutment_voucher_swl.setRefreshing(true);
         avlist=new ArrayList<>();
         HttpUtil.getInstance()
                 .sendJSONRequest(Request.Method.GET, CommonConstant.HttpUrl.Get_All_ADJUSTMENT_VOUCHERS,
                         new JSONObject(),new Response.Listener<JSONObject>(){
                             @Override
                             public void onResponse(JSONObject response) {
+                                adjsutment_voucher_swl.setRefreshing(false);
                                 //convert form json to object
                                 Result result = (Result) JSONUtil.JsonToObject(response.toString(), Result.class);
                                 if(result.getCode()==200){
@@ -135,6 +145,7 @@ public class RetrieveAllVouchersFragment extends Fragment  {
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
+                                adjsutment_voucher_swl.setRefreshing(false);
                                 Toast.makeText(context,"error in retrieving adjustment vouchers",Toast.LENGTH_LONG).show();
                                 System.out.println("error");
                                 error.printStackTrace();
