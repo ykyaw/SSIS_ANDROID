@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,11 +50,13 @@ import iss.team1.ad.ssis_android.components.Result;
 import iss.team1.ad.ssis_android.modal.Department;
 import iss.team1.ad.ssis_android.modal.RequisitionDetail;
 
+
 public class AckReceiveFragment extends Fragment {
 
     private TextView disbursement_date,receive_by,ack_by;
     private Button ack_filter_btn,ack_btn;
     private ListView disbursement_list;
+    private LinearLayout fragment_ack_by_panel,fragment_ack_received_by_panel;
 
     private MyAdapter<RequisitionDetail> disbursementsAdapter;
 
@@ -66,6 +69,7 @@ public class AckReceiveFragment extends Fragment {
     private boolean isAck=false;
 
     private Context context;
+
 
 
     public AckReceiveFragment() {
@@ -101,6 +105,8 @@ public class AckReceiveFragment extends Fragment {
         ack_btn=(Button)view.findViewById(R.id.ack_btn);
         receive_by=(TextView)view.findViewById(R.id.receied_by);
         ack_by=(TextView)view.findViewById(R.id.ack_by);
+        fragment_ack_by_panel=view.findViewById(R.id.fragment_ack_by_panel);
+        fragment_ack_received_by_panel=view.findViewById(R.id.fragment_ack_received_by_panel);
 
         context= ApplicationUtil.getContext();
 
@@ -214,7 +220,8 @@ public class AckReceiveFragment extends Fragment {
                                     if(!isAck){
                                         ack_btn.setVisibility(View.VISIBLE);
                                     }
-
+                                    fragment_ack_by_panel.setVisibility(View.VISIBLE);
+                                    fragment_ack_received_by_panel.setVisibility(View.VISIBLE);
                                     final int size = requisitionDetails.size();
                                     disbursementsAdapter = new MyAdapter<RequisitionDetail>((ArrayList) requisitionDetails,R.layout.item_disbursement) {
                                         @Override

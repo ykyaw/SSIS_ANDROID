@@ -80,8 +80,11 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/fragment_ack_received_by_panel"
+            android:visibility="invisible"
             android:orientation="horizontal">
             <TextView
+                android:id="@+id/tvreceied_by"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Received by: "
@@ -100,8 +103,11 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/fragment_ack_by_panel"
+            android:visibility="invisible"
             android:orientation="horizontal">
             <TextView
+                android:id="@+id/tvack_by"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Acknowledged by: "
