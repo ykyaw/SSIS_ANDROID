@@ -278,27 +278,34 @@ public class DisbursementFragment extends Fragment {
                                         if (requisitionDetails.get(0).getRequisition()!=null){
                                             System.out.println(requisitionDetails.get(0).getRequisition().getReceivedByRepId());
                                             if(requisitionDetails.get(0).getRequisition().getReceivedByRep()!=null){
-                                                received_by_rep.setText(requisitionDetails.get(0).getRequisition().getReceivedByRep().getName());}
+                                                received_by_rep.setText(requisitionDetails.get(0).getRequisition().getReceivedByRep().getName());
+                                            }
+                                            else{
+                                                received_by_rep.setText("");
+                                            }
                                         }
-                                        else{
-                                            received_by_rep.setVisibility(View.INVISIBLE);
-
-                                        }
-                                        if(!StringUtil.isEmpty(String.valueOf(requisitionDetails.get(0).getRequisition().getReceivedDate()))){
+                                        if(requisitionDetails.get(0).getRequisition().getReceivedDate()!=0){
                                             received_date.setText(TimeUtil.convertTimestampToyyyyMMdd(requisitionDetails.get(0).getRequisition().getReceivedDate()));}
                                         else{
-                                            received_date.setVisibility(View.INVISIBLE);
+                                            received_date.setText("");
                                         }
                                         if (requisitionDetails.get(0).getRequisition().getAckByClerk()!=null){
-                                            ack_by_clerk.setText(requisitionDetails.get(0).getRequisition().getAckByClerk().getName());}
-                                        else{
-                                            ack_by_clerk.setVisibility(View.INVISIBLE);
+                                            ack_by_clerk.setText(requisitionDetails.get(0).getRequisition().getAckByClerk().getName());
+                                        }else{
+                                            ack_by_clerk.setText("");
                                         }
-                                        if(!StringUtil.isEmpty(String.valueOf(requisitionDetails.get(0).getRequisition().getAckDate()))){
-                                            ack_date.setText(TimeUtil.convertTimestampToyyyyMMdd(requisitionDetails.get(0).getRequisition().getAckDate()));}
-                                        else{
-                                            ack_date.setVisibility(View.INVISIBLE);
+                                        if(requisitionDetails.get(0).getRequisition().getAckDate()!=0){
+                                            ack_date.setText(TimeUtil.convertTimestampToyyyyMMdd(requisitionDetails.get(0).getRequisition().getAckDate()));
+                                        }else{
+                                            ack_date.setText("");
+                                        }
 
+                                        if(requisitionDetails.get(0).getRequisition().getStatus().equals(CommonConstant.RequsitionStatus.COMPLETED)){
+                                            clerk_update_remark_button.setVisibility(View.GONE);
+                                            confirm_complete.setVisibility(View.VISIBLE);
+                                        }else{
+                                            clerk_update_remark_button.setVisibility(View.VISIBLE);
+                                            confirm_complete.setVisibility(View.GONE);
                                         }
                                     }
                                     final int renderSize = requisitionDetails.size();
@@ -342,8 +349,8 @@ public class DisbursementFragment extends Fragment {
 
                                             final ViewHolder thisHolder = holder;
                                             if (obj.getRequisition().getStatus().equals(CommonConstant.RequsitionStatus.RECEIVED)) {
-                                                confirm_complete.setVisibility(View.INVISIBLE);
-                                                clerk_update_remark_button.setVisibility(View.VISIBLE);
+//                                                confirm_complete.setVisibility(View.INVISIBLE);
+//                                                clerk_update_remark_button.setVisibility(View.VISIBLE);
                                                 holder.setVisibility(R.id.cl_remark, View.VISIBLE);
                                                 holder.setVisibility(R.id.clerk_remarks, View.INVISIBLE);
                                                 holder.setVisibility(R.id.clerk_set_remarks, View.VISIBLE);
@@ -356,9 +363,9 @@ public class DisbursementFragment extends Fragment {
                                                 });
                                             }
                                             if (obj.getRequisition().getStatus().equals(CommonConstant.RequsitionStatus.COMPLETED)){
-                                                clerk_update_remark_button.setVisibility(View.INVISIBLE);
-                                                confirm_complete.setVisibility(View.VISIBLE);
-                                                clerk_update_remark_button.setClickable(false);
+//                                                clerk_update_remark_button.setVisibility(View.INVISIBLE);
+//                                                confirm_complete.setVisibility(View.VISIBLE);
+//                                                clerk_update_remark_button.setClickable(false);
                                                 holder.setVisibility(R.id.cl_remark, View.VISIBLE);
                                                 holder.setVisibility(R.id.clerk_remarks, View.VISIBLE);
                                                 holder.setVisibility(R.id.clerk_set_remarks, View.INVISIBLE);

@@ -2,6 +2,7 @@ package iss.team1.ad.ssis_android.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -12,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
@@ -24,6 +26,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import iss.team1.ad.ssis_android.R;
 import iss.team1.ad.ssis_android.adapter.MyAdapter;
@@ -153,6 +156,7 @@ public class StoreSupAVDetailActivity extends AppCompatActivity {
                         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void DisplayDetails() {
         adjustment_voucher_id.setText(adjustmentvoucher.getId());
         adjustment_vouchr_inititated_by.setText(adjustmentvoucher.getInitiatedClerk().getName());
@@ -163,7 +167,9 @@ public class StoreSupAVDetailActivity extends AppCompatActivity {
                 || adjustmentvoucher.getStatus().equals(CommonConstant.AdjsutmentVoucherStatus.PENDMANAPPROV)) {
             read_only_panel.setVisibility(View.VISIBLE);
             store_sup_av_detail_list_btn_panel.setVisibility(View.INVISIBLE);
-            av_approve_by_sup.setText(adjustmentvoucher.getApprovedSup().getName());
+            if(adjustmentvoucher.getApprovedSup()!=null){
+                av_approve_by_sup.setText(adjustmentvoucher.getApprovedSup().getName());
+            }
 
             if (StringUtil.isEmpty(adjustmentvoucher.getReason())) {
                 av_reject_reason.setVisibility(View.INVISIBLE);
@@ -182,6 +188,32 @@ public class StoreSupAVDetailActivity extends AppCompatActivity {
 
         }
 
+        if(adjustmentvoucher.getAdjustmentVoucherDetails().stream()
+                .filter(item->item.getTotalPrice()>250)
+                .collect(Collectors.toList()).size()>0){
+            av_alert.setVisibility(View.VISIBLE);
+            if (adjustmentvoucher.getStatus().equals(CommonConstant.AdjsutmentVoucherStatus.PENDING_APPROVAL)) {
+                if (ApplicationUtil.getCurrentUser().getRole().equals(CommonConstant.ROLE.STORE_SUPERVISOR)) {
+                    store_sup_av_approve_btn.setVisibility(View.INVISIBLE);
+                    store_man_av_approve_btn.setVisibility(View.VISIBLE);//this button set status="pendmanaprov"
+                } else {
+                    store_sup_av_detail_list_btn_panel.setVisibility(View.VISIBLE);
+                    av_alert.setText("Pending Supervisor Review");
+                    store_sup_av_approve_btn.setVisibility(View.INVISIBLE);
+                    store_man_av_approve_btn.setVisibility(View.INVISIBLE);//this button set status="pendmanaprov"
+
+                }
+            }
+        }else {
+            av_alert.setVisibility(View.INVISIBLE);
+            if (adjustmentvoucher.getStatus().equals(CommonConstant.AdjsutmentVoucherStatus.PENDING_APPROVAL)) {
+                //to both supervisor and manager
+                store_sup_av_detail_list_btn_panel.setVisibility(View.VISIBLE);
+                store_sup_av_approve_btn.setVisibility(View.VISIBLE);
+                store_man_av_approve_btn.setVisibility(View.INVISIBLE);
+            }
+        }
+
         AVDetailMyAdapter = new MyAdapter<AdjustmentVoucherDetail>((ArrayList<AdjustmentVoucherDetail>) adjustmentvoucher.getAdjustmentVoucherDetails(), R.layout.item_avdetail) {
 
             @Override
@@ -190,28 +222,28 @@ public class StoreSupAVDetailActivity extends AppCompatActivity {
                 holder.setText(R.id.qty_adjusted, obj.getQtyAdjusted() + "");
                 holder.setText(R.id.item_unit_price, "$" + obj.getUnitprice() + "");
                 holder.setText(R.id.item_price, "$" + obj.getTotalPrice() + "");
-                if (obj.getTotalPrice() >= 250) {
-                    av_alert.setVisibility(View.VISIBLE);
-                    if (adjustmentvoucher.getStatus().equals(CommonConstant.AdjsutmentVoucherStatus.PENDING_APPROVAL)) {
-                        if (ApplicationUtil.getCurrentUser().getRole().equals(CommonConstant.ROLE.STORE_SUPERVISOR)) {
-                            store_sup_av_approve_btn.setVisibility(View.INVISIBLE);
-                            store_man_av_approve_btn.setVisibility(View.VISIBLE);//this button set status="pendmanaprov"
-                        } else {
-                            store_sup_av_detail_list_btn_panel.setVisibility(View.VISIBLE);
-                            av_alert.setText("Pending Supervisor Review");
-
-                        }
-                    }
-
-                }else {
-                    av_alert.setVisibility(View.INVISIBLE);
-                    if (adjustmentvoucher.getStatus().equals(CommonConstant.AdjsutmentVoucherStatus.PENDING_APPROVAL)) {
-                        //to both supervisor and manager
-                        store_sup_av_detail_list_btn_panel.setVisibility(View.VISIBLE);
-                        store_sup_av_approve_btn.setVisibility(View.VISIBLE);
-                        store_man_av_approve_btn.setVisibility(View.INVISIBLE);
-                    }
-                }
+//                if (obj.getTotalPrice() >= 250) {
+//                    av_alert.setVisibility(View.VISIBLE);
+//                    if (adjustmentvoucher.getStatus().equals(CommonConstant.AdjsutmentVoucherStatus.PENDING_APPROVAL)) {
+//                        if (ApplicationUtil.getCurrentUser().getRole().equals(CommonConstant.ROLE.STORE_SUPERVISOR)) {
+//                            store_sup_av_approve_btn.setVisibility(View.INVISIBLE);
+//                            store_man_av_approve_btn.setVisibility(View.VISIBLE);//this button set status="pendmanaprov"
+//                        } else {
+//                            store_sup_av_detail_list_btn_panel.setVisibility(View.VISIBLE);
+//                            av_alert.setText("Pending Supervisor Review");
+//
+//                        }
+//                    }
+//
+//                }else {
+//                    av_alert.setVisibility(View.INVISIBLE);
+//                    if (adjustmentvoucher.getStatus().equals(CommonConstant.AdjsutmentVoucherStatus.PENDING_APPROVAL)) {
+//                        //to both supervisor and manager
+//                        store_sup_av_detail_list_btn_panel.setVisibility(View.VISIBLE);
+//                        store_sup_av_approve_btn.setVisibility(View.VISIBLE);
+//                        store_man_av_approve_btn.setVisibility(View.INVISIBLE);
+//                    }
+//                }
 
             }
         };
