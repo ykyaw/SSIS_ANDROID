@@ -349,8 +349,7 @@ public class DisbursementFragment extends Fragment {
 
                                             final ViewHolder thisHolder = holder;
                                             if (obj.getRequisition().getStatus().equals(CommonConstant.RequsitionStatus.RECEIVED)) {
-//                                                confirm_complete.setVisibility(View.INVISIBLE);
-//                                                clerk_update_remark_button.setVisibility(View.VISIBLE);
+
                                                 holder.setVisibility(R.id.cl_remark, View.VISIBLE);
                                                 holder.setVisibility(R.id.clerk_remarks, View.INVISIBLE);
                                                 holder.setVisibility(R.id.clerk_set_remarks, View.VISIBLE);
@@ -426,19 +425,8 @@ public class DisbursementFragment extends Fragment {
                                 public void onResponse(JSONObject response) {
                                     Result result = (Result) JSONUtil.JsonToObject(response.toString(), Result.class);
                                     if(result.getCode()==200){
-//                                        clerk_update_remark_button.setVisibility(View.INVISIBLE);
-//                                        disbursement_search.setVisibility(View.INVISIBLE);
-//                                        disbursement_date.setText(selectDay);
-//                                        disbursement_date.setClickable(false);
-//                                        disbursement_dept.setEnabled(false);
                                         Toast.makeText(context,"successfully saved",Toast.LENGTH_LONG).show();
                                         fetchRequisitionDetailsByDate();
-//                                        if(requisitionDetails.get(0).getRequisition().getAckByClerk()!=null){
-//                                            ack_by_clerk.setText(requisitionDetails.get(0).getRequisition().getAckByClerk().getName());
-//                                        }
-//                                        ack_date.setText(TimeUtil.convertTimestampToyyyyMMdd(requisitionDetails.get(0).getRequisition().getAckDate()));
-
-
                                     }else{
                                         Toast.makeText(context,result.getMsg(),Toast.LENGTH_LONG).show();
                                     }
