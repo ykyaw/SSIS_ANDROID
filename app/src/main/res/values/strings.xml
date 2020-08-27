@@ -3,25 +3,30 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string-array name="menu_store_clerk">
+        <item>Welcome</item>
         <item>Retrieval List</item>
         <item>Disbursement List</item>
         <item>Quit</item>
     </string-array>
     <string-array name="menu_store_supervisor">
+        <item>Welcome</item>
         <item>Adjustment Voucher</item>
         <item>Purchase Request</item>
         <item>Quit</item>
     </string-array>
     <string-array name="menu_store_manager">
+        <item>Welcome</item>
         <item>Adjustment Voucher</item>
         <item>Quit</item>
     </string-array>
     <string-array name="menu_dept_head">
+        <item>Welcome</item>
         <item>Requisition</item>
         <item>Delegate</item>
         <item>Quit</item>
     </string-array>
     <string-array name="menu_dept_repo">
+        <item>Welcome</item>
         <item>Acknowledge Item</item>
         <item>Quit</item>
     </string-array>
