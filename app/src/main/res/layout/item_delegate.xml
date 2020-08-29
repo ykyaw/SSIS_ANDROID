@@ -37,28 +37,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="horizontal">
-<!--        <Button-->
-<!--            android:layout_width="wrap_content"-->
-
-<!--            android:layout_height="wrap_content"-->
-<!--            android:id="@+id/item_delegate_delete_btn"-->
-<!--            android:text="delete"-->
-<!--            android:background="@drawable/rounded_rejectbutton"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textStyle="bold"-->
-<!--            android:textSize="15dp"-->
-<!--            android:textAllCaps="false"/>-->
-<!--        <Button-->
-<!--            android:layout_width="wrap_content"-->
-
-<!--            android:layout_height="wrap_content"-->
-<!--            android:id="@+id/item_delegate_update_btn"-->
-<!--            android:text="update"-->
-<!--            android:background="@drawable/rounded_updatebutton"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textStyle="bold"-->
-<!--            android:textSize="15dp"-->
-<!--            android:textAllCaps="false"/>-->
             <ImageButton
                 android:id="@+id/item_delegate_update_btn"
                 android:layout_width="wrap_content"

@@ -1,21 +1,16 @@
 package iss.team1.ad.ssis_android.activity;
 
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.icu.util.Calendar;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
@@ -24,14 +19,12 @@ import com.android.volley.VolleyError;
 import com.google.gson.Gson;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.interfaces.OnInputConfirmListener;
-import com.lxj.xpopup.interfaces.OnSelectListener;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import iss.team1.ad.ssis_android.R;
@@ -63,18 +56,13 @@ public class DisbursementDetailActivity extends AppCompatActivity {
     private LinearLayout requisition_info;
 
     private Context context;
-    private MyAdapter<Department> spinnerItemMyAdapter;
     private MyAdapter<RequisitionDetail> disbursementAdapter;
     private TextView confirm_complete;
 
 
     String dept_select;
-    int mYear;
-    int mMonth;
-    int mDay;
     long selectDay;
 
-    private int tableRowRenderTime = 0;
     private List<Department> departments = new ArrayList<>();
 
     @Override
@@ -93,33 +81,7 @@ public class DisbursementDetailActivity extends AppCompatActivity {
         init();
     }
 
-    private void getAllDept() {
-        HttpUtil.getInstance()
-                .sendJSONRequest(Request.Method.GET, CommonConstant.HttpUrl.GET_ALL_DEPARTMENT,
-                        new JSONObject(), new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                Result result = (Result) JSONUtil.JsonToObject(response.toString(), Result.class);
-                                if (result.getCode() == 200) {
-                                    departments = new ArrayList<>();
-                                    for (int i = 0; i < ((ArrayList) result.getData()).size(); i++) {
-                                        departments.add((Department) EntityUtil.map2Object((Map<String, Object>) ((ArrayList) result.getData()).get(i), Department.class));
-                                    }
-                                } else {
-                                    Toast.makeText(context, result.getMsg(), Toast.LENGTH_LONG).show();
-                                }
-                            }
-                        }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(context, "invalid token", Toast.LENGTH_LONG).show();
-                                System.out.println("error");
-                                error.printStackTrace();
-                                System.out.println(error.getMessage());
 
-                            }
-                        });
-    }
 
     private void init() {
         disbursement_detail_date=findViewById(R.id.disbursement_detail_date);
@@ -206,7 +168,6 @@ public class DisbursementDetailActivity extends AppCompatActivity {
                                             confirm_complete.setVisibility(View.VISIBLE);
                                         }
                                     }
-                                    final int renderSize = requisitionDetails.size();
                                     disbursementAdapter = new MyAdapter<RequisitionDetail>((ArrayList) requisitionDetails, R.layout.item_disbursement_detail) {
                                         @Override
                                         public void bindView(ViewHolder holder, RequisitionDetail obj) {
@@ -260,9 +221,6 @@ public class DisbursementDetailActivity extends AppCompatActivity {
                                                 });
                                             }
                                             if (obj.getRequisition().getStatus().equals(CommonConstant.RequsitionStatus.COMPLETED)){
-//                                                clerk_update_remark_button.setVisibility(View.INVISIBLE);
-//                                                confirm_complete.setVisibility(View.VISIBLE);
-//                                                clerk_update_remark_button.setClickable(false);
                                                 holder.setVisibility(R.id.cl_remark, View.VISIBLE);
                                                 holder.setVisibility(R.id.clerk_remarks, View.VISIBLE);
                                                 holder.setVisibility(R.id.clerk_set_remarks, View.INVISIBLE);
@@ -301,7 +259,6 @@ public class DisbursementDetailActivity extends AppCompatActivity {
 
                             ((TextView) view).setText(text);
                             requisitionDetails.get(position).setClerkRemark(text);
-                            //System.out.println("asdf");
                         }
                     }
                 })

@@ -35,7 +35,6 @@ import iss.team1.ad.ssis_android.fragment.MenuFragment;
 import iss.team1.ad.ssis_android.fragment.PurchaseRquestFragment;
 import iss.team1.ad.ssis_android.fragment.RetrievalFragment;
 import iss.team1.ad.ssis_android.fragment.RetrieveAllVouchersFragment;
-import iss.team1.ad.ssis_android.fragment.TabFragment;
 import iss.team1.ad.ssis_android.fragment.WelcomeFragment;
 import iss.team1.ad.ssis_android.modal.Employee;
 
@@ -46,22 +45,20 @@ public class HomeActivity extends AppCompatActivity {
     private FrameLayout contentFrameLayout;
     private Fragment currentFragment;
     private List<Fragment> tabFragments = new ArrayList<>();
-    private Context context;
     private Employee currentUser=null;
-    private FrameLayout menuContent;
-    private int isGetPortrait=0;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        ActivityCollector.addActivity(this);
+        context=this;
+
         Intent intent=getIntent();
         currentUser=(Employee)intent.getSerializableExtra("currentUser");
         ApplicationUtil.setCurrentUser(currentUser);
-//        currentUser=new Employee();
-//        currentUser.setName("Wee Kian Fatt(de)");
-//        currentUser.setRole("de");
         FragmentManager fragmentManager = getSupportFragmentManager();
         final MenuFragment menuFragment=(MenuFragment)fragmentManager.findFragmentById(R.id.nav_view);
         menuFragment.setCurrentUser(currentUser);
@@ -93,9 +90,6 @@ public class HomeActivity extends AppCompatActivity {
             case CommonConstant.ROLE.DEPARTMENT_EMPLOYEE:
                 tabFragments.add(new WelcomeFragment());
                 tabFragments.add(new AckReceiveFragment());
-                tabFragments.add(new TabFragment());
-                tabFragments.add(new TabFragment());
-                tabFragments.add(new TabFragment());
                 break;
             case CommonConstant.ROLE.DEPARTMENT_HEAD:
                 tabFragments.add(new WelcomeFragment());
@@ -209,7 +203,6 @@ public class HomeActivity extends AppCompatActivity {
             if (!isExit) {
                 isExit = true;
                 Toast.makeText(context,"press again to exit app",Toast.LENGTH_LONG).show();
-                // 利用handler延迟发送更改状态信息
                 mHandler.sendEmptyMessageDelayed(0, 2000);
             } else {
                 ActivityCollector.AppExit(context);

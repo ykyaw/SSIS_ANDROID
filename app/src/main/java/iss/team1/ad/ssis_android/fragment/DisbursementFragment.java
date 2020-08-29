@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,12 +22,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.google.gson.Gson;
 import com.lxj.xpopup.XPopup;
-import com.lxj.xpopup.interfaces.OnInputConfirmListener;
 import com.lxj.xpopup.interfaces.OnSelectListener;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -49,7 +45,6 @@ import iss.team1.ad.ssis_android.comm.utils.TimeUtil;
 import iss.team1.ad.ssis_android.components.Result;
 import iss.team1.ad.ssis_android.modal.Department;
 import iss.team1.ad.ssis_android.modal.Requisition;
-import iss.team1.ad.ssis_android.modal.RequisitionDetail;
 
 public class DisbursementFragment extends Fragment {
 
@@ -60,7 +55,6 @@ public class DisbursementFragment extends Fragment {
     private SwipeRefreshLayout fragment_disbursement_swl;
 
 
-    private MyAdapter<Department> spinnerItemMyAdapter;
     private MyAdapter<Requisition> disbursementAdapter;
 
 
@@ -79,7 +73,6 @@ public class DisbursementFragment extends Fragment {
     private List<Requisition> requisitions;
 
     public DisbursementFragment() {
-        // Required empty public constructor
     }
 
 
@@ -223,7 +216,6 @@ public class DisbursementFragment extends Fragment {
                                     public void onSelect(int position, String text) {
                                         disbursement_dept.setText(text);
                                         dept_select = departments.get(position).getId();
-//                                        Toast.makeText(context,"click " + departments.get(position).getName(),Toast.LENGTH_LONG).show();
                                     }
                                 })
                         .show();
@@ -244,7 +236,6 @@ public class DisbursementFragment extends Fragment {
                     @Override
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
-                        // TODO Auto-generated method stub
                         mYear = year;
                         mMonth = monthOfYear;
                         mDay = dayOfMonth;
@@ -287,7 +278,6 @@ public class DisbursementFragment extends Fragment {
         disbursement_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                fetchRequisitionDetailsByDate();
                 if(StringUtil.isEmpty(selectDay)||StringUtil.isEmpty(dept_select)){
                     Toast.makeText(context,"please select disbursement date or department",Toast.LENGTH_SHORT).show();
                     return;

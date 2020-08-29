@@ -46,7 +46,6 @@ public class Stepper extends LinearLayout {
         number_text=(EditText)this.findViewById(R.id.number_text);
 
         number_text.setText(number+"");
-//        number_text.setText(number);
 
         plus.setOnClickListener(new OnClickListener() {
             @Override

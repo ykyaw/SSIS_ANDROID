@@ -34,7 +34,6 @@ import iss.team1.ad.ssis_android.comm.utils.JSONUtil;
 import iss.team1.ad.ssis_android.comm.utils.StringUtil;
 import iss.team1.ad.ssis_android.comm.utils.TimeUtil;
 import iss.team1.ad.ssis_android.components.Result;
-import iss.team1.ad.ssis_android.modal.Employee;
 import iss.team1.ad.ssis_android.modal.Requisition;
 import iss.team1.ad.ssis_android.modal.RequisitionDetail;
 

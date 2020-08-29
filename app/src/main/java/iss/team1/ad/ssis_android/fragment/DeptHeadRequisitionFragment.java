@@ -64,7 +64,6 @@ public class DeptHeadRequisitionFragment extends Fragment {
     String selectDay=null;
 
     public DeptHeadRequisitionFragment() {
-        // Required empty public constructor
     }
 
 
@@ -85,7 +84,6 @@ public class DeptHeadRequisitionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_dept_head_requisition, container, false);
         context= ApplicationUtil.getContext();
         init(view);
@@ -120,7 +118,6 @@ public class DeptHeadRequisitionFragment extends Fragment {
                     @Override
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
-                        // TODO Auto-generated method stub
                         mYear = year;
                         mMonth = monthOfYear;
                         mDay = dayOfMonth;

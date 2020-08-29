@@ -226,28 +226,6 @@ public class StoreSupAVDetailActivity extends AppCompatActivity {
 
                 holder.setText(R.id.item_price, formatter.format(obj.getTotalPrice()));
                 holder.setText(R.id.item_adjusted_reason,obj.getReason());
-//                if (obj.getTotalPrice() >= 250) {
-//                    av_alert.setVisibility(View.VISIBLE);
-//                    if (adjustmentvoucher.getStatus().equals(CommonConstant.AdjsutmentVoucherStatus.PENDING_APPROVAL)) {
-//                        if (ApplicationUtil.getCurrentUser().getRole().equals(CommonConstant.ROLE.STORE_SUPERVISOR)) {
-//                            store_sup_av_approve_btn.setVisibility(View.INVISIBLE);
-//                            store_man_av_approve_btn.setVisibility(View.VISIBLE);//this button set status="pendmanaprov"
-//                        } else {
-//                            store_sup_av_detail_list_btn_panel.setVisibility(View.VISIBLE);
-//                            av_alert.setText("Pending Supervisor Review");
-//
-//                        }
-//                    }
-//
-//                }else {
-//                    av_alert.setVisibility(View.INVISIBLE);
-//                    if (adjustmentvoucher.getStatus().equals(CommonConstant.AdjsutmentVoucherStatus.PENDING_APPROVAL)) {
-//                        //to both supervisor and manager
-//                        store_sup_av_detail_list_btn_panel.setVisibility(View.VISIBLE);
-//                        store_sup_av_approve_btn.setVisibility(View.VISIBLE);
-//                        store_man_av_approve_btn.setVisibility(View.INVISIBLE);
-//                    }
-//                }
 
             }
         };
@@ -269,7 +247,6 @@ public class StoreSupAVDetailActivity extends AppCompatActivity {
         }
         if (view.getId() == R.id.store_man_av_approve_btn) {
             adjustmentvoucher.setStatus(CommonConstant.AdjsutmentVoucherStatus.PENDMANAPPROV);
-//            adjustmentvoucher.setApprovedSup(ApplicationUtil.getCurrentUser());
 
         }
 

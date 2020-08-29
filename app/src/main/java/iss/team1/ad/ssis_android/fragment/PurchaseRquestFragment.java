@@ -47,7 +47,6 @@ public class PurchaseRquestFragment extends Fragment {
     private Context context;
 
     public PurchaseRquestFragment() {
-        // Required empty public constructor
     }
 
 
@@ -68,7 +67,6 @@ public class PurchaseRquestFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_purchase_rquest, container, false);
         context= ApplicationUtil.getContext();
         init(view);

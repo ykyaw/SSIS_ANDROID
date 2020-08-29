@@ -21,6 +21,7 @@ import java.util.Map;
 
 import iss.team1.ad.ssis_android.comm.utils.ApplicationUtil;
 import iss.team1.ad.ssis_android.comm.utils.EntityUtil;
+import iss.team1.ad.ssis_android.components.ActivityCollector;
 import iss.team1.ad.ssis_android.components.Result;
 import iss.team1.ad.ssis_android.R;
 import iss.team1.ad.ssis_android.comm.CommonConstant;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ActivityCollector.addActivity(this);
         SharedPreferences pref = ApplicationUtil.getContext().getSharedPreferences("user_credentials", MODE_PRIVATE);
         if(pref.contains("token")){
         }

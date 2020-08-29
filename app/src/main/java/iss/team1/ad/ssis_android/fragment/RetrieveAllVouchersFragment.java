@@ -38,11 +38,6 @@ import iss.team1.ad.ssis_android.comm.utils.TimeUtil;
 import iss.team1.ad.ssis_android.components.Result;
 import iss.team1.ad.ssis_android.modal.AdjustmentVoucher;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link RetrieveAllVouchersFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class RetrieveAllVouchersFragment extends Fragment  {
 
     private SwipeRefreshLayout adjsutment_voucher_swl;
@@ -61,7 +56,6 @@ public class RetrieveAllVouchersFragment extends Fragment  {
         // Required empty public constructor
     }
 
-    // TODO: Rename and change types and number of parameters
     public static RetrieveAllVouchersFragment newInstance(String param1, String param2) {
         RetrieveAllVouchersFragment fragment = new RetrieveAllVouchersFragment();
         Bundle args = new Bundle();
@@ -129,7 +123,6 @@ public class RetrieveAllVouchersFragment extends Fragment  {
                                     //map result data to local model class
                                     for(int i=0;i<((ArrayList)result.getData()).size();i++){
                                         AdjustmentVoucher av= (AdjustmentVoucher) EntityUtil.map2Object((Map<String, Object>) ((ArrayList) result.getData()).get(i), AdjustmentVoucher.class);
-//                                        AdjustmentVoucher av=(AdjustmentVoucher) EntityUtil.map2Object((Map<String, Object>) (result.getData()).get(i),AdjustmentVoucher.class);
                                         isSubmitted=av.getStatus().equals(CommonConstant.AdjsutmentVoucherStatus.PENDING_APPROVAL)||av.getStatus().equals(CommonConstant.AdjsutmentVoucherStatus.PENDMANAPPROV)
                                                 ||av.getStatus().equals(CommonConstant.AdjsutmentVoucherStatus.APPROVED)||av.getStatus().equals(CommonConstant.AdjsutmentVoucherStatus.REJECTED);
                                         if(isSubmitted){
@@ -183,16 +176,6 @@ public class RetrieveAllVouchersFragment extends Fragment  {
 
         };
         allvoucher_list.setAdapter(myAdapter1);
-//        allvoucher_list.setOnItemClickListener(this);
     }
 
-//    @Override
-//    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-//        String avId=avlist.get(position).getId();
-//        AdjustmentVoucher voucher=avlist.get(position);
-//        Intent intent=new Intent(getActivity().getBaseContext(), AVDetailFragment.class);
-//        intent.putExtra("adjustmentvoucherId",avId);
-//        intent.putExtra("adjustmentvoucher",voucher);
-//        getActivity().startActivity(intent);
-//    }
 }

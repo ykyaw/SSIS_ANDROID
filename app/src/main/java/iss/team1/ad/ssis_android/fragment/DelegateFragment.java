@@ -68,7 +68,6 @@ public class DelegateFragment extends Fragment implements CallStateListener {
     private BasePopupView popupView=null;
 
     public DelegateFragment() {
-        // Required empty public constructor
     }
 
 
@@ -169,7 +168,6 @@ public class DelegateFragment extends Fragment implements CallStateListener {
         delegateEmployeeAdapter = new MyAdapter<Employee>((ArrayList) delegates,R.layout.item_delegate) {
             @Override
             public void bindView(final ViewHolder holder, Employee obj) {
-//                if(tableRowRenderTime<delegates.size()){
                     holder.setText(R.id.item_delegate_name,obj.getName());
                     holder.setText(R.id.item_delegate_start_date, TimeUtil.convertTimestampToyyyyMMdd(obj.getDelegateFromDate()));
                     holder.setText(R.id.item_delegate_end_date,TimeUtil.convertTimestampToyyyyMMdd(obj.getDelegateToDate()));
@@ -199,10 +197,8 @@ public class DelegateFragment extends Fragment implements CallStateListener {
                                                     Result result = (Result) JSONUtil.JsonToObject(response.toString(), Result.class);
                                                     if(result.getCode()==200){
                                                         Toast.makeText(context,"update successfully",Toast.LENGTH_LONG).show();
-//                                                        callState.notifyObserver(true);
                                                     }else{
                                                         Toast.makeText(context,result.getMsg(),Toast.LENGTH_LONG).show();
-//                                                    callState.notifyObserver(false);
                                                     }
                                                 }
                                             }, new Response.ErrorListener() {
@@ -236,7 +232,6 @@ public class DelegateFragment extends Fragment implements CallStateListener {
                                                         fetchDelegate();
                                                     }else{
                                                         Toast.makeText(context,result.getMsg(),Toast.LENGTH_LONG).show();
-//                                                    callState.notifyObserver(false);
                                                     }
                                                 }
                                             }, new Response.ErrorListener() {
@@ -259,16 +254,12 @@ public class DelegateFragment extends Fragment implements CallStateListener {
                             int year=mCalendar.get(Calendar.YEAR);
                             int month=mCalendar.get(Calendar.MARCH);
                             int day=mCalendar.get(Calendar.DAY_OF_MONTH);
-                            int mYear=0;
-                            int mMonth = 0;
-                            int mDay=0;
                             View thizView=view;
                             DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
 
                                 @Override
                                 public void onDateSet(DatePicker view, int year,
                                                       int monthOfYear, int dayOfMonth) {
-                                    // TODO Auto-generated method stub
                                     String selectDay=null;
                                     if (monthOfYear + 1 < 10) {
                                         if (dayOfMonth < 10) {
@@ -315,9 +306,6 @@ public class DelegateFragment extends Fragment implements CallStateListener {
                             int year=mCalendar.get(Calendar.YEAR);
                             int month=mCalendar.get(Calendar.MARCH);
                             int day=mCalendar.get(Calendar.DAY_OF_MONTH);
-                            int mYear=0;
-                            int mMonth = 0;
-                            int mDay=0;
                             View thizView=view;
                             DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
 
@@ -362,8 +350,6 @@ public class DelegateFragment extends Fragment implements CallStateListener {
                                     month, day).show();
                         }
                     });
-//                    tableRowRenderTime++;
-//                }
             }
         };
         delegate_list.setAdapter(delegateEmployeeAdapter);

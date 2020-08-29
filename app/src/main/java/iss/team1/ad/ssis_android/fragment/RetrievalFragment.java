@@ -62,7 +62,6 @@ public class RetrievalFragment extends Fragment {
     private MyAdapter<Retrieval> myAdapter = null;
 
     public RetrievalFragment() {
-        // Required empty public constructor
     }
 
     public static RetrievalFragment newInstance(String param1, String param2) {
@@ -82,7 +81,6 @@ public class RetrievalFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_retrieval, container, false);
         context= ApplicationUtil.getContext();
         init(view);
@@ -115,7 +113,6 @@ public class RetrievalFragment extends Fragment {
                     @Override
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
-                        // TODO Auto-generated method stub
                         mYear = year;
                         mMonth = monthOfYear;
                         mDay = dayOfMonth;

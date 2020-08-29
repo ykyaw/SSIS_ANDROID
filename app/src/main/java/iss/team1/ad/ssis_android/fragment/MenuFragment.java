@@ -56,7 +56,6 @@ public class MenuFragment extends Fragment {
     }
 
     public MenuFragment() {
-        // Required empty public constructor
     }
 
     public static MenuFragment newInstance(String param1, String param2) {

@@ -174,7 +174,6 @@ public class PurchaseRequestDeatilActivity extends AppCompatActivity {
                                 Result result = (Result) JSONUtil.JsonToObject(response.toString(), Result.class);
                                 if(result.getCode()==200){
                                     fetchDetail();
-//                                    purchase_request_detail_reason_panel.setVisibility(View.INVISIBLE);
                                 }else{
                                     Toast.makeText(context,result.getMsg(),Toast.LENGTH_LONG).show();
                                 }

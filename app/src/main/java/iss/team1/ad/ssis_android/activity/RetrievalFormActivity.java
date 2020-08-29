@@ -1,20 +1,15 @@
 package iss.team1.ad.ssis_android.activity;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.icu.util.Calendar;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -32,7 +27,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Map;
 
 import iss.team1.ad.ssis_android.R;
@@ -61,9 +55,6 @@ public class RetrievalFormActivity extends AppCompatActivity {
     private LinearLayout retrieval_info_row;
     private EditText retrieval_comments;
 
-    int mYear;
-    int mMonth ;
-    int mDay;
     String startday;
     String id;
 
@@ -145,13 +136,7 @@ public class RetrievalFormActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-//        jsonObject.
-//        JSONArray jsonArray=null;
-//        try {
-//            jsonArray = new JSONArray(new G);
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
+
         HttpUtil.getInstance()
                 .sendJSONRequest(Request.Method.PUT, CommonConstant.HttpUrl.UPDATE_RETRIEVAL,
                         jsonObject,new Response.Listener<JSONObject>(){

@@ -64,7 +64,6 @@ public class AckReceiveFragment extends Fragment {
     int mMonth ;
     int mDay;
     String selectDay=null;
-    private int tableRowRenderTime=0;
     private List<RequisitionDetail> requisitionDetails=new ArrayList<>();
     private boolean isAck=false;
 
@@ -73,7 +72,7 @@ public class AckReceiveFragment extends Fragment {
 
 
     public AckReceiveFragment() {
-        // Required empty public constructor
+
     }
 
     public static AckReceiveFragment newInstance(String param1, String param2) {
@@ -132,7 +131,6 @@ public class AckReceiveFragment extends Fragment {
                     Toast.makeText(context,"please select a date",Toast.LENGTH_LONG).show();
                     return;
                 }
-//                tableRowRenderTime=0;
                fetchData();
             }
         });
@@ -151,7 +149,6 @@ public class AckReceiveFragment extends Fragment {
                     @Override
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
-                        // TODO Auto-generated method stub
                         mYear = year;
                         mMonth = monthOfYear;
                         mDay = dayOfMonth;
@@ -226,7 +223,6 @@ public class AckReceiveFragment extends Fragment {
                                     disbursementsAdapter = new MyAdapter<RequisitionDetail>((ArrayList) requisitionDetails,R.layout.item_disbursement) {
                                         @Override
                                         public void bindView(final ViewHolder holder, RequisitionDetail obj) {
-//                                                    if(tableRowRenderTime<size){
                                             holder.setText(R.id.item_desc, obj.getProduct().getDescription());
                                             holder.setText(R.id.qty_dis,obj.getQtyDisbursed()+"");
                                             holder.setText(R.id.qty_req,obj.getQtyNeeded()+"");
@@ -256,8 +252,6 @@ public class AckReceiveFragment extends Fragment {
                                                 ((TextView)holder.getView(R.id.qty_rec)).setCompoundDrawables(null,null,null,null);
                                                 ((TextView)holder.getView(R.id.dept_remarks)).setCompoundDrawables(null,null,null,null);
                                             }
-//                                                        tableRowRenderTime++;
-//                                                    }
                                         }
                                     };
                                     disbursement_list.setAdapter(disbursementsAdapter);
@@ -314,7 +308,6 @@ public class AckReceiveFragment extends Fragment {
         JSONArray jsonArray = null;
         try {
             jsonArray=new JSONArray(new Gson().toJson(requisitionDetails));
-            System.out.println("asdf");
         } catch (Exception e) {
             e.printStackTrace();
         }
